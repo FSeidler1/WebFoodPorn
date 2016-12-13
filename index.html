@@ -31,22 +31,24 @@
         <div class="panel-body">
             <h3 class="panel-title"><span>Food</span><span>Porn</span></h3>
         </div>
-        <form ng-submit="submit()">
-            <div class="panel-body">
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="einfaches-addon1"><i class="fa fa-user" aria-hidden="true"></i></i></span>
-                    <input type="text" class="form-control" placeholder="Benutzername" aria-describedby="einfaches-addon1">
+        <div id="form" ng-controller="FormController">
+            <form ng-submit="submit()">
+                <div class="panel-body">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon" id="benutzer_login"><i class="fa fa-user" aria-hidden="true"></i></i></span>
+                        <input type="text" class="form-control" placeholder="Benutzername">
+                    </div>
+                    <br>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon" id="passwort_login"><i class="fa fa-key" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" placeholder="Passwort">
+                    </div>
+                    <br>
+                    <a href="url"></a>
+                    <input type="submit" class="btn btn-success btn-lg" id="form_senden" name="senden" value="senden">
                 </div>
-                <br>
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="einfaches-addon1"><i class="fa fa-key" aria-hidden="true"></i></span>
-                    <input type="text" class="form-control" placeholder="Passwort" aria-describedby="einfaches-addon1">
-                </div>
-                <br>
-                <a href="url"></a>
-                <button type="button" class="btn btn-success btn-lg">Login</button>
-            </div>
-        </form>
+            </form>
+        </div>
         <h3>
             <center><a href="url">Als neuer Benutzer Registrieren</a></center>
         </h3>

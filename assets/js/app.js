@@ -12,17 +12,16 @@ phonecatApp.controller('FormController',
             // ------------------------------------------------------ 
             var request = $http({
                 method: "post",
-                url: '001.php?clas=phones&action=update',
+                url: 'controller.php?class=user&action=login',
                 data: {
-                    form_id: document.getElementById("form_id").value,
-                    form_name: document.getElementById("form_name").value,
-                    form_snippet: document.getElementById("form_snippet").value
+                    benutzer_login: document.getElementById("benutzer-login").value,
+                    passwort_login: document.getElementById("passwort_login").value
                 },
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             });
-            // Was kommt vom 001.php zurück? Anzeige in {{text}}
+            // Was kommt vom 001.php zurück? Wenn passt, dann login. Wenn nicht dann redirect
             request.success(function(meldung) {
                 console.log("api: " + meldung);
                 $scope.text = meldung;
