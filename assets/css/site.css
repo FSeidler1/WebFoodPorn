@@ -11,6 +11,45 @@ body {
     vertical-align: middle;
 }
 
+@media (max-width: 768px) {
+    .panel-title span:nth-child(1) {
+        color: lawngreen;
+        font-size: 65px;
+    }
+    .panel-title span:nth-child(2) {
+        color: white;
+        font-size: 65px;
+        font-style: italic;
+    }
+}
+
+@media (min-width: 768px) {
+    .panel-title span:nth-child(1) {
+        color: lawngreen;
+        font-size: 65px;
+    }
+    .panel-title span:nth-child(2) {
+        color: white;
+        font-size: 65px;
+        font-style: italic;
+    }
+}
+
+
+/* Große Geräte (Desktop-PCs, 1200px und breiter) */
+
+@media (min-width: 992px) {
+    .panel-title span:nth-child(1) {
+        color: lawngreen;
+        font-size: 100px;
+    }
+    .panel-title span:nth-child(2) {
+        color: white;
+        font-size: 100px;
+        font-style: italic;
+    }
+}
+
 .falseUserLogin {
     color: red;
     font-size: 16px;
