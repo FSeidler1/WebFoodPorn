@@ -14,7 +14,7 @@ loginApp.controller('FormController',
             // ------------------------------------------------------ 
             var request = $http({
                 method: "login",
-                url: 'controller.php?class=user&action=login',
+                url: './assets/php/controller.php?class=user&action=islogedin',
                 data: {
                     benutzer_login: document.getElementById("benutzer_login").value,
                     passwort_login: document.getElementById("passwort_login").value
@@ -27,8 +27,9 @@ loginApp.controller('FormController',
             request.success(function(meldung) {
                 //Keine Rückmeldung von Server
                 if (meldung === null) {
-                    console.log("Fehlerhafte Rückmeldung von Server")
+                    console.log("Fehlerhafte Rückmeldung von Server");
                 } else {
+                    console.log(meldung);
                     if (meldung === true) {
                         //Password korrekt
                         window.location.replace("http://localhost/html/main.html");
@@ -54,7 +55,7 @@ registrationApp.controller('FormController',
             // ------------------------------------------------------ 
             var request = $http({
                 method: "registration",
-                url: 'controller.php?class=user&action=registration',
+                url: './assets/php/controller.php?class=user&action=registration',
                 data: {
                     benutzer_registration: document.getElementById("benutzer_registration").value,
                     email_registration: document.getElementById("email_registration").value,
@@ -86,7 +87,7 @@ registrationApp.controller('FormController',
 
 function falseData() {
     //Keine Anmeldung möglich
-    var mydiv = getElementById("falseUserLogin");
+    var mydiv = document.getElementById("falseUserLogin");
     mydiv.style.display = "block";
 }
 
