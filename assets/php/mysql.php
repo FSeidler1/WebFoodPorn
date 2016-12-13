@@ -29,7 +29,7 @@ class DB
             `description` TEXT NOT NULL , 
             `category` VARCHAR(255) NOT NULL , 
             `fs_user` INT NOT NULL , 
-            `date` DATE NOT NULL , 
+            `dateCreated` DATE NOT NULL , 
             PRIMARY KEY (`id_foodporn`)
             ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;");
             $stmt->execute();
@@ -46,7 +46,7 @@ class DB
             $stmt->execute();
 
             // Create Like Table
-            $stmt = self::$_db->prepare("CREATE TABLE IF NOT EXISTS `fooddb`.`like` ( `id_like` INT NOT NULL AUTO_INCREMENT , 
+            $stmt = self::$_db->prepare("CREATE TABLE IF NOT EXISTS `fooddb`.`likes` ( `id_like` INT NOT NULL AUTO_INCREMENT , 
             `islike` INT(2) NOT NULL , 
             `fs_user` INT NOT NULL , 
             `fs_foodporn` INT NOT NULL , 
@@ -64,15 +64,68 @@ class DB
 
             // Create Comment Table
             $stmt = self::$_db->prepare("CREATE TABLE IF NOT EXISTS `fooddb`.`comment` ( `id_comment` INT NOT NULL AUTO_INCREMENT , 
-            `text` TEXT NOT NULL , 
-            `date` DATE NOT NULL , 
+            `content` TEXT NOT NULL , 
+            `dateCreated` DATE NOT NULL , 
             `fs_foodporn` INT NOT NULL , 
             `fs_user` INT NOT NULL , 
             PRIMARY KEY (`id_comment`)
             ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;");
             $stmt->execute();
 
-            // Create Example Entrys
+            // Create foodporn Example Entry
+            $stmt = self::$_db->prepare("SELECT count(id_foodporn) AS c FROM foodporn");
+            $stmt->execute();
+            $count = $stmt->fetch()["c"];
+            if($count < 1)
+            {
+                $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
+                VALUES(1,'./img/default.png', 'Beispielbild', 'Beschreibung des Beispiel Foodporns', 'Pasta', 1, NOW())");
+                $stmt->execute();
+            }
+            
+            // Create user Example Entry
+            $stmt = self::$_db->prepare("SELECT count(id_user) AS c FROM user");
+            $stmt->execute();
+            $count = $stmt->fetch()["c"];
+            if($count < 1)
+            {
+                $stmt = self::$_db->prepare("INSERT INTO user (id_user,username,mail,password,description,image)
+                VALUES(1,'Test', 'test@test.ch', 'Test123', 'Über mich:', './img/default.png')");
+                $stmt->execute();
+            }
+            
+            // Create like Example Entry
+            $stmt = self::$_db->prepare("SELECT count(id_like) AS c FROM likes");
+            $stmt->execute();
+            $count = $stmt->fetch()["c"];
+            if($count < 1)
+            {
+                $stmt = self::$_db->prepare("INSERT INTO likes (islike, fs_user, fs_foodporn)
+                VALUES(1,1,1)");
+                $stmt->execute();
+            }
+            
+            // Create favorit Example Entry
+            $stmt = self::$_db->prepare("SELECT count(id_favorit) AS c FROM favorit");
+            $stmt->execute();
+            $count = $stmt->fetch()["c"];
+            if($count < 1)
+            {
+                $stmt = self::$_db->prepare("INSERT INTO favorit (fs_user, fs_foodporn)
+                VALUES(1,1)");
+                $stmt->execute();
+            }
+            
+            // Create favorit Example Entry
+            $stmt = self::$_db->prepare("SELECT count(id_comment) AS c FROM comment");
+            $stmt->execute();
+            $count = $stmt->fetch()["c"];
+            if($count < 1)
+            {
+                $stmt = self::$_db->prepare("INSERT INTO comment (content, dateCreated, fs_foodporn, fs_user)
+                VALUES('Ha ha is geil!',NOW(),1,1)");
+                $stmt->execute();
+            }
         }
     }
 ?>
