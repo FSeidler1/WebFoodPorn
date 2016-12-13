@@ -23,5 +23,5 @@ else
 }
 
 $controller = new Controller();
-$controller->display();*/
+$controller->display();
 ?>
