@@ -1,60 +1,80 @@
-body {
-    background-image: url("./../img/login_wallpaper.jpg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-}
-
-.navbar-form .form-control {
-    display: inline-block;
-    width: 1600px;
-    vertical-align: middle;
-}
-
-@media (max-width: 768px) {
-    .panel-title span:nth-child(1) {
-        color: lawngreen;
-        font-size: 65px;
-    }
-    .panel-title span:nth-child(2) {
-        color: white;
-        font-size: 65px;
-        font-style: italic;
-    }
-}
-
-@media (min-width: 768px) {
-    .panel-title span:nth-child(1) {
-        color: lawngreen;
-        font-size: 65px;
-    }
-    .panel-title span:nth-child(2) {
-        color: white;
-        font-size: 65px;
-        font-style: italic;
-    }
-}
-
-
-/* Große Geräte (Desktop-PCs, 1200px und breiter) */
-
-@media (min-width: 992px) {
-    .panel-title span:nth-child(1) {
-        color: lawngreen;
-        font-size: 100px;
-    }
-    .panel-title span:nth-child(2) {
-        color: white;
-        font-size: 100px;
-        font-style: italic;
-    }
-}
-
-.falseUserLogin {
-    color: red;
-    font-size: 16px;
-}
-
-#falseUserLogin {
-    display: none;
-}
+            body {
+                background-image: url("./../img/login_wallpaper.jpg");
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: cover;
+            }
+            /* Große Geräte (Desktop-PCs, 1200px und breiter) */
+            
+            @media (max-width: 768px) {
+                .navbar-form .form-control {
+                    display: inline-block;
+                    width: 600px;
+                    vertical-align: middle;
+                }
+            }
+            
+            @media (min-width: 768px) {
+                .navbar-form .form-control {
+                    display: inline-block;
+                    width: 600px;
+                    vertical-align: middle;
+                }
+            }
+            /* Große Geräte (Desktop-PCs, 1200px und breiter) */
+            
+            @media (min-width: 992px) {
+                .navbar-form .form-control {
+                    display: inline-block;
+                    width: 1600px;
+                    vertical-align: middle;
+                }
+            }
+            
+            #search-box {
+                position: relative;
+                width: 90%;
+                margin: 0;
+            }
+            
+            #search-form {
+                height: 40px;
+                border: 1px solid #999;
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                border-radius: 5px;
+                background-color: #fff;
+                overflow: hidden;
+                margin-top: 5px;
+            }
+            
+            #search-text {
+                font-size: 14px;
+                color: #ddd;
+                border-width: 0;
+                background: transparent;
+            }
+            
+            #search-box input[type="text"] {
+                width: 90%;
+                padding: 11px 5px 12px 1em;
+                color: #333;
+                outline: none;
+            }
+            
+            #search-button {
+                position: absolute;
+                top: 0;
+                right: 0;
+                height: 42px;
+                width: 80px;
+                font-size: 14px;
+                color: #fff;
+                text-align: center;
+                line-height: 42px;
+                border-width: 0;
+                -webkit-border-radius: 0px 5px 5px 0px;
+                -moz-border-radius: 0px 5px 5px 0px;
+                border-radius: 0px 5px 5px 0px;
+                cursor: pointer;
+            }

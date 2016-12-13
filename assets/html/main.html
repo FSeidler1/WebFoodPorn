@@ -41,16 +41,16 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-                <form class="navbar-form navbar-left">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                    </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </form>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Link</a></li>
+                <div id='search-box'>
+                    <form action='/search' id='search-form' method='get' target='_top'>
+                        <input id='search-text' name='q' placeholder='Search' type='text' />
+                        <button id='search-button' type='submit'>                     
+                            <span>Search</span>
+                        </button>
+                    </form>
+                </div>
 
-                </ul>
+
             </div>
             <!-- /.navbar-collapse -->
         </div>
