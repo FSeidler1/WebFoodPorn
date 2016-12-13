@@ -23,16 +23,15 @@ loginApp.controller('FormController',
             });
             // Was kommt vom Controller.php zurück? Wenn passt, dann login. Wenn nicht dann redirect
             request.success(function(meldung) {
-                if (meldung === true) {
-                    //Password korrekt
-                    window.location.replace("http://localhost/html/main.html");
+                //Keine Rückmeldung von Server
+                if (meldung === null) {
+                    console.log("Fehlerhafte Rückmeldung von Server")
                 } else {
-                    //Keine Anmeldung möglich
-                    var mydiv = getElementById("falseUserLogin");
-                    mydiv.style.display = "block";
-                    //Keine Rückmeldung von Server
-                    if (meldung === null) {
-                        console.log("Keine Rückmeldung von Server")
+                    if (meldung === true) {
+                        //Password korrekt
+                        window.location.replace("http://localhost/html/main.html");
+                    } else {
+                        falseData();
                     }
                 }
             });
@@ -40,3 +39,9 @@ loginApp.controller('FormController',
         }
     }
 );
+
+function falseData() {
+    //Keine Anmeldung möglich
+    var mydiv = getElementById("falseUserLogin");
+    mydiv.style.display = "block";
+}
