@@ -1,7 +1,8 @@
 var loginApp = new angular.module('loginApp', []);
+var registrationApp = new angular.module('registrationApp', []);
 
 // --------------------------------------------------------------
-// Formular - Controller (insert, update)
+// Formular - Controller
 // --------------------------------------------------------------
 loginApp.controller('FormController',
     function FormController($scope, $http) {
@@ -39,6 +40,48 @@ loginApp.controller('FormController',
         }
     }
 );
+
+// --------------------------------------------------------------
+// Formular - Controller (insert, update)
+// --------------------------------------------------------------
+registrationApp.controller('FormController',
+    function FormController($scope, $http) {
+        $scope.submit = function() {
+            console.log(this);
+            // ------------------------------------------------------
+            // Formular - Datenübermitteln an controller.php
+            // ------------------------------------------------------ 
+            var request = $http({
+                method: "registration",
+                url: 'controller.php?class=user&action=registration',
+                data: {
+                    benutzer_registration: document.getElementById("benutzer_registration").value,
+                    email_registration: document.getElementById("email_registration").value,
+                    passwort_registration: document.getElementById("passwort_registration").value
+                },
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+            // Was kommt vom Controller.php zurück? Wenn passt, dann login. Wenn nicht dann redirect
+            request.success(function(meldung) {
+                //Keine Rückmeldung von Server
+                if (meldung === null) {
+                    console.log("Fehlerhafte Rückmeldung von Server")
+                } else {
+                    if (meldung === true) {
+                        //Password korrekt
+                        window.location.replace("http://localhost/html/main.html");
+                    } else {
+                        falseData();
+                    }
+                }
+            });
+
+        }
+    }
+);
+
 
 function falseData() {
     //Keine Anmeldung möglich
