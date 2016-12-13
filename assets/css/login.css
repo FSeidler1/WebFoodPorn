@@ -1,5 +1,5 @@
 body {
-    background-image: url("../../img/login_wallpaper.jpg");
+    background-image: url("./../img/login_wallpaper.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -37,25 +37,41 @@ body {
     line-height: 50px;
 }
 
-.panel-title span:nth-child(1) {
-    color: lawngreen;
-    font-size: 100px;
+@media (max-width: 768px) {
+    .panel-title span:nth-child(1) {
+        color: lawngreen;
+        font-size: 65px;
+    }
+    .panel-title span:nth-child(2) {
+        color: white;
+        font-size: 65px;
+        font-style: italic;
+    }
 }
 
-.panel-title span:nth-child(2) {
-    color: white;
-    font-size: 100px;
-    font-style: italic;
+@media (min-width: 768px) {
+    .panel-title span:nth-child(1) {
+        color: lawngreen;
+        font-size: 65px;
+    }
+    .panel-title span:nth-child(2) {
+        color: white;
+        font-size: 65px;
+        font-style: italic;
+    }
 }
-
-@media (max-width: 768) {}
-
-
-/* Mittlere Geräte (Desktop-PCs, 992px und breiter) */
-
-@media (min-width: 768) {}
 
 
 /* Große Geräte (Desktop-PCs, 1200px und breiter) */
 
-@media (min-width: 992) {}
+@media (min-width: 992px) {
+    .panel-title span:nth-child(1) {
+        color: lawngreen;
+        font-size: 100px;
+    }
+    .panel-title span:nth-child(2) {
+        color: white;
+        font-size: 100px;
+        font-style: italic;
+    }
+}
