@@ -1,5 +1,6 @@
 var loginApp = new angular.module('loginApp', []);
 var registrationApp = new angular.module('registrationApp', []);
+var mainApp = new angular.module('mainApp', []);
 
 // --------------------------------------------------------------
 // Formular - Controller
@@ -88,3 +89,19 @@ function falseData() {
     var mydiv = getElementById("falseUserLogin");
     mydiv.style.display = "block";
 }
+
+
+
+/*Controller definieren, Funktion für den controller*/
+mainApp.controller('buildMainEntrys',
+    function mainController($scope, $http) {
+        $http.get('./../php/Controller.php?class=foodporn').success(
+            function(data) {
+                $scope.phones = data;
+            }
+        );
+    });
+
+/************************
+ * Einträge erstellen und Befüllen
+ *************************/
