@@ -14,13 +14,12 @@ $db = new DB();
 $db->initDB();
 
 // Controller
-/*
 if(isset($_GET["class"]) === TRUE) {
     include_once("./class/" . $_GET["class"] . ".php");
 }
 else
 {
-    include_once("./class/phones.php");
+    include_once("./class/foodporn.php");
 }
 
 $controller = new Controller();
