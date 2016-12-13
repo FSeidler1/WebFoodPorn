@@ -31,6 +31,23 @@ body {
     margin: 0 auto;
 }
 
+.panel-title {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 50px;
+}
+
+.panel-title span:nth-child(1) {
+    color: lawngreen;
+    font-size: 100px;
+}
+
+.panel-title span:nth-child(2) {
+    color: white;
+    font-size: 100px;
+    font-style: italic;
+}
+
 @media (max-width: 768) {}
 
 
