@@ -4,6 +4,24 @@
                 background-attachment: fixed;
                 background-size: cover;
             }
+            
+            *,
+            *:before,
+            *:after {
+                box-sizing: border-box;
+            }
+            
+            .row {
+                -moz-column-width: 19em;
+                -webkit-column-width: 19em;
+                -moz-column-gap: 1em;
+                -webkit-column-gap: 1em;
+            }
+            
+            .item {
+                display: inline-block;
+                width: 100%;
+            }
             /* Große Geräte (Desktop-PCs, 1200px und breiter) */
             
             @media (max-width: 768px) {
@@ -128,13 +146,9 @@
             }
             
             .foodporn-container {
-                display: inline-block;
-                float: left;
-                width: 20%;
+                width: 100%;
                 background-color: white;
                 border: 1px solid #efefef;
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-                margin: 10px;
                 padding: 9px;
                 -moz-column-count: 1;
                 -moz-column-gap: 0px;
