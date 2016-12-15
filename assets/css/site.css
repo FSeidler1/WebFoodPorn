@@ -18,6 +18,16 @@
                 -webkit-column-gap: 1em;
             }
             
+            .btn {
+                width: 10%;
+                display: block;
+                margin: 10px 10px 10px 10px;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                z-index: 100;
+            }
+            
             .item {
                 display: inline-block;
                 width: 100%;
