@@ -87,9 +87,8 @@ function falseData() {
     //Keine Anmeldung möglich
     var mydiv = document.getElementById("falseUserLogin");
     mydiv.style.display = "block";
+
 }
-
-
 
 /*Controller definieren, Funktion für den controller*/
 mainApp.controller('buildMainEntrys',
@@ -97,20 +96,6 @@ mainApp.controller('buildMainEntrys',
         $http.get('./../php/Controller.php?class=foodporn').success(
             function(data) {
                 $scope.entrys = data;
-                writeEntrys($scope.entrys);
             }
         );
     });
-
-function writeEntry(entrys) {
-    /************************
-     * Einträge erstellen und Befüllen
-     *************************/
-    for (int i = entrys.) {
-        console.log('Start Aufbau Einträge');
-
-
-
-        console.log('Ende Aufbau Einträge');
-    }
-}
