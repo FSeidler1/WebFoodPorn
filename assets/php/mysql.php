@@ -190,4 +190,13 @@ class DB
             $stmt->bindParam("password", $password);
             $stmt->bindParam(":sid", $sid);
         }
+
+        // Get ONLY Foodporn Comntext
+        function getAllFoodporns()
+        {
+            $stmt = self::$_db->prepare("SELECT * FROM foodporn");
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+    }
 ?>

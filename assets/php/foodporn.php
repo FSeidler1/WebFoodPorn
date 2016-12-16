@@ -63,7 +63,7 @@ class Controller {
     // Get One Foodporn by id
     function getFoodporn() {
         // HACK get data from DB
-        $this->json = "[{
+        /*$this->json = "[{
             id_foodporn: 1,
             favorit: false,
             image: './img/default.png',
@@ -100,7 +100,13 @@ class Controller {
                     image: './img/default.png'
                 }
             }]
-        }];";
+        }];";*/
+
+        $foodporns = $this->db->getAllFoodporns();
+        foreach($foodporns as $foodporn)
+        {
+            
+        }
     }
 
     // Get All Foodporns

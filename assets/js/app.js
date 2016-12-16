@@ -125,7 +125,6 @@ mainApp.controller('sendNewEntry',
                 }
             });
             console.log(document.getElementById("datei_neuesBild").value);
-            console.log(dataTrans());
             // Was kommt vom Controller.php zurück?
             request.success(function(meldung) {
                 //Keine Rückmeldung von Server
@@ -147,11 +146,12 @@ mainApp.controller('sendNewEntry',
 
 //Für Bildformatierung
 function dataTrans() {
-    var file = document.querySelector('#datei_neuesBild').files[0];
-    var reader = new FileReader();
-    if (file) {
-        var dataFile = reader.readAsDataURL(file);
-        console.log(dataFile);
-        return dataFile;
+    var FR = new FileReader();
+    FR.readAsDataURL(document.querySelector('#datei_neuesBild').files[0])
+    FR.onload = function(FR) {
+        return FR.target.result;
     }
 }
+window.addEventListener("load", function() {
+    document.getElementById("input_clone").addEventListener("change", PreviewImages, false);
+}, false);
