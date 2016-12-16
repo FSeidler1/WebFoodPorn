@@ -18,6 +18,10 @@
     <link rel="stylesheet" href="../css/css/font-awesome.css">
     <!--einbindung js-->
     <script src="./../js/app.js"></script>
+    <!--Check UserLoggin -->
+    <script>
+        isUserLoggedIn("main");
+    </script>
 
     <title>FoodPorn</title>
 
@@ -111,7 +115,7 @@
                 <div ng-repeat="entry in entrys" class="item well" id="entry_{{entry.id_foodporn}}">
                     <div class="foodporn-container">
                         <a data-toggle="modal" data-target="#myModal">
-                            <img ng-src="./../../{{entry.image}}">
+                            <img src="{{entry.image}}">
                         </a>
                         <p class="foodporn-title">{{entry.title}}</p>
                         <p class="foodporn-description">{{entry.description}}</p>
@@ -219,41 +223,43 @@
     </button>
 
     <!-- Modal -->
-    <div class="modal fade" id="meinModal" tabindex="-1" role="dialog" aria-labelledby="meinModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Schließen"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="meinModalLabel">Neues Bild hinzufügen</h4>
-                </div>
-                <div class="modal-body">
+    <div id="modalNewEntry" ng-controller="sendNewEntry">
+        <div class="modal fade" id="meinModal" tabindex="-1" role="dialog" aria-labelledby="meinModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Schließen"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="meinModalLabel">Neues Bild hinzufügen</h4>
+                    </div>
+                    <div class="modal-body">
 
-                    <form>
-                        <div class="form-group">
-                            <label for="titel_neuesBild">Titel</label>
-                            <input type="email" class="form-control" id="titel_neuesBild" placeholder="Titel">
-                        </div>
-                        <div class="form-group">
-                            <label for="beschreibung_neuesBild">Beschreibung</label>
-                            <input type="password" class="form-control" id="beschreibung_neuesBild" placeholder="Beschreibung">
-                        </div>
-                        <div class="form-group">
-                            <label>Kategorie</label>
-                            <select class="form-control">
+                        <form id="formNewentryAdd" ng-submit="submit()">
+                            <div class="form-group">
+                                <label for="titel_neuesBild">Titel</label>
+                                <input type="text" class="form-control" required id="titel_neuesBild" placeholder="Titel">
+                            </div>
+                            <div class="form-group">
+                                <label for="beschreibung_neuesBild">Beschreibung</label>
+                                <textarea rows="4" class="form-control" required id="beschreibung_neuesBild" placeholder="Beschreibung"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Kategorie</label>
+                                <select class="form-control" id="kategorie_neuesBild" required>
                                 <option>Fleisch</option>
                                 <option>Fisch</option>
                                 <option>Obst</option>
                             </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="beispielFeldDatei">Anhang</label>
-                            <input type="file" id="beispielFeldDatei">
-                        </div>
-                        <button type="submit" class="btn btn-default">Abschicken</button>
-                    </form>
+                            </div>
+                            <div class="form-group">
+                                <label for="beispielFeldDatei">Anhang</label>
+                                <input type="file" accept="image/*" required id="datei_neuesBild">
+                            </div>
+                            <input type="submit" class="btn btn-success" id="form_senden" name="senden " value="senden ">
+                        </form>
 
-                    <div class="modal-footer">
+                        <div class="modal-footer ">
 
+                        </div>
                     </div>
                 </div>
             </div>
@@ -262,116 +268,116 @@
 
 
 
-        <!--div id="container">
-        <div class="foodporn-container">
-            <img src="../../img/default.png">
-            <p class="foodporn-title">Titel</p>
-            <p class="foodporn-description">Beschreibung</p>
-            <div class="foodporn-container-footer">
-                <a class="foodporn-like-button green">
-                    <i class="fa fa-thumbs-up"></i>
+        <!--div id="container ">
+        <div class="foodporn-container ">
+            <img src="../../img/default.png ">
+            <p class="foodporn-title ">Titel</p>
+            <p class="foodporn-description ">Beschreibung</p>
+            <div class="foodporn-container-footer ">
+                <a class="foodporn-like-button green ">
+                    <i class="fa fa-thumbs-up "></i>
                     <span>0</span>
                 </a>
-                <a class="foodporn-like-button red">
-                    <i class="fa fa-thumbs-down"></i>
+                <a class="foodporn-like-button red ">
+                    <i class="fa fa-thumbs-down "></i>
                     <span>0</span>
                 </a>
-                <a class="foodporn-byuser">by Leonardo</a>
+                <a class="foodporn-byuser ">by Leonardo</a>
             </div>
         </div>
     </div>
 
-    <div id="container">
-        <div class="foodporn-container">
-            <img src="../../img/test.png">
-            <p class="foodporn-title">Titel</p>
-            <p class="foodporn-description">Beschreibung</p>
-            <div class="foodporn-container-footer">
-                <a class="foodporn-like-button green">
-                    <i class="fa fa-thumbs-up"></i>
+    <div id="container ">
+        <div class="foodporn-container ">
+            <img src="../../img/test.png ">
+            <p class="foodporn-title ">Titel</p>
+            <p class="foodporn-description ">Beschreibung</p>
+            <div class="foodporn-container-footer ">
+                <a class="foodporn-like-button green ">
+                    <i class="fa fa-thumbs-up "></i>
                     <span>0</span>
                 </a>
-                <a class="foodporn-like-button red">
-                    <i class="fa fa-thumbs-down"></i>
+                <a class="foodporn-like-button red ">
+                    <i class="fa fa-thumbs-down "></i>
                     <span>0</span>
                 </a>
-                <a class="foodporn-byuser">by Leonardo</a>
+                <a class="foodporn-byuser ">by Leonardo</a>
             </div>
         </div>
     </div>
 
-    <div id="container">
-        <div class="foodporn-container">
-            <img src="../../img/test.png">
-            <p class="foodporn-title">Titel</p>
-            <p class="foodporn-description">Beschreibung</p>
-            <div class="foodporn-container-footer">
-                <a class="foodporn-like-button green">
-                    <i class="fa fa-thumbs-up"></i>
+    <div id="container ">
+        <div class="foodporn-container ">
+            <img src="../../img/test.png ">
+            <p class="foodporn-title ">Titel</p>
+            <p class="foodporn-description ">Beschreibung</p>
+            <div class="foodporn-container-footer ">
+                <a class="foodporn-like-button green ">
+                    <i class="fa fa-thumbs-up "></i>
                     <span>0</span>
                 </a>
-                <a class="foodporn-like-button red">
-                    <i class="fa fa-thumbs-down"></i>
+                <a class="foodporn-like-button red ">
+                    <i class="fa fa-thumbs-down "></i>
                     <span>0</span>
                 </a>
-                <a class="foodporn-byuser">by Leonardo</a>
+                <a class="foodporn-byuser ">by Leonardo</a>
             </div>
         </div>
     </div>
 
-    <div id="container">
-        <div class="foodporn-container">
-            <img src="../../img/default.png">
-            <p class="foodporn-title">Titel</p>
-            <p class="foodporn-description">Beschreibung</p>
-            <div class="foodporn-container-footer">
-                <a class="foodporn-like-button green">
-                    <i class="fa fa-thumbs-up"></i>
+    <div id="container ">
+        <div class="foodporn-container ">
+            <img src="../../img/default.png ">
+            <p class="foodporn-title ">Titel</p>
+            <p class="foodporn-description ">Beschreibung</p>
+            <div class="foodporn-container-footer ">
+                <a class="foodporn-like-button green ">
+                    <i class="fa fa-thumbs-up "></i>
                     <span>0</span>
                 </a>
-                <a class="foodporn-like-button red">
-                    <i class="fa fa-thumbs-down"></i>
+                <a class="foodporn-like-button red ">
+                    <i class="fa fa-thumbs-down "></i>
                     <span>0</span>
                 </a>
-                <a class="foodporn-byuser">by Leonardo</a>
+                <a class="foodporn-byuser ">by Leonardo</a>
             </div>
         </div>
     </div>
 
-    <div id="container">
-        <div class="foodporn-container">
-            <img src="../../img/test.png">
-            <p class="foodporn-title">Titel</p>
-            <p class="foodporn-description">Beschreibung</p>
-            <div class="foodporn-container-footer">
-                <a class="foodporn-like-button green">
-                    <i class="fa fa-thumbs-up"></i>
+    <div id="container ">
+        <div class="foodporn-container ">
+            <img src="../../img/test.png ">
+            <p class="foodporn-title ">Titel</p>
+            <p class="foodporn-description ">Beschreibung</p>
+            <div class="foodporn-container-footer ">
+                <a class="foodporn-like-button green ">
+                    <i class="fa fa-thumbs-up "></i>
                     <span>0</span>
                 </a>
-                <a class="foodporn-like-button red">
-                    <i class="fa fa-thumbs-down"></i>
+                <a class="foodporn-like-button red ">
+                    <i class="fa fa-thumbs-down "></i>
                     <span>0</span>
                 </a>
-                <a class="foodporn-byuser">by Leonardo</a>
+                <a class="foodporn-byuser ">by Leonardo</a>
             </div>
         </div>
     </div>
 
-    <div id="container">
-        <div class="foodporn-container">
-            <img src="../../img/test.png">
-            <p class="foodporn-title">Titel</p>
-            <p class="foodporn-description">Beschreibung</p>
-            <div class="foodporn-container-footer">
-                <a class="foodporn-like-button green">
-                    <i class="fa fa-thumbs-up"></i>
+    <div id="container ">
+        <div class="foodporn-container ">
+            <img src="../../img/test.png ">
+            <p class="foodporn-title ">Titel</p>
+            <p class="foodporn-description ">Beschreibung</p>
+            <div class="foodporn-container-footer ">
+                <a class="foodporn-like-button green ">
+                    <i class="fa fa-thumbs-up "></i>
                     <span>0</span>
                 </a>
-                <a class="foodporn-like-button red">
-                    <i class="fa fa-thumbs-down"></i>
+                <a class="foodporn-like-button red ">
+                    <i class="fa fa-thumbs-down "></i>
                     <span>0</span>
                 </a>
-                <a class="foodporn-byuser">by Leonardo</a>
+                <a class="foodporn-byuser ">by Leonardo</a>
             </div>
         </div>
     </div>

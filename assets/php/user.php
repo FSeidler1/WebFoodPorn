@@ -19,6 +19,10 @@ class Controller {
             {
                 $this->login();
             }
+            else if($_GET["action"] == "logout")
+            {
+                $this->logoff();
+            }
             else if($_GET["action"] == "get")
             {
                 $this->getUser();
@@ -47,12 +51,16 @@ class Controller {
         $this->json = $this->db->isUserLoggedin();
     }
 
+    // User Login
     function login() {
-        // Handle Json Request
-        $_POST = json_decode(file_get_contents("php://input"), true);
+        $_POST = json_decode(file_get_contents("php://input"), true);        
         $this->db->login($_POST['benutzer_login'], md5($_POST['passwort_login']));
         $this->json = $this->db->isUserLoggedin();
-        //$this->json = "Not implementet jet";
+    }
+
+    // Logoff addUser
+    function logoff() {
+        $this->db->logoff();
     }
 
     // Get User DAta (exept Password)
@@ -100,8 +108,11 @@ class Controller {
 
     // Add new User
     function addUser() {
-        // TODO add new User
-        $this->json = "Not implementet jet";
+        $_POST = json_decode(file_get_contents("php://input"), true);
+        $username = $_POST["benutzer_registration"];
+        $username = $_POST["email_registration"];
+        $username = $_POST["passwort_registration"];
+        $this->json = $this->db->registerUser($username, $email, $password);
     }
 
     // Display
