@@ -72,7 +72,7 @@ class Controller {
             user: {
                 id_user: 1,
                 username: 'Username',
-                description: 'Beswchreibung des Users',
+                description: 'Beschreibung des Users',
                 image: './img/default.png'
             },
             category: 'Nudeln',
@@ -100,7 +100,7 @@ class Controller {
                     image: './img/default.png'
                 }
             }]
-        }]";
+        }];";
     }
 
     // Get All Foodporns
@@ -180,7 +180,7 @@ class Controller {
                     image: './img/default.png'
                 }
             }]
-        }]";
+        }];";
     }
 
     // filter by Category

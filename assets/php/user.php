@@ -64,7 +64,7 @@ class Controller {
             mail: 'example@mail.ch',
             description: 'Das ist mein Profil',
             image: './img/default.png'
-        }]";
+        }];";
     }
 
 
@@ -83,7 +83,7 @@ class Controller {
             mail: 'example@mail.ch',
             description: 'Das ist mein Profil',
             image: './img/default.png'
-        }]";
+        }];";
     }
 
     // Save User data
