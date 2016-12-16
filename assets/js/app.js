@@ -14,7 +14,7 @@ loginApp.controller('FormController',
             // ------------------------------------------------------ 
             var request = $http({
                 method: "login",
-                url: './assets/php/controller.php?class=user&action=islogedin',
+                url: './assets/php/controller.php?class=user&action=login',
                 data: {
                     benutzer_login: document.getElementById("benutzer_login").value,
                     passwort_login: document.getElementById("passwort_login").value
@@ -74,8 +74,6 @@ registrationApp.controller('FormController',
                     if (meldung === 'true') {
                         //Password korrekt
                         window.location.replace("./assets/html/main.html");
-                    } else {
-                        falseData();
                     }
                 }
             });
@@ -98,11 +96,21 @@ mainApp.controller('buildMainEntrys',
     function mainController($scope, $http) {
         $http.get('./../php/Controller.php?class=foodporn').success(
             function(data) {
-                $scope.phones = data;
+                $scope.entrys = data;
+                writeEntrys($scope.entrys);
             }
         );
     });
 
-/************************
- * Einträge erstellen und Befüllen
- *************************/
+function writeEntry(entrys) {
+    /************************
+     * Einträge erstellen und Befüllen
+     *************************/
+    for (int i = entrys.) {
+        console.log('Start Aufbau Einträge');
+
+
+
+        console.log('Ende Aufbau Einträge');
+    }
+}
