@@ -1,9 +1,15 @@
 <?php
 class Controller {
     private $json;
+    private $db;
 
     // Constructor
     function __construct(){
+        // Init DB
+        require_once "./mysql.php";
+        $this->db = new DB();
+        
+        // Actions
         if(isset($_GET["action"]) === TRUE) {
             if($_GET["action"] == "add")
             {
@@ -39,20 +45,23 @@ class Controller {
     // Adds a foodporn to DB
     function addFoodporn() {
         // TODO save foodporn into db
+        $this->json = "Not implementet jet";
     }
 
     // Add Like to this Foodporn
     function like() {
         // TODO set like / dislike in DB
+        $this->json = "Not implementet jet";
     }
 
     // Add Comment to this Foodporn
     function addComment() {
         // TODO set comment in DB
+        $this->json = "Not implementet jet";
     }
 
-    // Get All Foodporns
-    function getAllFoodporns() {
+    // Get One Foodporn by id
+    function getFoodporn() {
         // HACK get data from DB
         $this->json = "[{
             id_foodporn: 1,
@@ -63,7 +72,7 @@ class Controller {
             user: {
                 id_user: 1,
                 username: 'Username',
-                description: 'Beswchreibung des Users',
+                description: 'Beschreibung des Users',
                 image: './img/default.png'
             },
             category: 'Nudeln',
@@ -91,7 +100,7 @@ class Controller {
                     image: './img/default.png'
                 }
             }]
-        }]";
+        }];";
     }
 
     // Get All Foodporns
@@ -171,7 +180,7 @@ class Controller {
                     image: './img/default.png'
                 }
             }]
-        }]";
+        }];";
     }
 
     // filter by Category

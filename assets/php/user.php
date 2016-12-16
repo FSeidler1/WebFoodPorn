@@ -1,13 +1,23 @@
 <?php
 class Controller {
     private $json;
+    private $db;
 
     // Constructor
     function __construct(){
+        // Init DB
+        require_once "./mysql.php";
+        $this->db = new DB();
+        
+        // Actions
         if(isset($_GET["action"]) === TRUE) {
             if($_GET["action"] == "islogedin")
             {
                 $this->islogedin();
+            }
+            else if($_GET["action"] == "login")
+            {
+                $this->login();
             }
             else if($_GET["action"] == "get")
             {
@@ -21,7 +31,7 @@ class Controller {
             {
                 $this->updatePassword();
             }
-            else if($_GET["action"] == "new")
+            else if($_GET["action"] == "registration")
             {
                 $this->addUser();
             }
@@ -34,8 +44,15 @@ class Controller {
 
     // Checks if is logged in
     function islogedin() {
-        // HACK return evertime true
-        $this->json = "true";
+        $this->json = $this->db->isUserLoggedin();
+    }
+
+    function login() {
+        // Handle Json Request
+        $_POST = json_decode(file_get_contents("php://input"), true);
+        $this->db->login($_POST['benutzer_login'], md5($_POST['passwort_login']));
+        $this->json = $this->db->isUserLoggedin();
+        //$this->json = "Not implementet jet";
     }
 
     // Get User DAta (exept Password)
@@ -47,7 +64,7 @@ class Controller {
             mail: 'example@mail.ch',
             description: 'Das ist mein Profil',
             image: './img/default.png'
-        }]";
+        }];";
     }
 
 
@@ -66,22 +83,25 @@ class Controller {
             mail: 'example@mail.ch',
             description: 'Das ist mein Profil',
             image: './img/default.png'
-        }]";
+        }];";
     }
 
     // Save User data
     function updateUser() {
         // TODO Update Userdata
+        $this->json = "Not implementet jet";
     }
 
     // Save User password
     function updatePassword() {
         // TODO Update Userpassword
+        $this->json = "Not implementet jet";
     }
 
     // Add new User
     function addUser() {
         // TODO add new User
+        $this->json = "Not implementet jet";
     }
 
     // Display

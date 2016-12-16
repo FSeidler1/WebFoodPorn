@@ -41,6 +41,7 @@ class DB
             `password` VARCHAR(255) NOT NULL , 
             `description` TEXT NOT NULL , 
             `image` TEXT NOT NULL , 
+            `session` TEXT NOT NULL , 
             PRIMARY KEY (`id_user`)
             ) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;");
             $stmt->execute();
@@ -89,8 +90,8 @@ class DB
             $count = $stmt->fetch()["c"];
             if($count < 1)
             {
-                $stmt = self::$_db->prepare("INSERT INTO user (id_user,username,mail,password,description,image)
-                VALUES(1,'Test', 'test@test.ch', 'Test123', 'Über mich:', './img/default.png')");
+                $stmt = self::$_db->prepare("INSERT INTO user (id_user,username,mail,password,description,image,session)
+                VALUES(1,'Test', 'test@test.ch', '" . md5("Test123") . "', 'Über mich:', './img/default.png', '')");
                 $stmt->execute();
             }
             
@@ -124,6 +125,45 @@ class DB
             {
                 $stmt = self::$_db->prepare("INSERT INTO comment (content, dateCreated, fs_foodporn, fs_user)
                 VALUES('Ha ha is geil!',NOW(),1,1)");
+                $stmt->execute();
+            }
+        }
+
+        function isUserLoggedin() 
+        {
+            $stmt = self::$_db->prepare("SELECT count(id_user) AS c FROM user WHERE session=:sid");
+            $sid = session_id();
+            $stmt->bindParam(":sid", $sid);
+            $stmt->execute();
+            $count = $stmt->fetch()["c"];
+            if($count == 1)
+            {
+                return "true";
+            }
+            else if($count < 1)
+            {
+                return "false";
+            }
+            else
+            {
+                return "Error: More then one identical User could be logged in!";
+            }
+        }
+
+        function login($username ,$password)
+        {
+            $stmt = self::$_db->prepare("SELECT cout(id_user) AS c FROM user WHERE username=:un AND password=:pw");
+            $stmt->bindParam(":un", $username);
+            $stmt->bindParam(":pw", $password);
+            $stmt->execute();
+            $count = $stmt->fetch()["c"];
+            if($count == 1)
+            {
+                $stmt = self::$_db->prepare("UPDATE user SET session=:sid WHERE username=:un AND password=:pw");
+                $sid = session_id();
+                $stmt->bindParam(":sid", $sid);
+                $stmt->bindParam(":un", $username);
+                $stmt->bindParam(":pw", $password);
                 $stmt->execute();
             }
         }

@@ -14,7 +14,7 @@ loginApp.controller('FormController',
             // ------------------------------------------------------ 
             var request = $http({
                 method: "login",
-                url: './assets/php/controller.php?class=user&action=islogedin',
+                url: './assets/php/controller.php?class=user&action=login',
                 data: {
                     benutzer_login: document.getElementById("benutzer_login").value,
                     passwort_login: document.getElementById("passwort_login").value
@@ -30,9 +30,9 @@ loginApp.controller('FormController',
                     console.log("Fehlerhafte Rückmeldung von Server");
                 } else {
                     console.log(meldung);
-                    if (meldung === true) {
+                    if (meldung === 'true') {
                         //Password korrekt
-                        window.location.replace("http://localhost/html/main.html");
+                        window.location.replace("./assets/html/main.html");
                     } else {
                         falseData();
                     }
@@ -71,11 +71,9 @@ registrationApp.controller('FormController',
                 if (meldung === null) {
                     console.log("Fehlerhafte Rückmeldung von Server")
                 } else {
-                    if (meldung === true) {
+                    if (meldung === 'true') {
                         //Password korrekt
-                        window.location.replace("http://localhost/html/main.html");
-                    } else {
-                        falseData();
+                        window.location.replace("./assets/html/main.html");
                     }
                 }
             });
@@ -89,20 +87,16 @@ function falseData() {
     //Keine Anmeldung möglich
     var mydiv = document.getElementById("falseUserLogin");
     mydiv.style.display = "block";
+
 }
-
-
 
 /*Controller definieren, Funktion für den controller*/
 mainApp.controller('buildMainEntrys',
     function mainController($scope, $http) {
         $http.get('./../php/Controller.php?class=foodporn').success(
             function(data) {
-                $scope.phones = data;
+                console.log(data);
+                $scope.entrys = data;
             }
         );
     });
-
-/************************
- * Einträge erstellen und Befüllen
- *************************/

@@ -10,12 +10,14 @@
     <link rel="stylesheet" href="../css/site.css">
     <!-- jQuerry einbinden -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <!-- Angular lasen -->
+    <!-- Angular lesen -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     <!-- Bootstrap - Das neueste kompilierte und minimierte JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <!--FONTAWESOME - ICONS-->
     <link rel="stylesheet" href="../css/css/font-awesome.css">
+    <!--einbindung js-->
+    <script src="./../js/app.js"></script>
 
     <title>FoodPorn</title>
 
@@ -89,8 +91,74 @@
         </div>
     </div>
 
+
+
+
     <div class="container-fluid">
         <div class="row">
+            <div ng-controller="buildMainEntrys">
+                {{entrys}}
+                <div ng-repeat="entry in entrys" class="item well">
+                    <div class="foodporn-container">
+                        <a data-toggle="modal" data-target="#myModal">
+                            <img ng-src="./../../{{entry.image}}">
+                        </a>
+                        <p class="foodporn-title">{{entry.title}}</p>
+                        <p class="foodporn-description">{{entry.description}}</p>
+                        <div class="foodporn-container-footer">
+                            <a class="foodporn-like-button green">
+                                <i class="fa fa-thumbs-up"></i>
+                                <span>{{entry.likes}}</span>
+                            </a>
+                            <a class="foodporn-like-button red">
+                                <i class="fa fa-thumbs-down"></i>
+                                <span>{{entry.dislikes}}</span>
+                            </a>
+                            <a class="foodporn-byuser">by {{entry.user.username}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="item well">
+                <div class="foodporn-container">
+                    <a data-toggle="modal" data-target="#myModal">
+                        <img src="../../img/test.png">
+                    </a>
+                    <p class="foodporn-title">Titel</p>
+                    <p class="foodporn-description">Beschreibung</p>
+                    <div class="foodporn-container-footer">
+                        <a class="foodporn-like-button green">
+                            <i class="fa fa-thumbs-up"></i>
+                            <span>0</span>
+                        </a>
+                        <a class="foodporn-like-button red">
+                            <i class="fa fa-thumbs-down"></i>
+                            <span>0</span>
+                        </a>
+                        <a class="foodporn-byuser">by Leonardo</a>
+                    </div>
+                </div>
+            </div>
+            <div class="item well">
+                <div class="foodporn-container">
+                    <a data-toggle="modal" data-target="#myModal">
+                        <img src="../../img/test.png">
+                    </a>
+                    <p class="foodporn-title">Titel</p>
+                    <p class="foodporn-description">Beschreibung</p>
+                    <div class="foodporn-container-footer">
+                        <a class="foodporn-like-button green">
+                            <i class="fa fa-thumbs-up"></i>
+                            <span>0</span>
+                        </a>
+                        <a class="foodporn-like-button red">
+                            <i class="fa fa-thumbs-down"></i>
+                            <span>0</span>
+                        </a>
+                        <a class="foodporn-byuser">by Leonardo</a>
+                    </div>
+                </div>
+            </div>
             <div class="item well">
                 <div class="foodporn-container">
                     <a data-toggle="modal" data-target="#myModal">
@@ -130,67 +198,7 @@
                         <a class="foodporn-byuser">by Leonardo</a>
                     </div>
                 </div>
-            </div>
-            <div class="item well">
-                <div class="foodporn-container">
-                    <a data-toggle="modal" data-target="#myModal">
-                        <img src="../../img/test.png">
-                    </a>
-                    <p class="foodporn-title">Titel</p>
-                    <p class="foodporn-description">Beschreibung</p>
-                    <div class="foodporn-container-footer">
-                        <a class="foodporn-like-button green">
-                            <i class="fa fa-thumbs-up"></i>
-                            <span>0</span>
-                        </a>
-                        <a class="foodporn-like-button red">
-                            <i class="fa fa-thumbs-down"></i>
-                            <span>0</span>
-                        </a>
-                        <a class="foodporn-byuser">by Leonardo</a>
-                    </div>
-                </div>
-            </div>
-            <div class="item well">
-                <div class="foodporn-container">
-                    <a data-toggle="modal" data-target="#myModal">
-                        <img src="../../img/default.png">
-                    </a>
-                    <p class="foodporn-title">Titel</p>
-                    <p class="foodporn-description">Beschreibung</p>
-                    <div class="foodporn-container-footer">
-                        <a class="foodporn-like-button green">
-                            <i class="fa fa-thumbs-up"></i>
-                            <span>0</span>
-                        </a>
-                        <a class="foodporn-like-button red">
-                            <i class="fa fa-thumbs-down"></i>
-                            <span>0</span>
-                        </a>
-                        <a class="foodporn-byuser">by Leonardo</a>
-                    </div>
-                </div>
-            </div>
-            <div class="item well">
-                <div class="foodporn-container">
-                    <a data-toggle="modal" data-target="#myModal">
-                        <img src="../../img/test.png">
-                    </a>
-                    <p class="foodporn-title">Titel</p>
-                    <p class="foodporn-description">Beschreibung</p>
-                    <div class="foodporn-container-footer">
-                        <a class="foodporn-like-button green">
-                            <i class="fa fa-thumbs-up"></i>
-                            <span>0</span>
-                        </a>
-                        <a class="foodporn-like-button red">
-                            <i class="fa fa-thumbs-down"></i>
-                            <span>0</span>
-                        </a>
-                        <a class="foodporn-byuser">by Leonardo</a>
-                    </div>
-                </div>
-            </div>
+            </div>-->
 
         </div>
     </div>
