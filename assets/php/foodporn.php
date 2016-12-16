@@ -66,38 +66,38 @@ class Controller {
         /*$this->json = "[{
             id_foodporn: 1,
             favorit: false,
-            image: './img/default.png',
-            title: 'Titel',
-            description: 'Lorem ipsum...',
+            image: \"./img/default.png\",
+            title: \"Titel\",
+            description: \"Lorem ipsum...\",
             user: {
                 id_user: 1,
-                username: 'Username',
-                description: 'Beschreibung des Users',
-                image: './img/default.png'
+                username: \"Username\",
+                description: \"Beschreibung des Users\",
+                image: \"./img/default.png\"
             },
-            category: 'Nudeln',
-            date: '2016-12-12 20:00:00',
+            category: \"Nudeln\",
+            date: \"2016-12-12 20:00:00\",
             likes: 15,
             dislikes: 2,
             comments: [{
                 id_comment: 1,
-                content: 'Haha voll geil XD',
-                date: '2016-12-12 20:00:00',
+                content: \"Haha voll geil XD\",
+                date: \"2016-12-12 20:00:00\",
                 user: {
                     id_user: 1,
-                    username: 'Username',
-                    description: 'Beschreibung des Users',
-                    image: './img/default.png'
+                    username: \"Username\",
+                    description: \"Beschreibung des Users\",
+                    image: \"./img/default.png\"
                 }
             } , {
                 id_comment: 2,
-                content: 'erster!',
-                date: '2016-12-12 20:00:00',
+                content: \"erster!\",
+                date: \"2016-12-12 20:00:00\",
                 user: {
                     id_user: 1,
-                    username: 'Username',
-                    description: 'Beschreibung des Users',
-                    image: './img/default.png'
+                    username: \"Username\",
+                    description: \"Beschreibung des Users\",
+                    image: \"./img/default.png\"
                 }
             }]
         }];";*/
@@ -117,77 +117,77 @@ class Controller {
     function getAllFoodporns() {
         // HACK get data from DB
         $this->json = "[{
-            id_foodporn: 1,
-            favorit: false,
-            image: './img/default.png',
-            title: 'Titel',
-            description: 'Lorem ipsum...',
-            user: {
-                id_user: 1,
-                username: 'Username',
-                description: 'Beswchreibung des Users',
-                image: './img/default.png'
+            \"id_foodporn\": 1,
+            \"favorit\": false,
+            \"image\": \"./img/default.png\",
+            \"title\": \"Titel\",
+            \"description\": \"Lorem ipsum...\",
+            \"user\": {
+                \"id_user\": 1,
+                \"username\": \"Username\",
+                \"description\": \"Beswchreibung des Users\",
+                \"image\": \"./img/default.png\"
             },
-            category: 'Nudeln',
-            date: '2016-12-12 20:00:00',
-            likes: 15,
-            dislikes: 2,
-            comments: [{
-                id_comment: 1,
-                content: 'Haha voll geil XD',
-                date: '2016-12-12 20:00:00',
-                user: {
-                    id_user: 1,
-                    username: 'Username',
-                    description: 'Beschreibung des Users',
-                    image: './img/default.png'
+            \"category\": \"Nudeln\",
+            \"date\": \"2016-12-12 20:00:00\",
+            \"likes\": 15,
+            \"dislikes\": 2,
+            \"comments\": [{
+                \"id_comment\": 1,
+                \"content\": \"Haha voll geil XD\",
+                \"date\": \"2016-12-12 20:00:00\",
+                \"user\": {
+                    \"id_user\": 1,
+                    \"username\": \"Username\",
+                    \"description\": \"Beschreibung des Users\",
+                    \"image\": \"./img/default.png\"
                 }
             } , {
-                id_comment: 2,
-                content: 'erster!',
-                date: '2016-12-12 20:00:00',
-                user: {
-                    id_user: 1,
-                    username: 'Username',
-                    description: 'Beschreibung des Users',
-                    image: './img/default.png'
+                \"id_comment\": 2,
+                \"content\": \"erster!\",
+                \"date\": \"2016-12-12 20:00:00\",
+                \"user\": {
+                    \"id_user\": 1,
+                    \"username\": \"Username\",
+                    \"description\": \"Beschreibung des Users\",
+                    \"image\": \"./img/default.png\"
                 }
             }]
         }, {
-            id_foodporn: 2,
-            favorit: false,
-            image: './img/default.png',
-            title: 'Titel',
-            description: 'Lorem ipsum...',
-            user: {
-                id_user: 1,
-                username: 'Username',
-                description: 'Beswchreibung des Users',
-                image: './img/default.png'
+            \"id_foodporn\": 2,
+            \"favorit\": false,
+            \"image\": \"./img/default.png\",
+            \"title\": \"Titel\",
+            \"description\": \"Lorem ipsum...\",
+            \"user\": {
+                \"id_user\": 1,
+                \"username\": \"Username\",
+                \"description\": \"Beswchreibung des Users\",
+                \"image\": \"./img/default.png\"
             },
-            category: 'Nudeln',
-            date: '2016-12-12 20:00:00',
-            likes: 15,
-            dislikes: 2,
-            comments: [{
-                id_comment: 1,
-                content: 'Haha voll geil XD',
-                date: '2016-12-12 20:00:00',
-                user: {
-                    id_user: 1,
-                    username: 'Username',
-                    description: 'Beschreibung des Users',
-                    image: './img/default.png'
+            \"category\": \"Nudeln\",
+            \"date\": \"2016-12-12 20:00:00\",
+            \"likes\": 15,
+            \"dislikes\": 2,
+            \"comments\": [{
+                \"id_comment\": 1,
+                \"content\": \"Haha voll geil XD\",
+                \"date\": \"2016-12-12 20:00:00\",
+                \"user\": {
+                    \"id_user\": 1,
+                    \"username\": \"Username\",
+                    \"description\": \"Beschreibung des Users\",
+                    \"image\": \"./img/default.png\"
                 }
             } , {
-                id_comment: 2,
-                content: 'erster!',
-                date: '2016-12-12 20:00:00',
-                user: {
-                    id_user: 1,
-                    username: 'Username',
-                    description: 'Beschreibung des Users',
-                    image: './img/default.png'
+                \"id_comment\": 2,
+                \"content\": \"erster!\",
+                \"date\": \"2016-12-12 20:00:00\",
+                \"user\": {
+                    \"id_user\": 1,
+                    \"username\": \"Username\",
+                    \"description\": \"Beschreibung des Users\",
+                    \"image\": \"./img/default.png\"
                 }
             }]
         }]";

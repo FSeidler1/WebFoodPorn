@@ -3,24 +3,28 @@ var registrationApp = new angular.module('registrationApp', []);
 var mainApp = new angular.module('mainApp', []);
 var isloggedin;
 
-
-
-
-
-
-window.addEventListener("load", function() {
-    document.getElementById("input_clone").addEventListener("change", PreviewImages, false);
-}, false);
-
-
-
-
-
-
-
-
-
-
+/************
+ * TODO
+ * **********
+ * Suche
+ * Kategorien-Selektieren
+ * Benutzer Daten laden
+ * Foodporn-Modal daten einlesen
+ * 
+ * mit Ivo
+ * **********
+ * Bild - EventListener?
+ * 
+ * An Ivo
+ * ************
+ * Datenbankprüfung im Login - erstellen
+ * JSON - Doublequotes ( /" )
+ * 
+ * An Leo
+ * ************
+ * 
+ * 
+ ************/
 
 
 // --------------------------------------------------------------
@@ -28,6 +32,8 @@ window.addEventListener("load", function() {
 // --------------------------------------------------------------
 loginApp.controller('FormController',
     function FormController($scope, $http) {
+        $scope.benutzer_login = "";
+        $scope.passwort_login = "";
         $scope.submit = function() {
             console.log(this);
             // ------------------------------------------------------
@@ -37,8 +43,8 @@ loginApp.controller('FormController',
                 method: 'post',
                 url: './assets/php/controller.php?class=user&action=login',
                 data: {
-                    benutzer_login: document.getElementById("benutzer_login").value,
-                    passwort_login: document.getElementById("passwort_login").value
+                    benutzer_login: $scope.benutzer_login,
+                    passwort_login: $scope.passwort_login
                 },
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
@@ -55,6 +61,7 @@ loginApp.controller('FormController',
                     console.log(meldung);
                     if (meldung === 'true') {
                         //Password korrekt
+                        localStorage.setItem("loggedIn", "true");
                         window.location.replace("./assets/html/main.html");
                     } else {
                         falseData();
@@ -63,15 +70,6 @@ loginApp.controller('FormController',
             });
 
         }
-        $http.get('./assets/php/controller.php?class=user&action=islogedin').success(
-            function(data) {
-                if (data === 'true') {
-                    isloggedin = true;
-                } else {
-                    isloggedin = false;
-                }
-            }
-        );
     }
 );
 
@@ -105,21 +103,13 @@ registrationApp.controller('FormController',
                 } else {
                     if (meldung === 'true') {
                         //Password korrekt
+                        localStorage.setItem("loggedIn", "true");
                         window.location.replace("./assets/html/main.html");
                     }
                 }
             });
 
         }
-        $http.get('./../php/controller.php?class=user&action=islogedin').success(
-            function(data) {
-                if (data === 'true') {
-                    isloggedin = true;
-                } else {
-                    isloggedin = false;
-                }
-            }
-        );
     }
 );
 
@@ -134,19 +124,11 @@ function falseData() {
 /*Controller definieren, Funktion für den controller*/
 mainApp.controller('buildMainEntrys',
     function mainController($scope, $http) {
+        $scope.entrys = [];
         $http.get('./../php/Controller.php?class=foodporn').success(
             function(data) {
-                //console.log(data);
+                console.log(data);
                 $scope.entrys = data;
-            }
-        );
-        $http.get('./../php/controller.php?class=user&action=islogedin').success(
-            function(data) {
-                if (data === 'true') {
-                    isloggedin = true;
-                } else {
-                    isloggedin = false;
-                }
             }
         );
     });
@@ -202,13 +184,24 @@ function dataTrans() {
     }
 }
 
+/*
+
+? Ivo du Mongo wa wetsh do mache ?????? -Nic <3
+
+onchange="dataTrans()"
+
+window.addEventListener("load", function() {
+    document.getElementById("input_clone").addEventListener("change", PreviewImages, false);
+}, false);
+*/
 
 //Überprüfen ob User bereits eingeloggt ist
 //Übergabeparameter ist die aktuelle Seite, von wo die Funktion aufgerufen wird
 function isUserLoggedIn(actualPage) {
+    var loggedIn = localStorage.getItem("loggedIn");
     switch (actualPage) {
         case "index":
-            if (isloggedin === true) {
+            if (loggedIn === "true") {
                 //load 'main' page
                 window.location.replace("./assets/html/main.html");
                 //write Username inNavbar
@@ -219,7 +212,7 @@ function isUserLoggedIn(actualPage) {
             }
             break;
         case "registration":
-            if (isloggedin === true) {
+            if (loggedIn === "true") {
                 //load 'main' page
                 window.location.replace("./main.html");
                 //write Username inNavbar
@@ -230,7 +223,15 @@ function isUserLoggedIn(actualPage) {
             }
             break;
         case "main":
-            if (isloggedin === true) {
+            if (loggedIn === "true") {
+                //do nothing                
+            } else {
+                //redirect to index
+                window.location.replace("./../../index.html");
+            }
+            break;
+        case "profil":
+            if (loggedIn === "true") {
                 //do nothing                
             } else {
                 //redirect to index
@@ -239,7 +240,24 @@ function isUserLoggedIn(actualPage) {
             break;
 
         default:
-            console.log("Login unbekannt - nicht implementiert");
+            console.log("Login Case unbekannt - nicht implementiert");
             break;
     }
+}
+
+function isloggedInCall(data) {
+    if (data === 'true') {
+        isloggedin = true;
+        localStorage.setItem("loggedIn", "true");
+    } else {
+        isloggedin = false;
+        localStorage.setItem("loggedIn", "false");
+    }
+}
+
+function userLogOut() {
+    localStorage.setItem("loggedIn", "false");
+    isloggedin = false;
+    //redirect to index
+    window.location.replace("./../../index.html");
 }
