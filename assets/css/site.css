@@ -11,13 +11,6 @@ body {
     box-sizing: border-box;
 }
 
-.row {
-    -moz-column-width: 19em;
-    -webkit-column-width: 19em;
-    -moz-column-gap: 1em;
-    -webkit-column-gap: 1em;
-}
-
 .item {
     display: inline-block;
     width: 100%;
@@ -202,7 +195,7 @@ a.foodporn-byuser {
 
 @media (max-width: 768px) {
     form.search-form {
-        right: 137px;
+        right: 90px;
         top: -1px;
     }
 }
@@ -210,7 +203,7 @@ a.foodporn-byuser {
 .search-form {
     position: absolute;
     left: 123px;
-    right: 218px;
+    right: 230px;
     top: -1px;
     z-index: 999;
 }
@@ -228,11 +221,46 @@ a.foodporn-byuser {
 
 .search-form button {
     position: absolute;
-    right: -55px;
+    right: -5px;
     top: -1px;
 }
 
 .search-form .navbar-form .form-control {
     display: inline-block !important;
     vertical-align: middle !important;
+}
+
+
+/* Profil */
+
+.benutzer_profilbild {
+    width: 40%;
+    overflow: hidden;
+    text-align: left;
+}
+
+.circular img {
+    width: 100%;
+}
+
+.row {
+    background-color: white;
+    margin: 0 auto;
+    width: 60%;
+    padding: 1%;
+}
+
+.image-cropper {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
 }
