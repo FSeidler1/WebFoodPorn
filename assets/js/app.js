@@ -30,9 +30,9 @@ loginApp.controller('FormController',
                     console.log("Fehlerhafte Rückmeldung von Server");
                 } else {
                     console.log(meldung);
-                    if (meldung === true) {
+                    if (meldung === 'true') {
                         //Password korrekt
-                        window.location.replace("http://localhost/html/main.html");
+                        window.location.replace("./assets/html/main.html");
                     } else {
                         falseData();
                     }
@@ -71,9 +71,9 @@ registrationApp.controller('FormController',
                 if (meldung === null) {
                     console.log("Fehlerhafte Rückmeldung von Server")
                 } else {
-                    if (meldung === true) {
+                    if (meldung === 'true') {
                         //Password korrekt
-                        window.location.replace("http://localhost/html/main.html");
+                        window.location.replace("./assets/html/main.html");
                     } else {
                         falseData();
                     }
