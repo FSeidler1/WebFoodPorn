@@ -13,7 +13,7 @@ loginApp.controller('FormController',
             // Formular - Datenübermitteln an controller.php
             // ------------------------------------------------------ 
             var request = $http({
-                method: "login",
+                method: 'post',
                 url: './assets/php/controller.php?class=user&action=login',
                 data: {
                     benutzer_login: document.getElementById("benutzer_login").value,
@@ -54,7 +54,7 @@ registrationApp.controller('FormController',
             // Formular - Datenübermitteln an controller.php
             // ------------------------------------------------------ 
             var request = $http({
-                method: "registration",
+                method: "post",
                 url: './assets/php/controller.php?class=user&action=registration',
                 data: {
                     benutzer_registration: document.getElementById("benutzer_registration").value,
