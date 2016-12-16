@@ -124,8 +124,6 @@ mainApp.controller('sendNewEntry',
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             });
-            console.log(document.getElementById("datei_neuesBild").value);
-            console.log(dataTrans());
             // Was kommt vom Controller.php zurück?
             request.success(function(meldung) {
                 //Keine Rückmeldung von Server
@@ -147,11 +145,59 @@ mainApp.controller('sendNewEntry',
 
 //Für Bildformatierung
 function dataTrans() {
-    var file = document.querySelector('#datei_neuesBild').files[0];
-    var reader = new FileReader();
-    if (file) {
-        var dataFile = reader.readAsDataURL(file);
-        console.log(dataFile);
-        return dataFile;
+    var FR = new FileReader();
+    FR.readAsDataURL(document.querySelector('#datei_neuesBild').files[0])
+    FR.onload = function(FR) {
+        return FR.target.result;
     }
+}
+//Event Listener
+if (page === 'index') {
+    window.addEventListener("load", function() {
+        document.getElementById("input_clone").addEventListener("change", PreviewImages, false);
+    }, false);
+}
+
+
+//Überprüfen ob User bereits eingeloggt ist
+//Übergabeparameter ist die aktuelle Seite, von wo die Funktion aufgerufen wird
+function isUserLoggedIn(actualPage) {
+    switch (actualPage) {
+        case 'index':
+            if (checkLoginFlag() === true) {
+                //load 'main' page
+                window.location.replace("./assets/html/main.html");
+                //write Username inNavbar
+
+            } else {
+                //redirect to index
+                //allready in index - do nothing
+            }
+        case 'registration':
+            if (checkLoginFlag() === true) {
+                //load 'main' page
+                window.location.replace("./main.html");
+                //write Username inNavbar
+
+            } else {
+                //redirect to index
+                window.location.replace("./../../index.html");
+            }
+
+
+        default:
+            console.log("Login unbekannt - nicht implementiert");
+    }
+}
+
+function checkLoginFlag() {
+    $http.get('./../php/Controller.php?class=user&action=islogedin').success(
+        function(data) {
+            if (data === 'true') {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    );
 }

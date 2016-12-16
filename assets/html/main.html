@@ -18,6 +18,11 @@
     <link rel="stylesheet" href="../css/css/font-awesome.css">
     <!--einbindung js-->
     <script src="./../js/app.js"></script>
+    <!--Check UserLoggin -->
+    <script>
+        var page = "index";
+        isUserLoggedIn("index");
+    </script>
 
     <title>FoodPorn</title>
 
@@ -102,7 +107,7 @@
                 <div ng-repeat="entry in entrys" class="item well" id="entry_{{entry.id_foodporn}}">
                     <div class="foodporn-container">
                         <a data-toggle="modal" data-target="#myModal">
-                            <img ng-src="./../../{{entry.image}}">
+                            <img src="{{entry.image}}">
                         </a>
                         <p class="foodporn-title">{{entry.title}}</p>
                         <p class="foodporn-description">{{entry.description}}</p>
