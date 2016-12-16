@@ -20,6 +20,7 @@ class DB
 			}
         }
 
+        // Initializes Tables & example etrys
         function initDB() 
         {
             // Create Foodporn Table
@@ -129,6 +130,7 @@ class DB
             }
         }
 
+        // Return True if User is logged in
         function isUserLoggedin() 
         {
             $stmt = self::$_db->prepare("SELECT count(id_user) AS c FROM user WHERE session=:sid");
@@ -150,9 +152,10 @@ class DB
             }
         }
 
+        // Login User
         function login($username ,$password)
         {
-            $stmt = self::$_db->prepare("SELECT cout(id_user) AS c FROM user WHERE username=:un AND password=:pw");
+            $stmt = self::$_db->prepare("SELECT count(id_user) AS c FROM user WHERE username=:un AND password=:pw");
             $stmt->bindParam(":un", $username);
             $stmt->bindParam(":pw", $password);
             $stmt->execute();
@@ -167,5 +170,24 @@ class DB
                 $stmt->execute();
             }
         }
-    }
+
+        // Logof User with Session 
+        function logoff() {
+            $stmt = self::$_db->prepare("UPDATE user SET session='' WHERE session=:sid");
+            $sid = session_id();
+            $stmt->bindParam(":sid", $sid);
+            $stmt->execute();
+        }
+
+        // Register USer
+        function registerUser()
+        {
+            $stmt = self::$_db->prepare("INSERT INTO user (username,mail,password,session)
+                VALUES(:username,:mail,:password,:sid)");
+            $sid = session_id();
+            $stmt->bindParam("username", $username);
+            $stmt->bindParam("mail", $mail);
+            $stmt->bindParam("password", $password);
+            $stmt->bindParam(":sid", $sid);
+        }
 ?>
