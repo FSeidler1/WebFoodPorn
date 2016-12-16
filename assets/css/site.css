@@ -1,174 +1,176 @@
-            body {
-                background-image: url("./../img/login_wallpaper.jpg");
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-                background-size: cover;
-            }
-            
-            *,
-            *:before,
-            *:after {
-                box-sizing: border-box;
-            }
-            
-            .row {
-                -moz-column-width: 19em;
-                -webkit-column-width: 19em;
-                -moz-column-gap: 1em;
-                -webkit-column-gap: 1em;
-            }
-            
-            .item {
-                display: inline-block;
-                width: 100%;
-            }
-            /* Große Geräte (Desktop-PCs, 1200px und breiter) */
-            
-            @media (max-width: 768px) {
-                .navbar-form .form-control {
-                    display: inline-block;
-                    width: 600px;
-                    vertical-align: middle;
-                }
-            }
-            
-            @media (min-width: 768px) {
-                .navbar-form .form-control {
-                    display: inline-block;
-                    width: 600px;
-                    vertical-align: middle;
-                }
-            }
-            /* Große Geräte (Desktop-PCs, 1200px und breiter) */
-            
-            @media (min-width: 992px) {
-                .navbar-form .form-control {
-                    display: inline-block;
-                    width: 1600px;
-                    vertical-align: middle;
-                }
-            }
-            
-            .file-upload {
-                padding-top: 0.6rem;
-            }
-            
-            .btn-group-lg>.btn,
-            .btn-lg {
-                width: 10%;
-                display: block;
-                margin: 10px 10px 10px 10px;
-                position: absolute;
-                bottom: 0;
-                right: 0;
-                z-index: 100;
-            }
-            
-            #search-box {
-                position: relative;
-                width: 90%;
-                margin: 0;
-            }
-            
-            #search-form {
-                height: 40px;
-                border: 1px solid #999;
-                -webkit-border-radius: 5px;
-                -moz-border-radius: 5px;
-                border-radius: 5px;
-                background-color: #fff;
-                overflow: hidden;
-                margin-top: 5px;
-            }
-            
-            #search-text {
-                font-size: 14px;
-                color: #ddd;
-                border-width: 0;
-                background: transparent;
-            }
-            
-            #search-box input[type="text"] {
-                width: 90%;
-                padding: 11px 5px 12px 1em;
-                color: #333;
-                outline: none;
-            }
-            
-            #search-button {
-                position: absolute;
-                top: 0;
-                right: 0;
-                height: 42px;
-                width: 80px;
-                font-size: 14px;
-                color: #fff;
-                text-align: center;
-                line-height: 42px;
-                border-width: 0;
-                -webkit-border-radius: 0px 5px 5px 0px;
-                -moz-border-radius: 0px 5px 5px 0px;
-                border-radius: 0px 5px 5px 0px;
-                cursor: pointer;
-            }
-            /* Container */
-            
-            #container {
-                width: 100%;
-                margin: 0 auto;
-            }
-            
-            .foodporn-container img {
-                width: 100%;
-            }
-            
-            a.foodporn-byuser {
-                float: right;
-            }
-            
-            p.foodporn-title {
-                margin-bottom: 0px;
-                font-size: 25px;
-            }
-            
-            p.foodporn-description {
-                color: #7b7b7b;
-                font-size: 17px;
-            }
-            
-            a.foodporn-like-button {
-                font-size: 17px;
-                color: black;
-                text-decoration: none;
-                cursor: pointer;
-                margin-right: 11px;
-            }
-            
-            .green i.fa.fa-thumbs-up {
-                color: green;
-            }
-            
-            .red i.fa.fa-thumbs-down {
-                color: red;
-            }
-            
-            a.foodporn-byuser {
-                float: right;
-                font-size: 17px;
-                font-style: italic;
-                cursor: pointer;
-                text-decoration: none;
-            }
-            
-            .foodporn-container {
-                width: 100%;
-                background-color: white;
-                border: 1px solid #efefef;
-                padding: 9px;
-                -moz-column-count: 1;
-                -moz-column-gap: 0px;
-                -webkit-column-count: 1;
-                -webkit-column-gap: 0px;
-                column-count: 1;
-                column-gap: 0px;
-            }
+body {
+    background-image: url("./../img/login_wallpaper.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+.row {
+    -moz-column-width: 19em;
+    -webkit-column-width: 19em;
+    -moz-column-gap: 1em;
+    -webkit-column-gap: 1em;
+}
+
+.item {
+    display: inline-block;
+    width: 100%;
+}
+
+
+/* Große Geräte (Desktop-PCs, 1200px und breiter) */
+
+@media (max-width: 768px) {
+    .home-search {
+        width: 400px;
+    }
+}
+
+@media (min-width: 768px) {
+    .home-search {
+        width: 600rem;
+    }
+}
+
+
+/* Große Geräte (Desktop-PCs, 1200px und breiter) */
+
+@media (min-width: 992px) {
+    .home-search {
+        width: 800px;
+    }
+}
+
+.file-upload {
+    padding-top: 0.6rem;
+}
+
+.btn-group-lg>.btn,
+.btn-lg {
+    width: 6rem;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 100;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 50px 50px 50px 50px;
+}
+
+#search-box {
+    position: relative;
+    width: 90%;
+    margin: 0;
+}
+
+#search-form {
+    height: 40px;
+    border: 1px solid #999;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #fff;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+#search-text {
+    font-size: 14px;
+    color: #ddd;
+    border-width: 0;
+    background: transparent;
+}
+
+#search-box input[type="text"] {
+    width: 90%;
+    padding: 11px 5px 12px 1em;
+    color: #333;
+    outline: none;
+}
+
+#search-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 42px;
+    width: 80px;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    line-height: 42px;
+    border-width: 0;
+    -webkit-border-radius: 0px 5px 5px 0px;
+    -moz-border-radius: 0px 5px 5px 0px;
+    border-radius: 0px 5px 5px 0px;
+    cursor: pointer;
+}
+
+
+/* Container */
+
+#container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.foodporn-container img {
+    width: 100%;
+}
+
+a.foodporn-byuser {
+    float: right;
+}
+
+p.foodporn-title {
+    margin-bottom: 0px;
+    font-size: 25px;
+}
+
+p.foodporn-description {
+    color: #7b7b7b;
+    font-size: 17px;
+}
+
+a.foodporn-like-button {
+    font-size: 17px;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    margin-right: 11px;
+}
+
+.green i.fa.fa-thumbs-up {
+    color: green;
+}
+
+.red i.fa.fa-thumbs-down {
+    color: red;
+}
+
+a.foodporn-byuser {
+    float: right;
+    font-size: 17px;
+    font-style: italic;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.foodporn-container {
+    width: 100%;
+    background-color: white;
+    border: 1px solid #efefef;
+    padding: 9px;
+    -moz-column-count: 1;
+    -moz-column-gap: 0px;
+    -webkit-column-count: 1;
+    -webkit-column-gap: 0px;
+    column-count: 1;
+    column-gap: 0px;
+}
