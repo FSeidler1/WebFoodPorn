@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // Create Database (if not exists)
 $dbusername = "root";
 $dbpassword = "";
