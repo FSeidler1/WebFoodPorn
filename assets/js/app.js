@@ -124,6 +124,10 @@ mainApp.controller('sendNewEntry',
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             });
+<<<<<<< HEAD
+=======
+            console.log(document.getElementById("datei_neuesBild").value);
+>>>>>>> 1a54b810bffaa40e60456e1bfcb67f0191113e21
             // Was kommt vom Controller.php zurück?
             request.success(function(meldung) {
                 //Keine Rückmeldung von Server
@@ -151,6 +155,7 @@ function dataTrans() {
         return FR.target.result;
     }
 }
+<<<<<<< HEAD
 //Event Listener
 if (page === 'index') {
     window.addEventListener("load", function() {
@@ -201,3 +206,8 @@ function checkLoginFlag() {
         }
     );
 }
+=======
+window.addEventListener("load", function() {
+    document.getElementById("input_clone").addEventListener("change", PreviewImages, false);
+}, false);
+>>>>>>> 1a54b810bffaa40e60456e1bfcb67f0191113e21
