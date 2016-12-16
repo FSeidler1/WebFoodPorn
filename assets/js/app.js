@@ -23,6 +23,8 @@ loginApp.controller('FormController',
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             });
+            console.log(document.getElementById("benutzer_login").value);
+            console.log(document.getElementById("passwort_login").value);
             // Was kommt vom Controller.php zurück? Wenn passt, dann login. Wenn nicht dann redirect
             request.success(function(meldung) {
                 //Keine Rückmeldung von Server
