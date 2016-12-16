@@ -7,7 +7,7 @@ class Controller {
     function __construct(){
         // Init DB
         require_once "./mysql.php";
-        $this->$db = new DB();
+        $this->db = new DB();
         
         // Actions
         if(isset($_GET["action"]) === TRUE) {
