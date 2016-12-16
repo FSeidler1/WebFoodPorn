@@ -101,12 +101,16 @@ class Controller {
                 }
             }]
         }];";*/
+        $arrayjson;
 
         $foodporns = $this->db->getAllFoodporns();
+        print_r($foodporns);
+        echo json_encode($foodporns);
         foreach($foodporns as $foodporn)
         {
-            
+            //array_push($arrayjson, $foodporn["id_foodporn"]);
         }
+        //echo json_encode($foodporn);
     }
 
     // Get All Foodporns
