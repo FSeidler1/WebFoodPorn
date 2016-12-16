@@ -87,8 +87,7 @@
     <div class="container-fluid">
         <div class="row">
             <div ng-controller="buildMainEntrys">
-                {{entrys}}
-                <div ng-repeat="entry in entrys" class="item well">
+                <div ng-repeat="entry in entrys" class="item well" id="entry_{{entry.id_foodporn}}">
                     <div class="foodporn-container">
                         <a data-toggle="modal" data-target="#myModal">
                             <img ng-src="./../../{{entry.image}}">
