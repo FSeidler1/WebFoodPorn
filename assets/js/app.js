@@ -1,6 +1,27 @@
 var loginApp = new angular.module('loginApp', []);
 var registrationApp = new angular.module('registrationApp', []);
 var mainApp = new angular.module('mainApp', []);
+var isloggedin;
+
+
+
+
+
+
+window.addEventListener("load", function() {
+    document.getElementById("input_clone").addEventListener("change", PreviewImages, false);
+}, false);
+
+
+
+
+
+
+
+
+
+
+
 
 // --------------------------------------------------------------
 // Formular - Controller
@@ -42,6 +63,15 @@ loginApp.controller('FormController',
             });
 
         }
+        $http.get('./assets/php/controller.php?class=user&action=islogedin').success(
+            function(data) {
+                if (data === 'true') {
+                    isloggedin = true;
+                } else {
+                    isloggedin = false;
+                }
+            }
+        );
     }
 );
 
@@ -81,6 +111,15 @@ registrationApp.controller('FormController',
             });
 
         }
+        $http.get('./../php/controller.php?class=user&action=islogedin').success(
+            function(data) {
+                if (data === 'true') {
+                    isloggedin = true;
+                } else {
+                    isloggedin = false;
+                }
+            }
+        );
     }
 );
 
@@ -99,6 +138,15 @@ mainApp.controller('buildMainEntrys',
             function(data) {
                 //console.log(data);
                 $scope.entrys = data;
+            }
+        );
+        $http.get('./../php/controller.php?class=user&action=islogedin').success(
+            function(data) {
+                if (data === 'true') {
+                    isloggedin = true;
+                } else {
+                    isloggedin = false;
+                }
             }
         );
     });
@@ -124,10 +172,8 @@ mainApp.controller('sendNewEntry',
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             });
-<<<<<<< HEAD
-=======
             console.log(document.getElementById("datei_neuesBild").value);
->>>>>>> 1a54b810bffaa40e60456e1bfcb67f0191113e21
+
             // Was kommt vom Controller.php zurück?
             request.success(function(meldung) {
                 //Keine Rückmeldung von Server
@@ -155,21 +201,14 @@ function dataTrans() {
         return FR.target.result;
     }
 }
-<<<<<<< HEAD
-//Event Listener
-if (page === 'index') {
-    window.addEventListener("load", function() {
-        document.getElementById("input_clone").addEventListener("change", PreviewImages, false);
-    }, false);
-}
 
 
 //Überprüfen ob User bereits eingeloggt ist
 //Übergabeparameter ist die aktuelle Seite, von wo die Funktion aufgerufen wird
 function isUserLoggedIn(actualPage) {
     switch (actualPage) {
-        case 'index':
-            if (checkLoginFlag() === true) {
+        case "index":
+            if (isloggedin === true) {
                 //load 'main' page
                 window.location.replace("./assets/html/main.html");
                 //write Username inNavbar
@@ -178,8 +217,9 @@ function isUserLoggedIn(actualPage) {
                 //redirect to index
                 //allready in index - do nothing
             }
-        case 'registration':
-            if (checkLoginFlag() === true) {
+            break;
+        case "registration":
+            if (isloggedin === true) {
                 //load 'main' page
                 window.location.replace("./main.html");
                 //write Username inNavbar
@@ -188,26 +228,18 @@ function isUserLoggedIn(actualPage) {
                 //redirect to index
                 window.location.replace("./../../index.html");
             }
-
+            break;
+        case "main":
+            if (isloggedin === true) {
+                //do nothing                
+            } else {
+                //redirect to index
+                window.location.replace("./../../index.html");
+            }
+            break;
 
         default:
             console.log("Login unbekannt - nicht implementiert");
+            break;
     }
 }
-
-function checkLoginFlag() {
-    $http.get('./../php/Controller.php?class=user&action=islogedin').success(
-        function(data) {
-            if (data === 'true') {
-                return true;
-            } else {
-                return false;
-            }
-        }
-    );
-}
-=======
-window.addEventListener("load", function() {
-    document.getElementById("input_clone").addEventListener("change", PreviewImages, false);
-}, false);
->>>>>>> 1a54b810bffaa40e60456e1bfcb67f0191113e21
