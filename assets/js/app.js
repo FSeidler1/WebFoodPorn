@@ -13,7 +13,7 @@ loginApp.controller('FormController',
             // Formular - Datenübermitteln an controller.php
             // ------------------------------------------------------ 
             var request = $http({
-                method: "login",
+                method: 'post',
                 url: './assets/php/controller.php?class=user&action=login',
                 data: {
                     benutzer_login: document.getElementById("benutzer_login").value,
@@ -23,6 +23,8 @@ loginApp.controller('FormController',
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             });
+            console.log(document.getElementById("benutzer_login").value);
+            console.log(document.getElementById("passwort_login").value);
             // Was kommt vom Controller.php zurück? Wenn passt, dann login. Wenn nicht dann redirect
             request.success(function(meldung) {
                 //Keine Rückmeldung von Server
@@ -54,7 +56,7 @@ registrationApp.controller('FormController',
             // Formular - Datenübermitteln an controller.php
             // ------------------------------------------------------ 
             var request = $http({
-                method: "registration",
+                method: "post",
                 url: './assets/php/controller.php?class=user&action=registration',
                 data: {
                     benutzer_registration: document.getElementById("benutzer_registration").value,
