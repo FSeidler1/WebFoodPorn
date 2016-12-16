@@ -144,7 +144,7 @@ class Controller {
                 }
             }]
         }, {
-            id_foodporn: 1,
+            id_foodporn: 2,
             favorit: false,
             image: './img/default.png',
             title: 'Titel',
@@ -180,7 +180,7 @@ class Controller {
                     image: './img/default.png'
                 }
             }]
-        }];";
+        }]";
     }
 
     // filter by Category
