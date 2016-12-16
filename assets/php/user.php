@@ -48,9 +48,11 @@ class Controller {
     }
 
     function login() {
-        // benutzer_login
-        // passwort_login
-        $this->json = "Not implementet jet";
+        // Handle Json Request
+        $_POST = json_decode(file_get_contents("php://input"), true);
+        $this->db->login($_POST['benutzer_login'], md5($_POST['passwort_login']));
+        $this->json = $this->db->isUserLoggedin();
+        //$this->json = "Not implementet jet";
     }
 
     // Get User DAta (exept Password)

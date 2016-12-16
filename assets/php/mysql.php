@@ -146,7 +146,25 @@ class DB
             }
             else
             {
-                return "Error: More then one User could be logged in!";
+                return "Error: More then one identical User could be logged in!";
+            }
+        }
+
+        function login($username ,$password)
+        {
+            $stmt = self::$_db->prepare("SELECT cout(id_user) AS c FROM user WHERE username=:un AND password=:pw");
+            $stmt->bindParam(":un", $username);
+            $stmt->bindParam(":pw", $password);
+            $stmt->execute();
+            $count = $stmt->fetch()["c"];
+            if($count == 1)
+            {
+                $stmt = self::$_db->prepare("UPDATE user SET session=:sid WHERE username=:un AND password=:pw");
+                $sid = session_id();
+                $stmt->bindParam(":sid", $sid);
+                $stmt->bindParam(":un", $username);
+                $stmt->bindParam(":pw", $password);
+                $stmt->execute();
             }
         }
     }
