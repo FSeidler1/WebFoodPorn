@@ -14,7 +14,7 @@ loginApp.controller('FormController',
             // ------------------------------------------------------ 
             var request = $http({
                 method: "login",
-                url: './assets/php/controller.php?class=user&action=islogedin',
+                url: './assets/php/controller.php?class=user&action=login',
                 data: {
                     benutzer_login: document.getElementById("benutzer_login").value,
                     passwort_login: document.getElementById("passwort_login").value
@@ -30,9 +30,9 @@ loginApp.controller('FormController',
                     console.log("Fehlerhafte Rückmeldung von Server");
                 } else {
                     console.log(meldung);
-                    if (meldung === true) {
+                    if (meldung === 'true') {
                         //Password korrekt
-                        window.location.replace("http://localhost/html/main.html");
+                        window.location.replace("./assets/html/main.html");
                     } else {
                         falseData();
                     }
@@ -71,11 +71,9 @@ registrationApp.controller('FormController',
                 if (meldung === null) {
                     console.log("Fehlerhafte Rückmeldung von Server")
                 } else {
-                    if (meldung === true) {
+                    if (meldung === 'true') {
                         //Password korrekt
-                        window.location.replace("http://localhost/html/main.html");
-                    } else {
-                        falseData();
+                        window.location.replace("./assets/html/main.html");
                     }
                 }
             });
@@ -98,11 +96,21 @@ mainApp.controller('buildMainEntrys',
     function mainController($scope, $http) {
         $http.get('./../php/Controller.php?class=foodporn').success(
             function(data) {
-                $scope.phones = data;
+                $scope.entrys = data;
+                writeEntrys($scope.entrys);
             }
         );
     });
 
-/************************
- * Einträge erstellen und Befüllen
- *************************/
+function writeEntry(entrys) {
+    /************************
+     * Einträge erstellen und Befüllen
+     *************************/
+    for (int i = entrys.) {
+        console.log('Start Aufbau Einträge');
+
+
+
+        console.log('Ende Aufbau Einträge');
+    }
+}
