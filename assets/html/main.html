@@ -87,28 +87,29 @@
     <div class="container-fluid">
         <div class="row">
             <div ng-controller="buildMainEntrys">
-                <div ng-reapeat="entry in entrys" class="item well">
+                {{entrys}}
+                <div ng-repeat="entry in entrys" class="item well">
                     <div class="foodporn-container">
                         <a data-toggle="modal" data-target="#myModal">
                             <img ng-src="./../../{{entry.image}}">
                         </a>
                         <p class="foodporn-title">{{entry.title}}</p>
-                        <p class="foodporn-description">Beschreibung</p>
+                        <p class="foodporn-description">{{entry.description}}</p>
                         <div class="foodporn-container-footer">
                             <a class="foodporn-like-button green">
                                 <i class="fa fa-thumbs-up"></i>
-                                <span>0</span>
+                                <span>{{entry.likes}}</span>
                             </a>
                             <a class="foodporn-like-button red">
                                 <i class="fa fa-thumbs-down"></i>
-                                <span>0</span>
+                                <span>{{entry.dislikes}}</span>
                             </a>
-                            <a class="foodporn-byuser">by Leonardo</a>
+                            <a class="foodporn-byuser">by {{entry.user.username}}</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="item well">
+            <!--<div class="item well">
                 <div class="foodporn-container">
                     <a data-toggle="modal" data-target="#myModal">
                         <img src="../../img/test.png">
@@ -187,7 +188,7 @@
                         <a class="foodporn-byuser">by Leonardo</a>
                     </div>
                 </div>
-            </div>
+            </div>-->
 
         </div>
     </div>

@@ -95,6 +95,7 @@ mainApp.controller('buildMainEntrys',
     function mainController($scope, $http) {
         $http.get('./../php/Controller.php?class=foodporn').success(
             function(data) {
+                console.log(data);
                 $scope.entrys = data;
             }
         );
