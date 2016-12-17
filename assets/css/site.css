@@ -14,6 +14,7 @@ body {
 .item {
     display: inline-block;
     width: 100%;
+    margin-bottom: 10px;
 }
 
 
@@ -33,7 +34,7 @@ body {
     }
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
     .panel-title span:nth-child(1) {
         color: lawngreen;
         font-size: 24px;
@@ -48,7 +49,10 @@ body {
     }
 }
 
-@media (min-width: 992px) {
+
+/* PC */
+
+@media screen and (min-width: 992px) {
     .panel-title span:nth-child(1) {
         color: lawngreen;
         font-size: 24px;
@@ -59,6 +63,23 @@ body {
         font-size: 22px;
         font-style: italic;
         text-shadow: 0 0 5px black;
+    }
+    .user-picture {
+        background-color: green;
+        width: 10%;
+        padding-top: 5%;
+        margin: 0 auto;
+    }
+    .profil-container img {
+        height: 30rem;
+        width: 30rem;
+    }
+    .profile-title {
+        font-size: 48px;
+    }
+    .profile-description {
+        font-size: 26px;
+        overflow: hidden;
     }
 }
 
@@ -177,26 +198,77 @@ a.foodporn-byuser {
     text-decoration: none;
 }
 
+.container-fluid .row {
+    column-count: 4;
+    column-gap: 10px;
+    column-fill: auto;
+    -webkit-column-count: 4;
+    -webkit-column-gap: 10px;
+    -webkit-column-fill: auto;
+    -moz-column-count: 4;
+    -moz-column-gap: 10px;
+    -moz-column-fill: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+@media screen and (max-width: 991px) {
+    .container-fluid .row {
+        column-count: 3;
+        -webkit-column-count: 3;
+        -moz-column-count: 3;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .container-fluid .row {
+        column-count: 1;
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+    }
+    .profil-container img {
+        height: 10rem;
+        width: 10rem;
+    }
+    .profil-title {
+        font-size: 20px;
+    }
+    .profile-description {
+        font-size: 16px;
+    }
+}
+
 .foodporn-container {
     width: 100%;
     background-color: white;
     border: 1px solid #efefef;
     padding: 9px;
-    -moz-column-count: 1;
-    -moz-column-gap: 0px;
-    -webkit-column-count: 1;
-    -webkit-column-gap: 0px;
-    column-count: 1;
-    column-gap: 0px;
 }
 
 
 /* Search Form */
 
+
+/* IPad */
+
 @media (max-width: 768px) {
     form.search-form {
         right: 90px;
         top: -1px;
+    }
+    .profil-container img {
+        height: 12rem;
+        width: 12rem;
+    }
+    .profil-container img {
+        height: 21rem;
+        width: 21rem;
+    }
+    .profile-title {
+        font-size: 38px;
+    }
+    .profile-description {
+        font-size: 24px;
     }
 }
 
@@ -217,6 +289,12 @@ a.foodporn-byuser {
     position: absolute;
     top: -1px;
     width: 100%;
+}
+
+.profil-container hr {
+    display: block;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 .search-form button {
@@ -243,24 +321,20 @@ a.foodporn-byuser {
     width: 100%;
 }
 
-.row {
+.profil-container {
     background-color: white;
-    margin: 0 auto;
-    width: 60%;
-    padding: 1%;
-}
-
-.image-cropper {
-    width: 100px;
-    height: 100px;
     position: relative;
-    overflow: hidden;
-    border-radius: 50%;
+    min-height: 20rem;
+    margin: 0 auto;
+    width: 80%;
+    border-radius: 25px;
+    border: 2px solid black;
+    padding: 20px;
 }
 
-img {
-    display: inline;
+.user-container {
+    background-color: red;
+    width: 60%;
+    padding-top: 5%;
     margin: 0 auto;
-    height: 100%;
-    width: auto;
 }
