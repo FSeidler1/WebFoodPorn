@@ -23,11 +23,15 @@ class DB
         // Initializes Tables & example etrys
         function initDB() 
         {
+            // Init imageHelper
+            require_once "./imageHelper.php";
+            $imageHelper = new ImageHelper();
+
             // Create Foodporn Table
             $stmt = self::$_db->prepare("CREATE TABLE IF NOT EXISTS `fooddb`.`foodporn` ( `id_foodporn` INT NOT NULL AUTO_INCREMENT , 
             `image` TEXT NOT NULL , 
             `title` TEXT NOT NULL , 
-            `description` TEXT NOT NULL , 
+            `description` LONGTEXT NOT NULL , 
             `category` VARCHAR(255) NOT NULL , 
             `fs_user` INT NOT NULL , 
             `dateCreated` DATE NOT NULL , 
@@ -81,7 +85,10 @@ class DB
             if($count < 1)
             {
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(1,'./img/default.png', 'Beispielbild', 'Beschreibung des Beispiel Foodporns', 'Pasta', 1, NOW())");
+                VALUES(1,'" . $imageHelper->getExampleImage() . "', 'Beispielbild', 'Beschreibung des Beispiel Foodporns', 'Pasta', 1, NOW())");
+                $stmt->execute();
+                $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
+                VALUES(2,'" . $imageHelper->getExampleImage2() . "', 'Erdbeer Dessert', 'Beschreibung des Erdbeerdesserts Foodporns', 'Desserts', 1, NOW())");
                 $stmt->execute();
             }
             
@@ -104,6 +111,15 @@ class DB
             {
                 $stmt = self::$_db->prepare("INSERT INTO likes (islike, fs_user, fs_foodporn)
                 VALUES(1,1,1)");
+                $stmt->execute();
+                $stmt = self::$_db->prepare("INSERT INTO likes (islike, fs_user, fs_foodporn)
+                VALUES(1,1,1)");
+                $stmt->execute();
+                $stmt = self::$_db->prepare("INSERT INTO likes (islike, fs_user, fs_foodporn)
+                VALUES(1,1,1)");
+                $stmt->execute();
+                $stmt = self::$_db->prepare("INSERT INTO likes (islike, fs_user, fs_foodporn)
+                VALUES(0,1,1)");
                 $stmt->execute();
             }
             
@@ -191,12 +207,78 @@ class DB
             $stmt->bindParam(":sid", $sid);
         }
 
+        // Get USer ID
+        function getUserID()
+        {
+            $stmt = self::$_db->prepare("SELECT id_user FROM user WHERE session=:sid");
+            $sid = session_id();
+            $stmt->bindParam(":sid", $sid);
+            $stmt->execute();
+            return $stmt->fetch()["id_user"];
+        }
+
+        // Get User By ID
+        function getUserById($uid)
+        {
+            $stmt = self::$_db->prepare("SELECT * FROM user WHERE id_user=:uid");
+            $stmt->bindParam(":uid", $uid);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        // Get Likes
+        function getCountLike($fid, $isLike)
+        {
+            $stmt = self::$_db->prepare("SELECT count(id_like) AS c FROM likes WHERE fs_foodporn=:fid AND islike=:islike");
+            $stmt->bindParam(":fid", $fid);
+            $stmt->bindParam(":islike", $isLike);
+            $stmt->execute();
+            return $stmt->fetch()["c"];
+        }
+
+        // Get Comments 
+        function getCommentsByFoodpornId($fid)
+        {
+            $stmt = self::$_db->prepare("SELECT * FROM comment WHERE fs_foodporn=:fid");
+            $stmt->bindParam(":fid", $fid);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
         // Get ONLY Foodporn Comntext
         function getAllFoodporns()
         {
             $stmt = self::$_db->prepare("SELECT * FROM foodporn");
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        // Get Foodporn by id_foodporn
+        function getFoodpornById($fid)
+        {
+            $stmt = self::$_db->prepare("SELECT * FROM foodporn WHERE id_foodporn=:fid");
+            $stmt->bindParam(":fid", $fid);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+
+        // Get if the foodporn is favorited
+        function isFavoriteFoodporn($fid)
+        {
+            $stmt = self::$_db->prepare("SELECT count(id_favorit) AS c FROM favorit WHERE fs_foodporn=:fid AND fs_user=:uid");
+            $stmt->bindParam(":fid", $fid);
+            $uid = self::getUserID();
+            $stmt->bindParam(":uid", $uid);
+            $stmt->execute();
+            $count = $stmt->fetch()["c"];
+            if($count == 1)
+            {
+                return "true";
+            }
+            else
+            {
+                return "false";
+            }
         }
     }
 ?>
