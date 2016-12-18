@@ -130,7 +130,7 @@ class Controller {
 
             array_push($arrayjson, $arrayFoodporn);
         }
-        echo json_encode($arrayjson);
+        $this->json = json_encode($arrayjson);
     }
 
     // Get All Foodporns

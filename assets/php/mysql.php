@@ -168,6 +168,50 @@ class DB
             }
         }
 
+        // Get All Users
+        function getAllUsers()
+        {
+            $stmt = self::$_db->prepare("SELECT u.id_user AS id_user, u.username AS username, u.mail AS mail, u.description AS description, u.image AS image FROM user AS u");
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        // Get User By id_user 
+        function getUserById($uid)
+        {
+            $stmt = self::$_db->prepare("SELECT u.id_user AS id_user, u.username AS username, u.mail AS mail, u.description AS description, u.image AS image FROM user AS u
+                                        WHERE u.id_user=:uid");
+            $stmt->bindParam(":uid", $uid);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        // Update User 
+        function updateUser($username, $mail, $descr, $img)
+        {
+            $stmt = self::$_db->prepare("UPDATE user SET username=:username, mail=:mail, description=:descr, image=:img WHERE id_user:uid");
+            $stmt->bindParam(":username", $username);
+            $stmt->bindParam(":mail", $mail);
+            $stmt->bindParam(":descr", $descr);
+            $stmt->bindParam(":img", $img);
+            $uid = self::getUserID();
+            $stmt->bindParam(":uid", $uid);
+            $stmt->execute();
+            return "true";
+        }
+
+        // Update User Password
+        function updateUserPassword($new, $old)
+        {
+            $stmt = self::$_db->prepare("UPDATE user SET password=:new WHERE id_user=:uid AND password=:old");
+            $stmt->bindParam(":new", $new);
+            $uid = self::getUserID();
+            $stmt->bindParam(":uid", $uid);
+            $stmt->bindParam(":old", $old);
+            $stmt->execute();
+            return "true";
+        }
+
         // Login User
         function login($username ,$password)
         {
@@ -196,7 +240,7 @@ class DB
         }
 
         // Register USer
-        function registerUser()
+        function registerUser($username, $mail, $password)
         {
             $stmt = self::$_db->prepare("INSERT INTO user (username,mail,password,session)
                 VALUES(:username,:mail,:password,:sid)");
@@ -205,6 +249,7 @@ class DB
             $stmt->bindParam("mail", $mail);
             $stmt->bindParam("password", $password);
             $stmt->bindParam(":sid", $sid);
+            $stmt->execute();
         }
 
         // Get USer ID
@@ -215,15 +260,6 @@ class DB
             $stmt->bindParam(":sid", $sid);
             $stmt->execute();
             return $stmt->fetch()["id_user"];
-        }
-
-        // Get User By ID
-        function getUserById($uid)
-        {
-            $stmt = self::$_db->prepare("SELECT * FROM user WHERE id_user=:uid");
-            $stmt->bindParam(":uid", $uid);
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
         // Add getCountLike
