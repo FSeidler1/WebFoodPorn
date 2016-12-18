@@ -253,6 +253,27 @@ class DB
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
+        // Get Foodporns filtered by category
+        function getAllFoodpornsByCategory($cat)
+        {
+            $stmt = self::$_db->prepare("SELECT * FROM foodporn WHERE category=:cat");
+            $stmt->bindParam(":cat", $cat);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        // Get Foodporns filtered by favorites
+        function getAllFoodpornsByFavorite()
+        {
+            $stmt = self::$_db->prepare("SELECT fp.* FROM favorit AS fav
+                                        LEFT JOIN foodporn AS fp
+                                        On fav.fs_foodporn = fp.id_foodporn AND fav.fs_user=:uid");
+            $uid = self::getUserID();
+            $stmt->bindParam(":uid", $uid);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
         // Get Foodporn by id_foodporn
         function getFoodpornById($fid)
         {
