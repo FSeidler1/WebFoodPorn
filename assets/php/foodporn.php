@@ -44,20 +44,26 @@ class Controller {
     
     // Adds a foodporn to DB
     function addFoodporn() {
-        // TODO save foodporn into db
-        $this->json = "Not implementet jet";
+        // Convert Json to $_POST
+        $_POST = json_decode(file_get_contents("php://input"), true); 
+
+        $this->json = $this->db->addFoodporn($_POST["image"], $_POST["title"], $_POST["description"], $_POST["category"]);;
     }
 
     // Add Like to this Foodporn
     function like() {
-        // TODO set like / dislike in DB
-        $this->json = "Not implementet jet";
+        // Convert Json to $_POST
+        $_POST = json_decode(file_get_contents("php://input"), true); 
+
+        $this->json = $this->db->addLike($_POST["id_foodporn"], $_POST["isLike"]);
     }
 
     // Add Comment to this Foodporn
     function addComment() {
-        // TODO set comment in DB
-        $this->json = "Not implementet jet";
+        // Convert Json to $_POST
+        $_POST = json_decode(file_get_contents("php://input"), true); 
+
+        $this->json = $this->db->addComment($_POST["id_foodporn"],$_POST["text"]);
     }
 
     // Get One Foodporn by id

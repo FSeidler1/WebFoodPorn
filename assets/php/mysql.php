@@ -134,7 +134,7 @@ class DB
                 $stmt->execute();
             }
             
-            // Create favorit Example Entry
+            // Create comment Example Entry
             $stmt = self::$_db->prepare("SELECT count(id_comment) AS c FROM comment");
             $stmt->execute();
             $count = $stmt->fetch()["c"];
@@ -226,6 +226,31 @@ class DB
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
+        // Add getCountLike
+        function addLike($fid, $isLike)
+        {
+            $stmt = self::$_db->prepare("SELECT count(id_like) AS c FROM likes WHERE fs_foodporn=:fid AND islike=:islike AND fs_user=:uid");
+            $stmt->bindParam(":fid", $fid);
+            $stmt->bindParam(":islike", $isLike);
+            $uid = self::getUserID();
+            $stmt->bindParam(":uid", $uid);
+            $stmt->execute();
+            return $stmt->fetch()["c"];
+            if($count < 1)
+            {
+                $stmt = self::$_db->prepare("INSERT INTO likes (islike, fs_user, fs_foodporn) VALUES(:islike,:uid,:fid)");
+                $stmt->bindParam(":islike", $isLike);
+                $stmt->bindParam(":uid", $uid);
+                $stmt->bindParam(":fid", $fid);
+                $stmt->execute();
+                return "true";
+            }
+            else
+            {
+                return "false";
+            }
+        }
+
         // Get Likes
         function getCountLike($fid, $isLike)
         {
@@ -236,6 +261,18 @@ class DB
             return $stmt->fetch()["c"];
         }
 
+        // Add Comment
+        function addComment($fid, $content)
+        {
+            $stmt = self::$_db->prepare("INSERT INTO comment (content, dateCreated, fs_foodporn, fs_user) VALUES(:content,NOW(),:fid,:uid)");
+            $stmt->bindParam(":content", $content);
+            $stmt->bindParam(":fid", $fid);
+            $uid = self::getUserID();
+            $stmt->bindParam(":uid", $uid);
+            $stmt->execute();
+            return "true";
+        }
+
         // Get Comments 
         function getCommentsByFoodpornId($fid)
         {
@@ -243,6 +280,21 @@ class DB
             $stmt->bindParam(":fid", $fid);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        // Add Foodporn
+        function addFoodporn($img, $title, $desc, $cat)
+        {
+            $stmt = self::$_db->prepare("image,title,description,category,fs_user,dateCreated)
+                                        VALUES(:img, :title, :desc, :cat, :uid, NOW())");
+            $stmt->bindParam(":img", $img);
+            $stmt->bindParam(":title", $title);
+            $stmt->bindParam(":desc", $desc);
+            $stmt->bindParam(":cat", $cat);
+            $uid = self::getUserID();
+            $stmt->bindParam(":uid", $uid);
+            $stmt->execute();
+            return "true";
         }
 
         // Get ONLY Foodporn Comntext
