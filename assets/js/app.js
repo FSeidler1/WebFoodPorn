@@ -18,7 +18,6 @@ var isloggedin;
  * An Ivo
  * ************
  * Datenbankprüfung im Login - erstellen
- * JSON - Doublequotes ( /" )
  * 
  * An Leo
  * ************
@@ -184,16 +183,60 @@ function dataTrans() {
     }
 }
 
-/*
+mainApp.controller('searchFormSend',
+    function searchFormSend($scope, $http) {
+        $scope.submit = function() {
+            // ------------------------------------------------------
+            // Formular - Datenübermitteln an controller.php
+            // ------------------------------------------------------ 
+            var request = $http({
+                method: "post",
+                url: './assets/php/controller.php?class=foodporn&action=search',
+                data: {
+                    navSearch: document.getElementById("navSearch").value
+                },
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
 
-? Ivo du Mongo wa wetsh do mache ?????? -Nic <3
+            // Was kommt vom Controller.php zurück?
+            request.success(function(data) {
+                console.log(data);
+                $scope.entrys = data;
+            });
+        }
+    }
+);
 
-onchange="dataTrans()"
+//Filter by Category
+mainApp.controller('getElementCategoryCon',
+    function getElementCategoryCon($scope, $http) {
+        $scope.getElementCategory = function(category) {
+            // ------------------------------------------------------
+            // Formular - Datenübermitteln an controller.php
+            // ------------------------------------------------------ 
+            var request = $http({
+                method: "post",
+                url: './../php/controller.php?class=foodporn&action=filterCategory',
+                data: {
+                    categoryName: category
+                },
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
 
-window.addEventListener("load", function() {
-    document.getElementById("input_clone").addEventListener("change", PreviewImages, false);
-}, false);
-*/
+            // Was kommt vom Controller.php zurück?
+            request.success(function(data) {
+                $scope.entrys = data;
+                console.log(data);
+            });
+        }
+    }
+);
+
+
 
 //Überprüfen ob User bereits eingeloggt ist
 //Übergabeparameter ist die aktuelle Seite, von wo die Funktion aufgerufen wird
