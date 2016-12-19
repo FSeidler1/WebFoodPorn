@@ -177,11 +177,21 @@ class DB
         }
 
         // Get User By id_user 
-        function getUser()
+        function getUserById()
         {
             $stmt = self::$_db->prepare("SELECT u.id_user AS id_user, u.username AS username, u.mail AS mail, u.description AS description, u.image AS image FROM user AS u
                                         WHERE u.id_user=:uid");
             $uid = self::getUserID();
+            $stmt->bindParam(":uid", $uid);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        // Get User By id_user 
+        function getUser($uid)
+        {
+            $stmt = self::$_db->prepare("SELECT u.id_user AS id_user, u.username AS username, u.mail AS mail, u.description AS description, u.image AS image FROM user AS u
+                                        WHERE u.id_user=:uid");
             $stmt->bindParam(":uid", $uid);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
