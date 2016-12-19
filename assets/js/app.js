@@ -427,6 +427,8 @@ function isUserLoggedIn(actualPage) {
     }
 }
 
+
+
 function isloggedInCall(data) {
     if (data === 'true') {
         isloggedin = true;
@@ -437,9 +439,17 @@ function isloggedInCall(data) {
     }
 }
 
-function userLogOut() {
-    localStorage.setItem("loggedIn", "false");
-    isloggedin = false;
-    //redirect to index
-    window.location.replace("./../../index.html");
-}
+mainApp.controller('LogoutController',
+    function LogoutController($scope, $http) {
+        $scope.userLogOut = function() {
+            $http.get('./../php/Controller.php?class=user&action=logout').success(
+                function(data) {
+                    localStorage.setItem("loggedIn", "false");
+                    isloggedin = false;
+                    //redirect to index
+                    window.location.replace("./../../index.html");
+                }
+            );
+        }
+    }
+);
