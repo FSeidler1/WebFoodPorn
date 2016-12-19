@@ -23,10 +23,6 @@ class DB
         // Initializes Tables & example etrys
         function initDB() 
         {
-            // Init imageHelper
-            require_once "./imageHelper.php";
-            $imageHelper = new ImageHelper();
-
             // Create Foodporn Table
             $stmt = self::$_db->prepare("CREATE TABLE IF NOT EXISTS `fooddb`.`foodporn` ( `id_foodporn` INT NOT NULL AUTO_INCREMENT , 
             `image` TEXT NOT NULL , 
@@ -85,31 +81,31 @@ class DB
             if($count < 1)
             {
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(1,'../../../../../img/test.png', 'Beispielbild', 'Beschreibung des Beispiel Foodporns', 'Fleisch', 1, NOW())");
+                VALUES(1,'../../img/test.png', 'Beispielbild', 'Beschreibung des Beispiel Foodporns', 'Fleisch', 1, NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(2,'../../../../../img/try.png', 'Beispielbild', 'Beschreibung des Beispiel Foodporns', 'Fleisch', 1, NOW())");
+                VALUES(2,'../../img/try.png', 'Beispielbild', 'Beschreibung des Beispiel Foodporns', 'Fleisch', 1, NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(3,'../../../../../img/default.png', 'Erdbeer Dessert', 'Beschreibung des Erdbeerdesserts Foodporns', 'Desserts', 1, NOW())");
+                VALUES(3,'../../img/default.png', 'Erdbeer Dessert', 'Beschreibung des Erdbeerdesserts Foodporns', 'Desserts', 1, NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(4,'../../../../../img/test.png', 'Beispielbild', 'Beschreibung des Beispiel Foodporns', 'Fleisch', 1, NOW())");
+                VALUES(4,'../../img/test.png', 'Beispielbild', 'Beschreibung des Beispiel Foodporns', 'Fleisch', 1, NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(5,'../../../../../img/try.png', 'Beispielbild', 'Beschreibung des Beispiel Foodporns', 'Fleisch', 1, NOW())");
+                VALUES(5,'../../img/try.png', 'Beispielbild', 'Beschreibung des Beispiel Foodporns', 'Fleisch', 1, NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(6,'../../../../../img/default.png', 'Erdbeer Dessert', 'Beschreibung des Erdbeerdesserts Foodporns', 'Desserts', 1, NOW())");
+                VALUES(6,'../../img/default.png', 'Erdbeer Dessert', 'Beschreibung des Erdbeerdesserts Foodporns', 'Desserts', 1, NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(7,'../../../../../img/test.png', 'Beispielbild', 'Beschreibung des Beispiel Foodporns', 'Fleisch', 1, NOW())");
+                VALUES(7,'../../img/test.png', 'Beispielbild', 'Beschreibung des Beispiel Foodporns', 'Fleisch', 1, NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(8,'../../../../../img/try.png', 'Beispielbild', 'Beschreibung des Beispiel Foodporns', 'Fleisch', 1, NOW())");
+                VALUES(8,'../../img/try.png', 'Beispielbild', 'Beschreibung des Beispiel Foodporns', 'Fleisch', 1, NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(9,'../../../../../img/default.png', 'Erdbeer Dessert', 'Beschreibung des Erdbeerdesserts Foodporns', 'Desserts', 1, NOW())");
+                VALUES(9,'../../img/default.png', 'Erdbeer Dessert', 'Beschreibung des Erdbeerdesserts Foodporns', 'Desserts', 1, NOW())");
                 $stmt->execute();
             }
             
