@@ -320,7 +320,7 @@ class DB
         // Add Foodporn
         function addFoodporn($img, $title, $desc, $cat)
         {
-            $stmt = self::$_db->prepare("image,title,description,category,fs_user,dateCreated)
+            $stmt = self::$_db->prepare("INSERT INTO foodporn (image,title,description,category,fs_user,dateCreated)
                                         VALUES(:img, :title, :desc, :cat, :uid, NOW())");
             $stmt->bindParam(":img", $img);
             $stmt->bindParam(":title", $title);
