@@ -80,7 +80,9 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Benutzer <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="./profil.html">Benutzer</a></li>
-                            <li><a onclick="userLogOut()">Abmelden</a></li>
+                            <li ng-controller="LogoutController">
+                                <a ng-click="userLogOut()">Abmelden</a>
+                            </li>
 
                         </ul>
                     </li>

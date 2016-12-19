@@ -42,6 +42,7 @@ class Controller {
             }
             else if($_GET["action"] == "search")
             {
+                // TDDO:
                 $this->searchFoodporn();
             }
             else if($_GET["action"] == "setfavorite")
@@ -91,9 +92,10 @@ class Controller {
     //  Search by Foodporn
     function searchFoodporn() 
     {
+        // TODO:
         $_POST = json_decode(file_get_contents("php://input"), true); 
 
-        $this->json = $_POST["mavSearch"];
+        $this->json = $_POST["navSearch"];
     }
 
     // Get One Foodporn by id
