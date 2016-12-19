@@ -125,7 +125,6 @@ mainApp.controller('buildMainEntrys',
         $scope.entrys = [];
         $http.get('./../php/Controller.php?class=foodporn').success(
             function(data) {
-                console.log(data);
                 $scope.entrys = data;
             }
         );
@@ -255,15 +254,19 @@ mainApp.controller('getElementCategoryCon',
 
 mainApp.controller('setLikeFavorite',
     function setLikeFavorite($scope, $http) {
+
+        var entryTemp;
+
         $scope.setLike = function() {
+            entryTemp = this.entry;
             // ------------------------------------------------------
             // Formular - Datenübermitteln an controller.php
             // ------------------------------------------------------ 
             var request = $http({
                 method: "post",
-                url: './../php/controller.php?class=user&action=like',
+                url: './../php/controller.php?class=foodporn&action=like',
                 data: {
-                    id_foodporn: $scope.id_foodporn,
+                    id_foodporn: entryTemp.id_foodporn,
                     isLike: 1
                 },
                 headers: {
@@ -273,27 +276,28 @@ mainApp.controller('setLikeFavorite',
 
             // Was kommt vom Controller.php zurück?
             request.success(function(dataTF) {
-                console.log(dataTF);
-                if (dataTF === 'true') {
-                    console.log('hoi');
-                    $http.get('./php/Controller.php?class=foodporn').success(
-                        function(data) {
-                            console.log(data);
-                            $scope.entrys = data;
+                $http.get('./../php/Controller.php?class=foodporn').success(
+                    function(data) {
+                        dataTF = dataTF.replace(/ /g, '');
+                        if (dataTF == 'true') {
+                            $("#entry_" + entryTemp.id_foodporn + " .foodporn-like-button.green span").val(
+                                entryTemp.likes++
+                            );
                         }
-                    );
-                }
+                    }
+                );
             });
         }
         $scope.setDisike = function() {
+            entryTemp = this.entry;
             // ------------------------------------------------------
             // Formular - Datenübermitteln an controller.php
             // ------------------------------------------------------ 
             var request = $http({
                 method: "post",
-                url: './../php/controller.php?class=user&action=like',
+                url: './../php/controller.php?class=foodporn&action=like',
                 data: {
-                    id_foodporn: $scope.id_foodporn,
+                    id_foodporn: entryTemp.id_foodporn,
                     isLike: 0
                 },
                 headers: {
@@ -302,8 +306,47 @@ mainApp.controller('setLikeFavorite',
             });
 
             // Was kommt vom Controller.php zurück?
-            request.success(function(data) {
+            request.success(function(dataTF) {
+                $http.get('./../php/Controller.php?class=foodporn').success(
+                    function(data) {
+                        dataTF = dataTF.replace(/ /g, '');
+                        if (dataTF == 'true') {
+                            $("#entry_" + entryTemp.id_foodporn + " .foodporn-like-button.red span").val(
+                                entryTemp.dislikes++
+                            );
+                        }
+                    }
+                );
+            });
+        }
+        $scope.setFavorite = function() {
+            entryTemp = this.entry;
+            // ------------------------------------------------------
+            // Formular - Datenübermitteln an controller.php
+            // ------------------------------------------------------ 
+            var request = $http({
+                method: "post",
+                url: './../php/controller.php?class=foodporn&action=setfavorite',
+                data: {
+                    id_foodporn: entryTemp.id_foodporn,
+                },
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
 
+            // Was kommt vom Controller.php zurück?
+            request.success(function(dataTF) {
+                $http.get('./../php/Controller.php?class=foodporn').success(
+                    function(data) {
+                        dataTF = dataTF.replace(/ /g, '');
+                        if (dataTF == 'true') {
+                            $("#entry_" + entryTemp.id_foodporn + " .foodporn-eye-button").addClass(
+                                entryTemp.setFavorite
+                            );
+                        }
+                    }
+                );
             });
         }
     }
