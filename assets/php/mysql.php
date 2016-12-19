@@ -177,10 +177,11 @@ class DB
         }
 
         // Get User By id_user 
-        function getUserById($uid)
+        function getUser()
         {
             $stmt = self::$_db->prepare("SELECT u.id_user AS id_user, u.username AS username, u.mail AS mail, u.description AS description, u.image AS image FROM user AS u
                                         WHERE u.id_user=:uid");
+            $uid = self::getUserID();
             $stmt->bindParam(":uid", $uid);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -320,7 +321,7 @@ class DB
         // Add Foodporn
         function addFoodporn($img, $title, $desc, $cat)
         {
-            $stmt = self::$_db->prepare("INSERT INTO foodporn (image,title,description,category,fs_user,dateCreated)
+            $stmt = self::$_db->prepare("INSERT INTO comment (image,title,description,category,fs_user,dateCreated)
                                         VALUES(:img, :title, :desc, :cat, :uid, NOW())");
             $stmt->bindParam(":img", $img);
             $stmt->bindParam(":title", $title);
