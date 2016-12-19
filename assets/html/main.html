@@ -27,7 +27,7 @@
 
 </head>
 
-<body>
+<body ng-controller="buildMainEntrys">
 
 
 
@@ -49,7 +49,7 @@
             </div>
 
             <!-- Alle Navigationslinks, Formulare und anderer Inhalt werden hier zusammengefasst und können dann ein- und ausgeblendet werden -->
-            <div id="form" ng-controller="searchFormSend">
+            <div id="form">
                 <form class="navbar-form navbar-left search-form" role="search" ng-submit="submit()">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Suchen" ng-model="navSearch" id="navSearch">
@@ -63,7 +63,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
 
-                    <li class="dropdown" ng-controller="getElementCategoryCon">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kategorie <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a ng-click="getElementCategory('Fleisch');">Fleisch</a></li>
@@ -111,7 +111,7 @@
 
 
                                 <a data-toggle="modal" data-target="#myModal">
-                                    <img id='openModal_img' src="{{entry.image}}">
+                                    <img id='openModal_img' />
                                 </a>
                                 <a class="foodporn-byuser" id='openModal_IdAutor'>{{entry.user.username}}</a>
                                 <p class="foodporn-title" id='openModal_Title'>{{entry.title}}</p>
@@ -152,11 +152,11 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div ng-controller="buildMainEntrys">
+            <div>
                 <div ng-repeat="entry in entrys" class="item" id="entry_{{entry.id_foodporn}}">
                     <div class="foodporn-container">
-                        <a ng-click="buildModalEntry()">
-                            <img src="{{entry.image}}">
+                        <a ng-click="buildModalEntry(entry)">
+                            <img ng-src="{{entry.image}}">
                         </a>
                         <p class="foodporn-title">{{entry.title}}</p>
                         <p class="foodporn-description">{{entry.description}}</p>

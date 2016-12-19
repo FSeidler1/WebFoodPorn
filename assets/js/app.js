@@ -14,7 +14,9 @@ var isloggedin;
  * Datenfelder - angular ($scope...)
  * Kommentare
  * 
- *  
+ * @Nicolas
+ * *************
+ *  Fründlicher zum Ivo si, er hät nüt böses gmacht, kotmidas!
  * 
  ************/
 
@@ -116,21 +118,50 @@ function falseData() {
 /*Controller definieren, Funktion für den controller*/
 mainApp.controller('buildMainEntrys',
     function mainController($scope, $http) {
+        $scope.navSearch = "";
         $scope.entrys = [];
         $http.get('./../php/Controller.php?class=foodporn').success(
             function(data) {
                 $scope.entrys = data;
             }
         );
-        $scope.buildModalEntry = function() {
+        $scope.submit = function() {
+                $http.get('./../php/Controller.php?class=foodporn&action=search&navSearch=' + $scope.navSearch).success(
+                    function(data) {
+                        $scope.entrys = [];
+                        $scope.entrys = data;
+                    }
+                );
+            }
+            /**
+             * TODO IVO GET mache bim Filter
+             */
+        $scope.getElementCategory = function(category) {
+                $http.get('./../php/Controller.php?class=foodporn&action=filterCategory&filter=' + category).success(
+                    function(data) {
+                        $scope.entrys = [];
+                        $scope.entrys = data;
+                    }
+                );
+            }
+            /**
+             * TODO IVO GET mache bim Filter
+             */
+        $scope.getElementFavorite = function() {
+            $http.get('./../php/Controller.php?class=foodporn&action=filterFavorite').success(
+                function(data) {
+                    $scope.entrys = [];
+                    $scope.entrys = data;
+                }
+            );
+        };
+        $scope.entry = { user: { username: "" }, title: "", description: "", image: "" };
+        $scope.buildModalEntry = function(xEntry) {
             //this.entry.id_foodporn
-            console.log('hoi');
-            $("#openModal_IdAutor").text(this.entry.user.username);
-            $("#openModal_Title").text(this.entry.title);
-            $("#openModal_Text").text(this.entry.description);
-
-            $("#openModal_img").attr('src', this.entry.image);
-
+            $scope.entry.user.username = xEntry.user.username;
+            $scope.entry.title = xEntry.title;
+            $scope.entry.description = xEntry.description;
+            $("#openModal_img").attr('src', xEntry.image);
             $("#myModal").modal();
         }
     });
@@ -150,11 +181,70 @@ mainApp.controller('buildSingleEntry',
 mainApp.controller('buildPersonalEntrys',
     function mainController($scope, $http) {
         $scope.entrys = [];
+        $scope.userX = { desc: "", oldPW: "", newPW: "", Ahg: "" }
+        $scope.userData = { title: "", description: "" };
         $http.get('./../php/Controller.php?class=foodporn&action=byUser').success(
             function(data) {
                 $scope.entrys = data;
             }
         );
+        /** */
+        $http.get('./../php/Controller.php?class=user&action=get').success(
+            function(data) {
+                $scope.userData = data;
+            }
+        );
+        //TODO Fabian: URL apasse, data näme richtig so ?
+        $scope.updateUdssr = function() {
+            var request = $http({
+                method: "post",
+                url: './../../assets/php/controller.php?URL ?????????',
+                data: {
+                    bescreibung: $scope.userX.description,
+                    altesPW: $scope.userX.oldPW,
+                    neuesPW: $scope.userX.newPW,
+                    anhang: $scope.userX.Ahg
+                },
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+            // Was kommt vom Controller.php zurück?
+            request.success(function(meldung) {
+                //TODO Fabian wa chunt zrug ?
+                console.log("k passt", meldung);
+            });
+        }
+        $scope.submit = function() {
+                $http.get('./../php/Controller.php?class=foodporn&action=search&navSearch=' + $scope.navSearch).success(
+                    function(data) {
+                        $scope.entrys = [];
+                        $scope.entrys = data;
+                    }
+                );
+            }
+            /**
+             * TODO IVO GET mache bim Filter
+             */
+        $scope.getElementCategory = function(category) {
+                $http.get('./../php/Controller.php?class=foodporn&action=filterCategory&filter=' + category).success(
+                    function(data) {
+                        $scope.entrys = [];
+                        $scope.entrys = data;
+                    }
+                );
+            }
+            /**
+             * TODO IVO GET mache bim Filter
+             */
+        $scope.getElementFavorite = function() {
+            $http.get('./../php/Controller.php?class=foodporn&action=filterFavorite').success(
+                function(data) {
+                    $scope.entrys = [];
+                    $scope.entrys = data;
+                }
+            );
+        };
     });
 
 
@@ -209,76 +299,6 @@ function dataTrans() {
     }
 }
 */
-mainApp.controller('searchFormSend',
-    function searchFormSend($scope, $http) {
-        $scope.submit = function() {
-            // ------------------------------------------------------
-            // Formular - Datenübermitteln an controller.php
-            // ------------------------------------------------------ 
-            var request = $http({
-                method: "post",
-                url: './../php/controller.php?class=foodporn&action=search',
-                data: {
-                    navSearch: document.getElementById("navSearch").value
-                },
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
-            });
-
-            // Was kommt vom Controller.php zurück?
-            request.success(function(data) {
-                console.log(data);
-                $scope.entrys = data;
-            });
-        }
-    }
-);
-
-//Filter by Category
-mainApp.controller('getElementCategoryCon',
-    function getElementCategoryCon($scope, $http) {
-        $scope.getElementCategory = function(category) {
-            // ------------------------------------------------------
-            // Formular - Datenübermitteln an controller.php
-            // ------------------------------------------------------ 
-            var request = $http({
-                method: "post",
-                url: './../php/controller.php?class=foodporn&action=filterCategory',
-                data: {
-                    categoryName: category
-                },
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
-            });
-
-            // Was kommt vom Controller.php zurück?
-            request.success(function(data) {
-                $scope.entrys = data;
-                console.log(data);
-            });
-        }
-        $scope.getElementFavorite = function() {
-            // ------------------------------------------------------
-            // Formular - Datenübermitteln an controller.php
-            // ------------------------------------------------------ 
-            var request = $http({
-                method: "post",
-                url: './../php/controller.php?class=foodporn&action=filterFavorite',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
-            });
-
-            // Was kommt vom Controller.php zurück?
-            request.success(function(data) {
-                $scope.entrys = data;
-            });
-        }
-    }
-);
-
 
 mainApp.controller('setLikeFavorite',
     function setLikeFavorite($scope, $http) {
