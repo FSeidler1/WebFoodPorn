@@ -185,12 +185,27 @@ a.foodporn-like-button {
     margin-right: 11px;
 }
 
+a.foodporn-eye-button {
+    font-size: 17px;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    margin-right: 11px;
+}
+
 .green i.fa.fa-thumbs-up {
     color: green;
 }
 
 .red i.fa.fa-thumbs-down {
     color: red;
+}
+
+.foodporn-container hr {
+    color: black;
+    background-color: black;
+    border: none;
+    height: 0.2rem;
 }
 
 a.foodporn-byuser {

@@ -112,6 +112,7 @@
         </div>
 
 
+
     </div>
     <!-- Button, der das Modal aufruft -->
     <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#meinModal">
@@ -125,32 +126,28 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Schließen"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="meinModalLabel">Neues Bild hinzufügen</h4>
+                        <h4 class="modal-title" id="meinModalLabel">Benutzer Bearbeiten</h4>
                     </div>
                     <div class="modal-body">
 
                         <form id="formNewentryAdd">
                             <div class="form-group">
-                                <label for="titel_neuesBild">Titel</label>
-                                <input type="text" class="form-control" required id="titel_neuesBild" placeholder="Titel">
-                            </div>
-                            <div class="form-group">
                                 <label for="beschreibung_neuesBild">Beschreibung</label>
                                 <textarea rows="4" class="form-control" required id="beschreibung_neuesBild" placeholder="Beschreibung"></textarea>
                             </div>
                             <div class="form-group">
-                                <label>Kategorie</label>
-                                <select class="form-control" id="kategorie_neuesBild" required>
-                                <option>Fleisch</option>
-                                <option>Fisch</option>
-                                <option>Obst</option>
-                            </select>
+                                <label for="beschreibung_neuesBild">Altes Passwort</label>
+                                <input type="text" class="form-control" required id="titel_neuesBild" placeholder="Altes Passwort">
+                            </div>
+                            <div class="form-group">
+                                <label for="beschreibung_neuesBild">Neues Passwort</label>
+                                <input type="text" class="form-control" required id="titel_neuesBild" placeholder="Neues Passwort">
                             </div>
                             <div class="form-group">
                                 <label for="beispielFeldDatei">Profilbild</label>
                                 <input type="file" accept="image/*" required id="datei_neuesBild">
                             </div>
-                            <input type="submit" class="btn btn-success" id="form_senden" name="senden " value="senden ">
+                            <input type="submit" class="btn btn-success" id="form_senden" name="speichern " value="speichern ">
                         </form>
 
                         <div class="modal-footer ">
