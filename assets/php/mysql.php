@@ -85,10 +85,31 @@ class DB
             if($count < 1)
             {
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(1,'" . $imageHelper->getExampleImage() . "', 'Beispielbild', 'Beschreibung des Beispiel Foodporns', 'Fleisch', 1, NOW())");
+                VALUES(1,'../../../../../img/test.png', 'Beispielbild', 'Beschreibung des Beispiel Foodporns', 'Fleisch', 1, NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(2,'" . $imageHelper->getExampleImage2() . "', 'Erdbeer Dessert', 'Beschreibung des Erdbeerdesserts Foodporns', 'Desserts', 1, NOW())");
+                VALUES(2,'../../../../../img/try.png', 'Beispielbild', 'Beschreibung des Beispiel Foodporns', 'Fleisch', 1, NOW())");
+                $stmt->execute();
+                $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
+                VALUES(3,'../../../../../img/default.png', 'Erdbeer Dessert', 'Beschreibung des Erdbeerdesserts Foodporns', 'Desserts', 1, NOW())");
+                $stmt->execute();
+                $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
+                VALUES(4,'../../../../../img/test.png', 'Beispielbild', 'Beschreibung des Beispiel Foodporns', 'Fleisch', 1, NOW())");
+                $stmt->execute();
+                $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
+                VALUES(5,'../../../../../img/try.png', 'Beispielbild', 'Beschreibung des Beispiel Foodporns', 'Fleisch', 1, NOW())");
+                $stmt->execute();
+                $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
+                VALUES(6,'../../../../../img/default.png', 'Erdbeer Dessert', 'Beschreibung des Erdbeerdesserts Foodporns', 'Desserts', 1, NOW())");
+                $stmt->execute();
+                $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
+                VALUES(7,'../../../../../img/test.png', 'Beispielbild', 'Beschreibung des Beispiel Foodporns', 'Fleisch', 1, NOW())");
+                $stmt->execute();
+                $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
+                VALUES(8,'../../../../../img/try.png', 'Beispielbild', 'Beschreibung des Beispiel Foodporns', 'Fleisch', 1, NOW())");
+                $stmt->execute();
+                $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
+                VALUES(9,'../../../../../img/default.png', 'Erdbeer Dessert', 'Beschreibung des Erdbeerdesserts Foodporns', 'Desserts', 1, NOW())");
                 $stmt->execute();
             }
             
@@ -177,21 +198,21 @@ class DB
         }
 
         // Get User By id_user 
-        function getUserById()
+        function getUserById($uid)
         {
             $stmt = self::$_db->prepare("SELECT u.id_user AS id_user, u.username AS username, u.mail AS mail, u.description AS description, u.image AS image FROM user AS u
                                         WHERE u.id_user=:uid");
-            $uid = self::getUserID();
             $stmt->bindParam(":uid", $uid);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
         // Get User By id_user 
-        function getUser($uid)
+        function getUser()
         {
             $stmt = self::$_db->prepare("SELECT u.id_user AS id_user, u.username AS username, u.mail AS mail, u.description AS description, u.image AS image FROM user AS u
                                         WHERE u.id_user=:uid");
+            $uid = self::getUserID();
             $stmt->bindParam(":uid", $uid);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
