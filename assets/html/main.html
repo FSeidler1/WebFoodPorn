@@ -106,15 +106,8 @@
                     <div class="row">
                         <div ng-controller="buildMainEntrys">
                             <div class="foodporn-container">
-                                <a class="foodporn-like-button green">
-                                    <i class="fa fa-thumbs-up"></i> Lecker
-                                </a>
-                                <a class="foodporn-like-button red">
-                                    <i class="fa fa-thumbs-down"></i> Ekelhaft
-                                </a>
-                                <a class="foodporn-eye-button">
-                                    <i class="fa fa-eye" aria-hidden="true"></i> Merken
-                                </a>
+
+
                                 <a data-toggle="modal" data-target="#myModal">
                                     <img src="../../img/test.png">
                                 </a>
@@ -173,6 +166,9 @@
                             <a class="foodporn-like-button red" ng-click="setDisike();">
                                 <i class="fa fa-thumbs-down"></i>
                                 <span>{{entry.dislikes}}</span>
+                            </a>
+                            <a class="foodporn-eye-button {{entry.favorit}}">
+                                <i class="fa fa-eye"></i>
                             </a>
                             <a class="foodporn-byuser">by {{entry.user.username}}</a>
                         </div>

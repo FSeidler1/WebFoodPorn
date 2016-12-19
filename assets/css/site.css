@@ -193,6 +193,10 @@ a.foodporn-eye-button {
     margin-right: 11px;
 }
 
+a.foodporn-eye-button.true {
+    opacity: 0.5;
+}
+
 .green i.fa.fa-thumbs-up {
     color: green;
 }
