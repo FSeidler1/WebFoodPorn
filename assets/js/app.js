@@ -38,7 +38,7 @@ loginApp.controller('FormController',
                 url: './assets/php/controller.php?class=user&action=login',
                 data: {
                     benutzer_login: $scope.benutzer_login,
-                    passwort_login: $scope.passwort_login
+                    passwort_login: encodeString($scope.passwort_login)
                 },
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
@@ -79,11 +79,11 @@ registrationApp.controller('FormController',
             // ------------------------------------------------------ 
             var request = $http({
                 method: "post",
-                url: './assets/php/controller.php?class=user&action=registration',
+                url: './../php/controller.php?class=user&action=registration',
                 data: {
                     benutzer_registration: document.getElementById("benutzer_registration").value,
                     email_registration: document.getElementById("email_registration").value,
-                    passwort_registration: document.getElementById("passwort_registration").value
+                    passwort_registration: encodeString(document.getElementById("passwort_registration").value)
                 },
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
@@ -98,7 +98,7 @@ registrationApp.controller('FormController',
                     if (meldung === 'true') {
                         //Password korrekt
                         localStorage.setItem("loggedIn", "true");
-                        window.location.replace("./assets/html/main.html");
+                        window.location.replace("./../html/main.html");
                     }
                 }
             });
@@ -107,6 +107,10 @@ registrationApp.controller('FormController',
     }
 );
 
+function encodeString(thisIsNotAPassword) {
+    var shaObj = new jsSHA(thisIsNotAPassword, "ASCII");
+    return shaObj.getHash("SHA-512", "HEX");
+}
 
 function falseData() {
     //Keine Anmeldung möglich
