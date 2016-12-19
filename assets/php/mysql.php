@@ -116,7 +116,7 @@ class DB
             if($count < 1)
             {
                 $stmt = self::$_db->prepare("INSERT INTO user (id_user,username,mail,password,description,image,session)
-                VALUES(1,'Test', 'test@test.ch', '" . md5("Test123") . "', 'Über mich:', './img/default.png', '')");
+                VALUES(1,'Test', 'test@test.ch', '" . hash("sha512","Test123") . "', 'Über mich:', './img/default.png', '')");
                 $stmt->execute();
             }
             

@@ -54,7 +54,7 @@ class Controller {
     // User Login
     function login() {
         $_POST = json_decode(file_get_contents("php://input"), true);        
-        $this->db->login($_POST['benutzer_login'], md5($_POST['passwort_login']));
+        $this->db->login($_POST['benutzer_login'], $_POST['passwort_login']);
         $this->json = $this->db->isUserLoggedin();
     }
 
