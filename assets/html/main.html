@@ -49,12 +49,14 @@
             </div>
 
             <!-- Alle Navigationslinks, Formulare und anderer Inhalt werden hier zusammengefasst und können dann ein- und ausgeblendet werden -->
-            <form class="navbar-form navbar-left search-form" role="search" ng-controller="searchFormSend">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Suchen" ng-model="navSearch" id="navSearch">
-                </div>
-                <button type="submit" ng-model="searchFormSend" class="btn btn-default">Los</button>
-            </form>
+            <div id="form" ng-controller="searchFormSend">
+                <form class="navbar-form navbar-left search-form" role="search" ng-submit="submit()">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Suchen" ng-model="navSearch" id="navSearch">
+                    </div>
+                    <button type="submit" id="searchFormSenden" class="btn btn-default">Los</button>
+                </form>
+            </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
 
@@ -66,8 +68,11 @@
                         <ul class="dropdown-menu">
                             <li><a ng-click="getElementCategory('Fleisch');">Fleisch</a></li>
                             <li><a ng-click="getElementCategory('Fisch');">Fisch</a></li>
-                            <li><a ng-click="getElementCategory('Obst');">Obst</a></li>
-
+                            <li><a ng-click="getElementCategory('Vegetarisch');">Vegetarisch</a></li>
+                            <li><a ng-click="getElementCategory('Snacks');">Snacks</a></li>
+                            <li><a ng-click="getElementCategory('Desserts');">Desserts</a></li>
+                            <li><a ng-click="getElementCategory('Smoothies');">Smoothies</a></li>
+                            <li><a ng-click="getElementFavorite();">Meine Favoriten</a></li>
                         </ul>
                     </li>
 
@@ -101,15 +106,8 @@
                     <div class="row">
                         <div ng-controller="buildMainEntrys">
                             <div class="foodporn-container">
-                                <a class="foodporn-like-button green">
-                                    <i class="fa fa-thumbs-up"></i> Lecker
-                                </a>
-                                <a class="foodporn-like-button red">
-                                    <i class="fa fa-thumbs-down"></i> Ekelhaft
-                                </a>
-                                <a class="foodporn-eye-button">
-                                    <i class="fa fa-eye" aria-hidden="true"></i> Merken
-                                </a>
+
+
                                 <a data-toggle="modal" data-target="#myModal">
                                     <img src="../../img/test.png">
                                 </a>
@@ -160,14 +158,17 @@
                         </a>
                         <p class="foodporn-title">{{entry.title}}</p>
                         <p class="foodporn-description">{{entry.description}}</p>
-                        <div class="foodporn-container-footer">
-                            <a class="foodporn-like-button green">
+                        <div class="foodporn-container-footer" ng-controller="setLikeFavorite">
+                            <a class="foodporn-like-button green" ng-click="setLike();">
                                 <i class="fa fa-thumbs-up"></i>
                                 <span>{{entry.likes}}</span>
                             </a>
-                            <a class="foodporn-like-button red">
+                            <a class="foodporn-like-button red" ng-click="setDisike();">
                                 <i class="fa fa-thumbs-down"></i>
                                 <span>{{entry.dislikes}}</span>
+                            </a>
+                            <a class="foodporn-eye-button {{entry.favorit}}">
+                                <i class="fa fa-eye"></i>
                             </a>
                             <a class="foodporn-byuser">by {{entry.user.username}}</a>
                         </div>
@@ -208,7 +209,10 @@
                                 <select class="form-control" id="kategorie_neuesBild" required>
                                 <option>Fleisch</option>
                                 <option>Fisch</option>
-                                <option>Obst</option>
+                                <option>Vegetarisch</option>
+                                <option>Snacks</option>
+                                <option>Desserts</option>
+                                <option>Smoothies</option>
                             </select>
                             </div>
                             <div class="form-group">

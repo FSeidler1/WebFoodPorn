@@ -70,7 +70,7 @@ body {
         padding-top: 5%;
         margin: 0 auto;
     }
-    .profil-container img {
+    .profil-container .img-thumbnail {
         height: 30rem;
         width: 30rem;
     }
@@ -82,7 +82,7 @@ body {
         overflow: hidden;
     }
     .profile-history {
-        font-size: 48px;
+        font-size: 40px;
     }
 }
 
@@ -193,6 +193,10 @@ a.foodporn-eye-button {
     margin-right: 11px;
 }
 
+a.foodporn-eye-button.true {
+    opacity: 0.5;
+}
+
 .green i.fa.fa-thumbs-up {
     color: green;
 }
@@ -217,13 +221,13 @@ a.foodporn-byuser {
 }
 
 .container-fluid .row {
-    column-count: 4;
+    column-count: 5;
     column-gap: 10px;
     column-fill: auto;
-    -webkit-column-count: 4;
+    -webkit-column-count: 5;
     -webkit-column-gap: 10px;
     -webkit-column-fill: auto;
-    -moz-column-count: 4;
+    -moz-column-count: 5;
     -moz-column-gap: 10px;
     -moz-column-fill: auto;
     padding-left: 20px;
@@ -244,7 +248,7 @@ a.foodporn-byuser {
         -webkit-column-count: 1;
         -moz-column-count: 1;
     }
-    .profil-container img {
+    .profil-container .img-thumbnail {
         height: 10rem;
         width: 10rem;
     }
@@ -255,7 +259,7 @@ a.foodporn-byuser {
         font-size: 16px;
     }
     .profile-history {
-        font-size: 20px;
+        font-size: 16px;
     }
 }
 
@@ -278,11 +282,7 @@ a.foodporn-byuser {
         right: 90px;
         top: -1px;
     }
-    .profil-container img {
-        height: 12rem;
-        width: 12rem;
-    }
-    .profil-container img {
+    .profil-container .img-thumbnail {
         height: 21rem;
         width: 21rem;
     }
@@ -293,7 +293,7 @@ a.foodporn-byuser {
         font-size: 24px;
     }
     .profile-history {
-        font-size: 38px;
+        font-size: 34px;
     }
 }
 
