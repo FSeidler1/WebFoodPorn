@@ -261,6 +261,7 @@ class DB
             $stmt->bindParam("password", $password);
             $stmt->bindParam(":sid", $sid);
             $stmt->execute();
+            return "true";
         }
 
         // Get USer ID
