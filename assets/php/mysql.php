@@ -81,31 +81,31 @@ class DB
             if($count < 1)
             {
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(1,'http://www.macarthur.com.au/resize.php?width=376&height=250&cropratio=376:250&image=/./uploads/567/thai4.jpg', 'Vegetarisch', 'Beschreibung des Beispiel Foodporns', 'Fleisch', 1, NOW())");
+                VALUES(1,'http://www.macarthur.com.au/resize.php?width=376&height=250&cropratio=376:250&image=/./uploads/567/thai4.jpg', 'Beispieltitel', 'Beschreibung des Beispiel Foodporns', 'Vegetarisch', 1, NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(2,'https://s-media-cache-ak0.pinimg.com/originals/79/05/1f/79051fad533e8f20bf991fd78c3d2c61.jpg', 'Vegetarisch', 'Beschreibung des Beispiel Foodporns', 'Fleisch', 1, NOW())");
+                VALUES(2,'https://s-media-cache-ak0.pinimg.com/originals/79/05/1f/79051fad533e8f20bf991fd78c3d2c61.jpg', 'Beispieltitel', 'Beschreibung des Beispiel Foodporns', 'Vegetarisch', 1, NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(3,'https://s-media-cache-ak0.pinimg.com/236x/c8/3f/1f/c83f1f5401b95478636f80191ce2e48e.jpg', 'Fleisch', 'Beschreibung des Erdbeerdesserts Foodporns', 'Desserts', 1, NOW())");
+                VALUES(3,'https://s-media-cache-ak0.pinimg.com/236x/c8/3f/1f/c83f1f5401b95478636f80191ce2e48e.jpg', 'Beispieltitel', 'Beschreibung des Erdbeerdesserts Foodporns', 'Fleisch', 1, NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(4,'http://m3.paperblog.com/i/32/327069/foodporn-im-hause-fruhstuck-2-L-hdO08X.jpeg', 'Fleisch', 'Beschreibung des Beispiel Foodporns', 'Fleisch', 1, NOW())");
+                VALUES(4,'http://m3.paperblog.com/i/32/327069/foodporn-im-hause-fruhstuck-2-L-hdO08X.jpeg', 'Beispieltitel', 'Beschreibung des Beispiel Foodporns', 'Fleisch', 1, NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(5,'https://tastethestyle.files.wordpress.com/2013/08/lobster.jpg', 'Fisch', 'Beschreibung des Beispiel Foodporns', 'Fleisch', 1, NOW())");
+                VALUES(5,'https://tastethestyle.files.wordpress.com/2013/08/lobster.jpg', 'Beispieltitel', 'Beschreibung des Beispiel Foodporns', 'Fisch', 1, NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(6,'https://i.ytimg.com/vi/5KLYz0pApq0/maxresdefault.jpg', 'Fleisch', 'Beschreibung des Erdbeerdesserts Foodporns', 'Desserts', 1, NOW())");
+                VALUES(6,'https://i.ytimg.com/vi/5KLYz0pApq0/maxresdefault.jpg', 'Beispieltitel', 'Beschreibung des Erdbeerdesserts Foodporns', 'Fleisch', 1, NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(7,'http://cdn.skim.gs/images/er7xhsed13uzk9foko5c/food-porn-friday-caramel-caramel-food-porn', 'Desserts', 'Beschreibung des Beispiel Foodporns', 'Fleisch', 1, NOW())");
+                VALUES(7,'http://cdn.skim.gs/images/er7xhsed13uzk9foko5c/food-porn-friday-caramel-caramel-food-porn', 'Beispieltitel', 'Beschreibung des Beispiel Foodporns', 'Desserts', 1, NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(8,'https://backpackerlee.files.wordpress.com/2014/05/sushi2.jpg?w=768&h=511', 'Fisch', 'Beschreibung des Beispiel Foodporns', 'Fleisch', 1, NOW())");
+                VALUES(8,'https://backpackerlee.files.wordpress.com/2014/05/sushi2.jpg?w=768&h=511', 'Beispieltitel', 'Beschreibung des Beispiel Foodporns', 'Fisch', 1, NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(9,'http://24.media.tumblr.com/5f380d70650c500023bfd010995a8a4c/tumblr_mj6gbo1v331qitz6do1_500.jpg', 'Fleisch', 'Beschreibung des Erdbeerdesserts Foodporns', 'Desserts', 1, NOW())");
+                VALUES(9,'http://24.media.tumblr.com/5f380d70650c500023bfd010995a8a4c/tumblr_mj6gbo1v331qitz6do1_500.jpg', 'Beispieltitel', 'Beschreibung des Erdbeerdesserts Foodporns', 'Fleisch', 1, NOW())");
                 $stmt->execute();
             }
             
