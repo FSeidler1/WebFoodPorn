@@ -21,7 +21,7 @@ class Controller {
             }
             else if($_GET["action"] == "filterCategory")
             {
-                $this->filterCategory();
+                $this->filterCategory($_GET["filter"]);
             }
             else if($_GET["action"] == "filterFavorite")
             {
@@ -42,7 +42,7 @@ class Controller {
             else if($_GET["action"] == "search")
             {
                 // TDDO: Implement following:
-                $this->searchFoodporn();
+                $this->searchFoodporn($_GET["action"]);
             }
             else if($_GET["action"] == "setfavorite")
             {
@@ -89,12 +89,12 @@ class Controller {
     }
 
     //  Search by Foodporn
-    function searchFoodporn() 
+    function searchFoodporn($string) 
     {
-        // TODO:
-        $_POST = json_decode(file_get_contents("php://input"), true); 
+        // TODO: 
+        //$this->json = $_POST["navSearch"];
 
-        $this->json = $_POST["navSearch"];
+        getAllFoodporns();
     }
 
     // Get One Foodporn by id
@@ -229,7 +229,7 @@ class Controller {
     }
 
     // filter by Category
-    function filterCategory() {
+    function filterCategory($filter) {
         // Convert Json to $_POST
         $_POST = json_decode(file_get_contents("php://input"), true);  
 
@@ -237,7 +237,7 @@ class Controller {
         $arrayjson = array();
 
         // Foodporns
-        $foodporns = $this->db->getAllFoodpornsByCategory($_POST["categoryName"]);
+        $foodporns = $this->db->getAllFoodpornsByCategory($filter);
         foreach($foodporns as $foodporn)
         {
             $arrayFoodporn = array();
