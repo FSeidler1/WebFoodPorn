@@ -68,7 +68,7 @@ class Controller {
     function getUser() {
         $_POST = json_decode(file_get_contents("php://input"), true); 
 
-        $users = $this->db->getUserById($_POST["id_user"]);
+        $users = $this->db->getUser();
 
         $this->json = json_encode($users);
     }
