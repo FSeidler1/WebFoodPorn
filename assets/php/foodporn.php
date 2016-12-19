@@ -37,7 +37,7 @@ class Controller {
             }
             else if($_GET["action"] == "search")
             {
-                // PARAM: mavSearch
+                $this->searchFoodporn();
             }
         }
         else
@@ -71,9 +71,11 @@ class Controller {
     }
 
     //  Search by Foodporn
-    function search Foodporn() 
+    function searchFoodporn() 
     {
-        // TODO: Implement Search 
+        $_POST = json_decode(file_get_contents("php://input"), true); 
+
+        $this->json = $_POST["mavSearch"];
     }
 
     // Get One Foodporn by id
