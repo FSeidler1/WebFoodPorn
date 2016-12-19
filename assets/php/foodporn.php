@@ -29,8 +29,7 @@ class Controller {
             }
             else if($_GET["action"] == "byUser")
             {
-                // TODO: Implement Get All from User
-                $this->getAllFoodporns();
+                $this->getHistoryFoodporns();
             }
             else if($_GET["action"] == "like")
             {
@@ -42,7 +41,7 @@ class Controller {
             }
             else if($_GET["action"] == "search")
             {
-                // TDDO:
+                // TDDO: Implement following:
                 $this->searchFoodporn();
             }
             else if($_GET["action"] == "setfavorite")
@@ -306,6 +305,74 @@ class Controller {
 
         // Foodporns
         $foodporns = $this->db->getAllFoodpornsByFavorite();
+        foreach($foodporns as $foodporn)
+        {
+            $arrayFoodporn = array();
+            $arrayFoodporn["id_foodporn"] = $foodporn["id_foodporn"];
+            $arrayFoodporn["image"] = $foodporn["image"];
+            $arrayFoodporn["title"] = $foodporn["title"];
+            $arrayFoodporn["description"] = $foodporn["description"];
+            $arrayFoodporn["category"] = $foodporn["category"];
+            $arrayFoodporn["date"] = $foodporn["dateCreated"];
+            $arrayFoodporn["favorit"] = $this->db->isFavoriteFoodporn($foodporn["id_foodporn"]);
+
+            // Users   
+            $users = $this->db->getUserById($foodporn["fs_user"]);
+            foreach($users as $user)
+            {
+                $arrayUser = array();
+                $arrayUser["id_user"] = $user["id_user"]; 
+                $arrayUser["username"] = $user["username"];
+                $arrayUser["description"] = $user["description"];
+                $arrayUser["image"] = $user["image"];
+                $arrayFoodporn["user"] = $arrayUser;
+            }
+
+            // Likes
+            $arrayFoodporn["likes"] = $this->db->getCountLike($foodporn["id_foodporn"],1);
+            $arrayFoodporn["dislikes"] = $this->db->getCountLike($foodporn["id_foodporn"],0);
+            
+
+            // Comments
+            $comments = $this->db->getCommentsByFoodpornId($foodporn["id_foodporn"]);
+            foreach($comments as $comment)
+            {
+                $arrayComment = array();
+                $arrayComment["id_comment"] = $comment["id_comment"]; 
+                $arrayComment["content"] = $comment["content"];
+                $arrayComment["date"] = $comment["dateCreated"];
+
+                // Users
+                $users = $this->db->getUserById($comment["fs_user"]);
+                foreach($users as $user)
+                {
+                    $arrayUser = array();
+                    $arrayUser["id_user"] = $user["id_user"]; 
+                    $arrayUser["username"] = $user["username"];
+                    $arrayUser["description"] = $user["description"];
+                    $arrayUser["image"] = $user["image"];
+                    $arrayComment["user"] = $arrayUser;
+                }
+
+                $arrayFoodporn["comments"] = $arrayComment;
+            }
+
+            array_push($arrayjson, $arrayFoodporn);
+        }
+        $this->json = json_encode($arrayjson);
+    }
+
+    // Get History getAllFoodporns
+    function getHistoryFoodporns()
+    {
+        // Convert Json to $_POST
+        $_POST = json_decode(file_get_contents("php://input"), true);  
+
+        // Create Foodporns Array
+        $arrayjson = array();
+
+        // Foodporns
+        $foodporns = $this->db->getFoodpornsByHostory($_POST["id_user"]);
         foreach($foodporns as $foodporn)
         {
             $arrayFoodporn = array();
