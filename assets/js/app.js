@@ -172,7 +172,7 @@ mainApp.controller('sendNewEntry',
                     description: document.getElementById("beschreibung_neuesBild").value,
                     category: document.getElementById("kategorie_neuesBild").value,
                     //datei_neuesBild: document.getElementById("datei_neuesBild").value
-                    image: dataTrans()
+                    image: document.getElementById("datei_neuesBild").value
                 },
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
@@ -199,7 +199,7 @@ mainApp.controller('sendNewEntry',
         }
     }
 );
-
+/*
 //Für Bildformatierung
 function dataTrans() {
     var FR = new FileReader();
@@ -208,7 +208,7 @@ function dataTrans() {
         return FR.target.result;
     }
 }
-
+*/
 mainApp.controller('searchFormSend',
     function searchFormSend($scope, $http) {
         $scope.submit = function() {
