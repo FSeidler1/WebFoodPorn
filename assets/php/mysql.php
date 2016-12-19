@@ -265,9 +265,8 @@ class DB
         // Add getCountLike
         function addLike($fid, $isLike)
         {
-            $stmt = self::$_db->prepare("SELECT count(id_like) AS c FROM likes WHERE fs_foodporn=:fid AND islike=:islike AND fs_user=:uid");
+            $stmt = self::$_db->prepare("SELECT count(id_like) AS c FROM likes WHERE fs_foodporn=:fid AND fs_user=:uid");
             $stmt->bindParam(":fid", $fid);
-            $stmt->bindParam(":islike", $isLike);
             $uid = self::getUserID();
             $stmt->bindParam(":uid", $uid);
             $stmt->execute();
