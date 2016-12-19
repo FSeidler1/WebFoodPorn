@@ -27,6 +27,11 @@ class Controller {
             {
                 $this->filterFavorite();
             }
+            else if($_GET["action"] == "byUser")
+            {
+                // TODO: Implement Get All from User
+                $this->getAllFoodporns();
+            }
             else if($_GET["action"] == "like")
             {
                 $this->like();
