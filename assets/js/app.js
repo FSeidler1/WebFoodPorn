@@ -6,10 +6,9 @@ var isloggedin;
 /************
  * TODO
  * **********
- * Suche
- * Kategorien-Selektieren
  * Benutzer Daten laden
  * Foodporn-Modal daten einlesen
+ * Like / Dislike / Merken
  * 
  * mit Ivo
  * **********
@@ -191,7 +190,7 @@ mainApp.controller('searchFormSend',
             // ------------------------------------------------------ 
             var request = $http({
                 method: "post",
-                url: './assets/php/controller.php?class=foodporn&action=search',
+                url: './../php/controller.php?class=foodporn&action=search',
                 data: {
                     navSearch: document.getElementById("navSearch").value
                 },
@@ -231,6 +230,80 @@ mainApp.controller('getElementCategoryCon',
             request.success(function(data) {
                 $scope.entrys = data;
                 console.log(data);
+            });
+        }
+        $scope.getElementFavorite = function() {
+            // ------------------------------------------------------
+            // Formular - Datenübermitteln an controller.php
+            // ------------------------------------------------------ 
+            var request = $http({
+                method: "post",
+                url: './../php/controller.php?class=foodporn&action=filterFavorite',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+
+            // Was kommt vom Controller.php zurück?
+            request.success(function(data) {
+                $scope.entrys = data;
+            });
+        }
+    }
+);
+
+
+mainApp.controller('setLikeFavorite',
+    function setLikeFavorite($scope, $http) {
+        $scope.setLike = function() {
+            // ------------------------------------------------------
+            // Formular - Datenübermitteln an controller.php
+            // ------------------------------------------------------ 
+            var request = $http({
+                method: "post",
+                url: './../php/controller.php?class=user&action=like',
+                data: {
+                    id_foodporn: $scope.id_foodporn,
+                    isLike: 1
+                },
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+
+            // Was kommt vom Controller.php zurück?
+            request.success(function(dataTF) {
+                console.log(dataTF);
+                if (dataTF === 'true') {
+                    console.log('hoi');
+                    $http.get('./php/Controller.php?class=foodporn').success(
+                        function(data) {
+                            console.log(data);
+                            $scope.entrys = data;
+                        }
+                    );
+                }
+            });
+        }
+        $scope.setDisike = function() {
+            // ------------------------------------------------------
+            // Formular - Datenübermitteln an controller.php
+            // ------------------------------------------------------ 
+            var request = $http({
+                method: "post",
+                url: './../php/controller.php?class=user&action=like',
+                data: {
+                    id_foodporn: $scope.id_foodporn,
+                    isLike: 0
+                },
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+
+            // Was kommt vom Controller.php zurück?
+            request.success(function(data) {
+
             });
         }
     }
