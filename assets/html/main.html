@@ -104,16 +104,16 @@
                     <!-- Modal befüllen -->
 
                     <div class="row">
-                        <div ng-controller="buildMainEntrys">
+                        <div ng-controller="buildSingleEntry">
                             <div class="foodporn-container">
 
 
                                 <a data-toggle="modal" data-target="#myModal">
-                                    <img src="../../img/test.png">
+                                    <img id='openModal_img' src="{{entry.image}}">
                                 </a>
-                                <a class="foodporn-byuser">Autor</a>
-                                <p class="foodporn-title">Titel</p>
-                                <p class="foodporn-description">Beschreibung</p>
+                                <a class="foodporn-byuser" id='openModal_IdAutor'>{{entry.user.username}}</a>
+                                <p class="foodporn-title" id='openModal_Title'>{{entry.title}}</p>
+                                <p class="foodporn-description" id='openModal_Text'>{{entry.description}}</p>
                                 <div class="foodporn-container-footer">
 
 
@@ -153,7 +153,7 @@
             <div ng-controller="buildMainEntrys">
                 <div ng-repeat="entry in entrys" class="item" id="entry_{{entry.id_foodporn}}">
                     <div class="foodporn-container">
-                        <a data-toggle="modal" data-target="#myModal">
+                        <a ng-click="buildModalEntry()">
                             <img src="{{entry.image}}">
                         </a>
                         <p class="foodporn-title">{{entry.title}}</p>
@@ -167,7 +167,7 @@
                                 <i class="fa fa-thumbs-down"></i>
                                 <span>{{entry.dislikes}}</span>
                             </a>
-                            <a class="foodporn-eye-button {{entry.favorit}}">
+                            <a class="foodporn-eye-button {{entry.favorit}}" ng-click="setFavorite()">
                                 <i class="fa fa-eye"></i>
                             </a>
                             <a class="foodporn-byuser">by {{entry.user.username}}</a>

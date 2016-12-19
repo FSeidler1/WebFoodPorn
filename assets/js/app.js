@@ -8,19 +8,13 @@ var isloggedin;
  * **********
  * Benutzer Daten laden
  * Foodporn-Modal daten einlesen
- * Like / Dislike / Merken
  * 
- * mit Ivo
- * **********
- * Bild - EventListener?
+ * Verschönerungen
+ * ******************
+ * Datenfelder - angular ($scope...)
+ * Kommentare
  * 
- * An Ivo
- * ************
- * Datenbankprüfung im Login - erstellen
- * 
- * An Leo
- * ************
- * 
+ *  
  * 
  ************/
 
@@ -128,6 +122,39 @@ mainApp.controller('buildMainEntrys',
                 $scope.entrys = data;
             }
         );
+        $scope.buildModalEntry = function() {
+            //this.entry.id_foodporn
+            console.log('hoi');
+            $("#openModal_IdAutor").text(this.entry.user.username);
+            $("#openModal_Title").text(this.entry.title);
+            $("#openModal_Text").text(this.entry.description);
+
+            $("#openModal_img").attr('src', this.entry.image);
+
+            $("#myModal").modal();
+        }
+    });
+
+/*Controller definieren, Funktion für den controller*/
+mainApp.controller('buildSingleEntry',
+    function mainController($scope, $http) {
+        $scope.entrys = [];
+        $http.get('./../php/Controller.php?class=foodporn&action=get').success(
+            function(data) {
+                $scope.entrys = data;
+            }
+        );
+    });
+
+/*Controller definieren, Funktion für den controller*/
+mainApp.controller('buildPersonalEntrys',
+    function mainController($scope, $http) {
+        $scope.entrys = [];
+        $http.get('./../php/Controller.php?class=foodporn&action=byUser').success(
+            function(data) {
+                $scope.entrys = data;
+            }
+        );
     });
 
 
@@ -139,13 +166,13 @@ mainApp.controller('sendNewEntry',
             // ------------------------------------------------------ 
             var request = $http({
                 method: "post",
-                url: './assets/php/controller.php?class=foodporn&action=add',
+                url: './../../assets/php/controller.php?class=foodporn&action=add',
                 data: {
-                    titel_neuesBild: document.getElementById("titel_neuesBild").value,
-                    beschreibung_neuesBild: document.getElementById("beschreibung_neuesBild").value,
-                    kategorie_neuesBild: document.getElementById("kategorie_neuesBild").value,
+                    title: document.getElementById("titel_neuesBild").value,
+                    description: document.getElementById("beschreibung_neuesBild").value,
+                    category: document.getElementById("kategorie_neuesBild").value,
                     //datei_neuesBild: document.getElementById("datei_neuesBild").value
-                    datei_neuesBild: dataTrans()
+                    image: dataTrans()
                 },
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
@@ -159,12 +186,13 @@ mainApp.controller('sendNewEntry',
                 if (meldung === null) {
                     console.log("Fehlerhafte Rückmeldung von Server")
                 } else {
+                    meldung = meldung.replace(/ /g, '');
                     if (meldung === 'true') {
                         //Clear Inputs  
                         var formModal = document.getElementById("formNewentryAdd");
                         formModal.reset();
                         //Hide Modal
-                        $('#meinModal').modal('hide');
+                        $('#meinModal').modal('toggle');
                     }
                 }
             });
@@ -336,17 +364,12 @@ mainApp.controller('setLikeFavorite',
             });
 
             // Was kommt vom Controller.php zurück?
-            request.success(function(dataTF) {
-                $http.get('./../php/Controller.php?class=foodporn').success(
-                    function(data) {
-                        dataTF = dataTF.replace(/ /g, '');
-                        if (dataTF == 'true') {
-                            $("#entry_" + entryTemp.id_foodporn + " .foodporn-eye-button").addClass(
-                                entryTemp.setFavorite
-                            );
-                        }
-                    }
-                );
+            request.success(function(data) {
+                $("#entry_" + entryTemp.id_foodporn + " .foodporn-eye-button").removeClass("true");
+                $("#entry_" + entryTemp.id_foodporn + " .foodporn-eye-button").removeClass("false");
+                $("#entry_" + entryTemp.id_foodporn + " .foodporn-eye-button").addClass(data);
+
+
             });
         }
     }
