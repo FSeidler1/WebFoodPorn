@@ -365,14 +365,11 @@ class Controller {
     // Get History getAllFoodporns
     function getHistoryFoodporns()
     {
-        // Convert Json to $_POST
-        $_POST = json_decode(file_get_contents("php://input"), true);  
-
         // Create Foodporns Array
         $arrayjson = array();
 
         // Foodporns
-        $foodporns = $this->db->getFoodpornsByHostory($_POST["id_user"]);
+        $foodporns = $this->db->getFoodpornsByHostory();
         foreach($foodporns as $foodporn)
         {
             $arrayFoodporn = array();

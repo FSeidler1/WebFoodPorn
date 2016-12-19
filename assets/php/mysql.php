@@ -362,9 +362,10 @@ class DB
         }
 
         // Gets all History Foodporns
-        function getFoodpornsByHostory($uid)
+        function getFoodpornsByHostory()
         {
             $stmt = self::$_db->prepare("SELECT * FROM foodporn WHERE fs_user=:uid");
+            $uid = self::getUserID();
             $stmt->bindParam(":uid", $uid);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
