@@ -35,6 +35,10 @@ class Controller {
             {
                 $this->like();
             }
+            else if($_GET["action"] == "search")
+            {
+                // PARAM: mavSearch
+            }
         }
         else
         {
@@ -64,6 +68,12 @@ class Controller {
         $_POST = json_decode(file_get_contents("php://input"), true); 
 
         $this->json = $this->db->addComment($_POST["id_foodporn"],$_POST["text"]);
+    }
+
+    //  Search by Foodporn
+    function search Foodporn() 
+    {
+        // TODO: Implement Search 
     }
 
     // Get One Foodporn by id
@@ -206,7 +216,7 @@ class Controller {
         $arrayjson = array();
 
         // Foodporns
-        $foodporns = $this->db->getAllFoodpornsByCategory($_POST["category"]);
+        $foodporns = $this->db->getAllFoodpornsByCategory($_POST["categoryName"]);
         foreach($foodporns as $foodporn)
         {
             $arrayFoodporn = array();
