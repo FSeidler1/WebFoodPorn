@@ -91,12 +91,79 @@
                 <p class="profile-title">Titel</p>
             </h1>
             <p class="profile-description">Beschreibung</p>
-
-            <hr>
         </center>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="foodporn-container">
+                    <a data-toggle="modal" data-target="#myModal">
+                        <img src="./img/default.png">
+                    </a>
+                    <p class="foodporn-title ng-binding">Titel</p>
+                    <p class="foodporn-description ng-binding">Lorem ipsum...</p>
+                    <div class="foodporn-container-footer">
+                        <a class="foodporn-like-button green">
+                            <i class="fa fa-thumbs-up"></i>
+                            <span class="ng-binding">15</span>
+                        </a>
+                        <a class="foodporn-like-button red">
+                            <i class="fa fa-thumbs-down"></i>
+                            <span class="ng-binding">2</span>
+                        </a>
+                        <a class="foodporn-byuser ng-binding">by Username</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
     </div>
+    <!-- Button, der das Modal aufruft -->
+    <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#meinModal">
+        <span><i class="fa fa-pencil fa-2x" aria-hidden="true"></i></span>      
+    </button>
+
+    <!-- Modal -->
+    <div id="modalNewEntry">
+        <div class="modal fade" id="meinModal" tabindex="-1" role="dialog" aria-labelledby="meinModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Schließen"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="meinModalLabel">Neues Bild hinzufügen</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <form id="formNewentryAdd">
+                            <div class="form-group">
+                                <label for="titel_neuesBild">Titel</label>
+                                <input type="text" class="form-control" required id="titel_neuesBild" placeholder="Titel">
+                            </div>
+                            <div class="form-group">
+                                <label for="beschreibung_neuesBild">Beschreibung</label>
+                                <textarea rows="4" class="form-control" required id="beschreibung_neuesBild" placeholder="Beschreibung"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Kategorie</label>
+                                <select class="form-control" id="kategorie_neuesBild" required>
+                                <option>Fleisch</option>
+                                <option>Fisch</option>
+                                <option>Obst</option>
+                            </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="beispielFeldDatei">Profilbild</label>
+                                <input type="file" accept="image/*" required id="datei_neuesBild">
+                            </div>
+                            <input type="submit" class="btn btn-success" id="form_senden" name="senden " value="senden ">
+                        </form>
+
+                        <div class="modal-footer ">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 </body>
 

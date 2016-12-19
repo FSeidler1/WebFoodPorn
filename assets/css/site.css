@@ -81,6 +81,9 @@ body {
         font-size: 26px;
         overflow: hidden;
     }
+    .profile-history {
+        font-size: 48px;
+    }
 }
 
 .file-upload {
@@ -236,6 +239,9 @@ a.foodporn-byuser {
     .profile-description {
         font-size: 16px;
     }
+    .profile-history {
+        font-size: 20px;
+    }
 }
 
 .foodporn-container {
@@ -269,6 +275,9 @@ a.foodporn-byuser {
     }
     .profile-description {
         font-size: 24px;
+    }
+    .profile-history {
+        font-size: 38px;
     }
 }
 
@@ -322,13 +331,11 @@ a.foodporn-byuser {
 }
 
 .profil-container {
-    background-color: white;
+    color: white;
     position: relative;
     min-height: 20rem;
     margin: 0 auto;
     width: 80%;
-    border-radius: 25px;
-    border: 2px solid black;
     padding: 20px;
 }
 
@@ -337,4 +344,8 @@ a.foodporn-byuser {
     width: 60%;
     padding-top: 5%;
     margin: 0 auto;
+}
+
+.profil-container .img-thumbnail {
+    border-radius: 100%;
 }
