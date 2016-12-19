@@ -243,6 +243,7 @@ class DB
         // Login User
         function login($username ,$password)
         {
+            $password = hash("sha512",$password);
             $stmt = self::$_db->prepare("SELECT count(id_user) AS c FROM user WHERE username=:un AND password=:pw");
             $stmt->bindParam(":un", $username);
             $stmt->bindParam(":pw", $password);
@@ -270,6 +271,7 @@ class DB
         // Register USer
         function registerUser($username, $mail, $password)
         {
+            $password = hash("sha512",$password);
             $stmt = self::$_db->prepare("INSERT INTO user (username,mail,password,session)
                 VALUES(:username,:mail,:password,:sid)");
             $sid = session_id();
