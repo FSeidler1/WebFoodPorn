@@ -349,13 +349,13 @@ class DB
         }
 
         // Add Foodporn
-        function addFoodporn($img, $title, $desc, $cat)
+        function addFoodporn($img, $title, $descr, $cat)
         {
             $stmt = self::$_db->prepare("INSERT INTO comment (image,title,description,category,fs_user,dateCreated)
-                                        VALUES(:img, :title, :desc, :cat, :uid, NOW())");
+                                        VALUES(:img, :title, :descr, :cat, :uid, NOW())");
             $stmt->bindParam(":img", $img);
             $stmt->bindParam(":title", $title);
-            $stmt->bindParam(":desc", $desc);
+            $stmt->bindParam(":descr", $descr);
             $stmt->bindParam(":cat", $cat);
             $uid = self::getUserID();
             $stmt->bindParam(":uid", $uid);
