@@ -39,6 +39,11 @@ class Controller {
             {
                 $this->searchFoodporn();
             }
+            else if($_GET["action"] == "setfavorite")
+            {
+                // TODO: implement set Favorite
+                $this->searchFoodporn();
+            }
         }
         else
         {

@@ -85,7 +85,7 @@ class DB
             if($count < 1)
             {
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(1,'" . $imageHelper->getExampleImage() . "', 'Beispielbild', 'Beschreibung des Beispiel Foodporns', 'Pasta', 1, NOW())");
+                VALUES(1,'" . $imageHelper->getExampleImage() . "', 'Beispielbild', 'Beschreibung des Beispiel Foodporns', 'Fleisch', 1, NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
                 VALUES(2,'" . $imageHelper->getExampleImage2() . "', 'Erdbeer Dessert', 'Beschreibung des Erdbeerdesserts Foodporns', 'Desserts', 1, NOW())");
@@ -271,7 +271,7 @@ class DB
             $uid = self::getUserID();
             $stmt->bindParam(":uid", $uid);
             $stmt->execute();
-            return $stmt->fetch()["c"];
+            $count = $stmt->fetch()["c"];
             if($count < 1)
             {
                 $stmt = self::$_db->prepare("INSERT INTO likes (islike, fs_user, fs_foodporn) VALUES(:islike,:uid,:fid)");
