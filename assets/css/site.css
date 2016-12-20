@@ -283,6 +283,7 @@ a.foodporn-byuser {
 /* IPad */
 
 @media screen and (max-width: 991px) {
+    /* Darstellung der Bilder auf grösse angepasst */
     .container-fluid .row {
         column-count: 3;
         -webkit-column-count: 3;
