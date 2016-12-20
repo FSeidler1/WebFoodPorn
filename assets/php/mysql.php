@@ -217,9 +217,7 @@ class DB
         // Update User 
         function updateUser($username, $mail, $descr, $img)
         {
-            $stmt = self::$_db->prepare("UPDATE user SET username=:username, mail=:mail, description=:descr, image=:img WHERE id_user:uid");
-            $stmt->bindParam(":username", $username);
-            $stmt->bindParam(":mail", $mail);
+            $stmt = self::$_db->prepare("UPDATE user SET description=:descr, image=:img WHERE id_user:uid");
             $stmt->bindParam(":descr", $descr);
             $stmt->bindParam(":img", $img);
             $uid = self::getUserID();
@@ -229,7 +227,7 @@ class DB
         }
 
         // Update User Password
-        function updateUserPassword($new, $old)
+        function updateUserPassword($old, $new)
         {
             $stmt = self::$_db->prepare("UPDATE user SET password=:new WHERE id_user=:uid AND password=:old");
             $stmt->bindParam(":new", $new);
@@ -351,7 +349,7 @@ class DB
         // Add Foodporn
         function addFoodporn($img, $title, $descr, $cat)
         {
-            $stmt = self::$_db->prepare("INSERT INTO comment (image,title,description,category,fs_user,dateCreated)
+            $stmt = self::$_db->prepare("INSERT INTO foodporn (image,title,description,category,fs_user,dateCreated)
                                         VALUES(:img, :title, :descr, :cat, :uid, NOW())");
             $stmt->bindParam(":img", $img);
             $stmt->bindParam(":title", $title);
@@ -409,6 +407,19 @@ class DB
             $stmt->bindParam(":fid", $fid);
             $stmt->execute();
             return $stmt->fetchAll();
+        }
+
+        // Set Favorite Foodporn
+        function setFavorite($fid)
+        {
+            if(self::isFavoriteFoodporn($fid) != "true")
+            {
+                $stmt = self::$_db->prepare("INSERT INTO favorit (fs_foodporn, fs_user) VALUES(:fid, :uid)");
+                $stmt->bindParam(":fid", $fid);
+                $uid = self::getUserID();
+                $stmt->bindParam(":uid", $uid);
+                $stmt->execute();
+            }
         }
 
         // Get if the foodporn is favorited
