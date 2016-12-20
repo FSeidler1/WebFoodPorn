@@ -58,7 +58,7 @@ class Controller {
         $this->json = $this->db->isUserLoggedin();
     }
 
-    // Logoff addUser
+    // Logoff Loggoff
     function logoff() {
         $this->db->logoff();
         $this->json = "true";
