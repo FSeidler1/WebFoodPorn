@@ -107,6 +107,27 @@ class DB
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
                 VALUES(9,'http://24.media.tumblr.com/5f380d70650c500023bfd010995a8a4c/tumblr_mj6gbo1v331qitz6do1_500.jpg', 'Asia Wok mit Rind', 'Die Rinder sind eine Gattungsgruppe der Hornträger. Es sind große und stämmige Tiere, von denen einige Arten als Nutztiere eine wichtige Rolle spielen, allen voran das Hausrind.', 'Fleisch', 3, NOW())");
                 $stmt->execute();
+                $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
+                VALUES(10,'http://25.media.tumblr.com/tumblr_m36a25e3qU1qbjp5wo11_500.jpg', 'Erdbeereiskreation', 'Speiseeis, in der Schweiz und Luxemburg die Glace oder das Glacé, veraltet Gefrorenes, ist eine Süßspeise bestehend aus Flüssigkeiten wie Wasser, Milch, Sahne und eventuell Eigelb, verrührt mit Zucker und', 'Desserts', 4, NOW())");
+                $stmt->execute();
+                $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
+                VALUES(11,'http://ristorante-romantica.ch/wp-content/uploads/2015/02/pizza-storia.jpg', 'Pizza Margherita', 'Pizza ist ein vor dem Backen würzig belegtes Fladenbrot aus einfachem Hefeteig aus der italienischen Küche. Die heutige, international verbreitete Variante mit Tomatensauce und Käse als Basis stammt vermutlich aus Neapel', 'Vegetarisch', 5, NOW())");
+                $stmt->execute();
+                $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
+                VALUES(12,'http://www.hotel-bachmuehle.at/fileadmin/_processed_/csm_Wildgericht-mit-Pilzen_e7788ed176.adaptive.jpg', 'Hirschbraten mit Brotcroutons', 'Die Hirsche oder Geweihträger sind eine Säugetierfamilie aus der Ordnung der Paarhufer. Die Familie umfasst mehr als 50 Arten, von denen unter anderem der Rothirsch, der Damhirsch, das Reh, das Ren und der Elch auch in Europa verbreitet sind.', 'Fleisch', 1, NOW())");
+                $stmt->execute();
+                $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
+                VALUES(13,'http://blog.frank-schildt.de/wp-content/gallery/krustenbraten/Schweinekrustenbraten_19.jpg', 'Schweine Krustenbraten', 'Das Fleisch bei 220 Grad im Ofen anbraten, Flüssigkeit (z.B. Wein, Fleischbouillon oder Fond) beigeben und bei 180 Grad fertig braten. Dabei Braten von Zeit zu Zeit mit Flüssigkeit übergiessen, das verleiht ihm eine schön glänzende Oberfläche, daher die Benennung «glasiert». Der Braten wird meist durchgebraten. Fleisch vor dem Tranchieren zugedeckt ca. 10 Min. stehen lassen. Durch das Stehenlassen verteilen sich Temperatur und Saft gleichmässig im Fleisch. Kerntemperaturen Kalb 65 bis 70 Grad, der Fleischsaft ist rosa. Schwein 70 bis 75 Grad, der Fleischsaft ist hell und klar.', 'Fleisch', 5, NOW())");
+                $stmt->execute();
+                $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
+                VALUES(14,'http://images.pxlpartner.ch.s3.amazonaws.com/n58873/images/ostschweiz/grid9/sgbt-olma-bratwurst-1.jpg', 'Olma Bratwurst AOP', 'Die St.Galler Bratwurst ist seit Jahrzehnten in der ganzen Schweiz ein Begriff. In keiner anderen Schweizer Stadt werden derart feine und geschmacklich unverkennbare Bratwüste hergestellt, wie in St.Gallen. Das typische Qualitätsprodukt aus St.Gallen wird sogar ureigens mit St.Gallen in Verbindung gebracht. Neben Kloster- oder Olma-Stadt wird St.Gallen auch auswärts liebevoll als Bratwurst-Stadt bezeichnet.', 'Fleisch', 4, NOW())");
+                $stmt->execute();
+                $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
+                VALUES(15,'http://i.imgur.com/iac4CIx.gif', 'Speck mit Spiegelei', 'Als Speck wird vor allem bei Schweinen das Fettgewebe bezeichnet, das sich zwischen Haut und Muskeln befindet.', 'Fleisch', 4, NOW())");
+                $stmt->execute();
+                $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
+                VALUES(16,'https://www.cotswolddirectory.co.uk/wp-content/uploads/2015/06/vegan-food-550x326.jpg', 'Rollgerstensalat', 'Graupen, auch Gräupchen, Roll- oder Kochgerste genannt, sind ein Nährmittel aus geschälten, polierten Gersten- oder Weizenkörnern von runder, halb- oder länglich-runder Form.', 'Vegetarisch', 4, NOW())");
+                $stmt->execute();
             }
             
             // Create user Example Entry
@@ -123,6 +144,12 @@ class DB
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO user (id_user,username,mail,password,description,image,session)
                 VALUES(3,'Jennifer', 'test@test.ch', '" . hash("sha512","1234") . "', 'Ich bin 22 Jahre alt und bin gerade frisch von Amsterdam nach Berlin gezogen. Mein Vater ist Fotograf und reist unheimlich viel! Als ich klein war, hat er mich oft mitgenommen, was total spannend für mich war. Dadurch konnte ich viel von der Welt sehen. Besonders verliebt habe ich mich dabei in Wien, Papas Heimatstadt. Die Stadt ist wunderschön - ich liebe die prunkvollen barocken Häuserfassaden. Wien ist das absolute Gegenteil zu dem kleinen Dorf in Holland, in dem ich aufgewachsen bin.', 'https://tribzap2it.files.wordpress.com/2015/07/person-of-interest-season-4-sarah-shahi-cbs.jpg', '')");
+                $stmt->execute();
+                $stmt = self::$_db->prepare("INSERT INTO user (id_user,username,mail,password,description,image,session)
+                VALUES(4,'Ivo', 'test@test.ch', '" . hash("sha512","1234") . "','Diese Seite ist vorrangig entstanden um Freunde, Bekannte, Kollegen und alle Interessierten der Internetgemeinde über meine Reisen zu informieren – also eine Art Reisetagebuch / Reiseblog mit einzelnen Reiseberichten. Nach und nach sind jedoch auch ein paar weitere Kategorien und Artikel hinzu bekommen und auch der Kreis der Leser hat sich stark erweitert. Somit sind zu den ehemals rein privaten Reiseberichten auch Hintergrundinformationen und weiteführende Verweise und Links hinzu gekommen.', 'https://www.google.ch/search?q=it+guy&espv=2&biw=1920&bih=925&source=lnms&tbm=isch&sa=X&ved=0ahUKEwi2nLzJ4ILRAhXLOVAKHTLnAgEQ_AUIBigB#tbm=isch&q=it+guy+profile&imgrc=3OwuAeZBpdqwdM%3A', '')");
+                $stmt->execute();
+                $stmt = self::$_db->prepare("INSERT INTO user (id_user,username,mail,password,description,image,session)
+                VALUES(5,'Fabian', 'test@test.ch', '" . hash("sha512","1234") . "', 'Ich bin 22 Jahre alt und bin gerade frisch von Amsterdam nach Berlin gezogen. Mein Vater ist Fotograf und reist unheimlich viel! Als ich klein war, hat er mich oft mitgenommen, was total spannend für mich war. Dadurch konnte ich viel von der Welt sehen. Besonders verliebt habe ich mich dabei in Wien, Papas Heimatstadt. Die Stadt ist wunderschön - ich liebe die prunkvollen barocken Häuserfassaden. Wien ist das absolute Gegenteil zu dem kleinen Dorf in Holland, in dem ich aufgewachsen bin.', 'https://www.google.ch/search?q=it+guy&espv=2&biw=1920&bih=925&source=lnms&tbm=isch&sa=X&ved=0ahUKEwi2nLzJ4ILRAhXLOVAKHTLnAgEQ_AUIBigB#tbm=isch&q=foodblogger+profile&imgrc=3U-arRYUxt6WKM%3A', '')");
                 $stmt->execute();
             }
             

@@ -140,7 +140,7 @@
                             <img ng-src="{{entry.image}}">
                         </a>
                         <p class="foodporn-title">{{entry.title}}</p>
-                        <p class="foodporn-description">{{entry.description}}</p>
+                        <p class="foodporn-description" id="entryDesc">{{entry.description}}</p>
                         <div class="foodporn-container-footer" ng-controller="setLikeFavorite">
                             <a class="foodporn-like-button green noselect" ng-click="setLike();">
                                 <i class="fa fa-thumbs-up"></i>
