@@ -25,6 +25,10 @@ body {
     margin-bottom: 10px;
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 
 /* Geräte bis 768px grösse */
 
@@ -171,6 +175,10 @@ p.foodporn-description {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+}
+
+.modal p.foodporn-description {
+    display: block;
 }
 
 textarea.form-control {
