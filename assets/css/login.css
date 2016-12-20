@@ -1,7 +1,7 @@
 /* Hindergrund definieren */
 
 body {
-    background-image: url("./../img/login_wallpaper.jpg");
+    background-image: url("./../img/bg.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -98,4 +98,8 @@ body {
 
 #falseUserLogin {
     display: none;
+}
+
+#textBorderChoclate {
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
