@@ -1,38 +1,36 @@
+/*********************************************************
+ * Projekt M335 - Abschlussarbeit
+ * ******************************************************
+ * Autor:       Fabian Seidler
+ * Datum:       12.12.2016 - 20.12.2016
+ * Änderungen:  Siehe GitHub
+ * Status:      Fertig - zur Abgabe bereit 
+ * Team:        Leonardo Sandbichler, Ivo Keller, Fabian Seidler 
+ ******************************************************** */
+
+
+
+//auf Login Page eingebunden
 var loginApp = new angular.module('loginApp', []);
+//auf Registrierungs Page eingebunden
 var registrationApp = new angular.module('registrationApp', []);
+//Auf den Main Pages eingebunden - main und registration
 var mainApp = new angular.module('mainApp', []);
+//Dient zur Überprüfung ob der User bereits eingeloggt ist, ansonsten redirect auf Login
 var isloggedin;
 
-/************
- * TODO
- * **********
- * Benutzer Daten laden
- * Foodporn-Modal daten einlesen
- * 
- * Verschönerungen
- * ******************
- * Datenfelder - angular ($scope...)
- * Kommentare
- * 
- * @Nicolas
- * *************
- *  Fründlicher zum Ivo si, er hät nüt böses gmacht, kotmidas!
- * 
- ************/
 
 
 // --------------------------------------------------------------
-// Formular - Controller
+// Controller für die Login-Page
+// Funktion: Login und weiterleitung auf Main-Page
 // --------------------------------------------------------------
 loginApp.controller('FormController',
     function FormController($scope, $http) {
         $scope.benutzer_login = "";
         $scope.passwort_login = "";
         $scope.submit = function() {
-            console.log(this);
-            // ------------------------------------------------------
-            // Formular - Datenübermitteln an controller.php
-            // ------------------------------------------------------ 
+            //Datenübermittlung an Controller.php 
             var request = $http({
                 method: 'post',
                 url: './assets/php/controller.php?class=user&action=login',
@@ -44,78 +42,85 @@ loginApp.controller('FormController',
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             });
-            //console.log(document.getElementById("benutzer_login").value);
-            //console.log(document.getElementById("passwort_login").value);
-            // Was kommt vom Controller.php zurück? Wenn passt, dann login. Wenn nicht dann redirect
+            // Was kommt vom Controller.php zurück? Wenn passt, dann Login.
             request.success(function(meldung) {
                 //Keine Rückmeldung von Server
                 if (meldung === null) {
                     console.log("Fehlerhafte Rückmeldung von Server");
                 } else {
-                    console.log(meldung);
+                    //Password korrekt
                     if (meldung === 'true') {
-                        //Password korrekt
+                        //setzt zusäätzlich lokales Loginflag
                         localStorage.setItem("loggedIn", "true");
+                        //Redirect auf Main weil Login korrekt
                         window.location.replace("./assets/html/main.html");
                     } else {
+                        //Feedback - Fehlerhafte Login-Daten
                         falseData();
                     }
                 }
             });
-
         }
     }
 );
 
 // --------------------------------------------------------------
-// Formular - Controller (insert, update)
+// Controller für die Registrierungs-Page
+// Funktion: Registrierung, Login und weiterleitung auf Main-Page
 // --------------------------------------------------------------
 registrationApp.controller('FormController',
     function FormController($scope, $http) {
         $scope.submit = function() {
-            console.log(this);
-            // ------------------------------------------------------
-            // Formular - Datenübermitteln an controller.php
-            // ------------------------------------------------------ 
+            $scope.benutzer_registration = "";
+            $scope.email_registration = "";
+            $scope.passwort_registration = "";
+            //Datenübermittlung an Controller.php 
             var request = $http({
                 method: "post",
                 url: './../php/controller.php?class=user&action=registration',
                 data: {
-                    benutzer_registration: document.getElementById("benutzer_registration").value,
-                    email_registration: document.getElementById("email_registration").value,
-                    passwort_registration: document.getElementById("passwort_registration").value
+                    //Daten aus Formular auslesen
+                    benutzer_registration: $scope.benutzer_registration,
+                    email_registration: $scope.email_registration,
+                    passwort_registration: $scope.passwort_registration
                 },
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             });
-            // Was kommt vom Controller.php zurück? Wenn passt, dann login. Wenn nicht dann redirect
+            // Was kommt vom Controller.php zurück? Wenn passt, dann login.
             request.success(function(meldung) {
                 //Keine Rückmeldung von Server
                 if (meldung === null) {
                     console.log("Fehlerhafte Rückmeldung von Server")
                 } else {
+                    //Password korrekt
                     if (meldung === 'true') {
-                        //Password korrekt
+                        //setzt zusäätzlich lokales Loginflag
                         localStorage.setItem("loggedIn", "true");
+                        //Redirect auf Main weil Login korrekt
                         window.location.replace("./../html/main.html");
                     }
                 }
             });
-
         }
     }
 );
 
-
+//Zeigt roten Text an, welcher auf falsche Login-Daten hinweist
 function falseData() {
     //Keine Anmeldung möglich
     var mydiv = document.getElementById("falseUserLogin");
     mydiv.style.display = "block";
-
 }
 
-/*Controller definieren, Funktion für den controller*/
+
+// --------------------------------------------------------------
+// Controller für die Main-Pages
+// Funktion: (Main, Profil) Globale Funkionen 
+// --------------------------------------------------------------
+
+//Bildet die Einträge auf der Hauptseite, wird von main.html aufgerufen
 mainApp.controller('buildMainEntrys',
     function mainController($scope, $http) {
         $scope.navSearch = "";
@@ -125,22 +130,25 @@ mainApp.controller('buildMainEntrys',
                 $scope.entrys = data;
             }
         );
+        //Suche über Searchbar, Einträge gefiltert zurück
         $scope.submit = function() {
-            $http.get('./../php/Controller.php?class=foodporn&action=search&navSearch=' + $scope.navSearch).success(
-                function(data) {
-                    $scope.entrys = [];
-                    $scope.entrys = data;
-                }
-            );
-        }
+                $http.get('./../php/Controller.php?class=foodporn&action=search&navSearch=' + $scope.navSearch).success(
+                    function(data) {
+                        $scope.entrys = [];
+                        $scope.entrys = data;
+                    }
+                );
+            }
+            //Filterung über Dropdown-Feld, Einträge gefiltert zurück
         $scope.getElementCategory = function(category) {
-            $http.get('./../php/Controller.php?class=foodporn&action=filterCategory&filter=' + category).success(
-                function(data) {
-                    $scope.entrys = [];
-                    $scope.entrys = data;
-                }
-            );
-        }
+                $http.get('./../php/Controller.php?class=foodporn&action=filterCategory&filter=' + category).success(
+                    function(data) {
+                        $scope.entrys = [];
+                        $scope.entrys = data;
+                    }
+                );
+            }
+            //Filterung über Dropdown-Feld, favoritisierte Einträge zurück
         $scope.getElementFavorite = function() {
             $http.get('./../php/Controller.php?class=foodporn&action=filterFavorite').success(
                 function(data) {
@@ -149,6 +157,7 @@ mainApp.controller('buildMainEntrys',
                 }
             );
         };
+        //Sicherheit, dass Modal auf Main für neue Einträge leer ist
         $scope.entry = { user: { username: "" }, title: "", description: "", image: "" };
         $scope.buildModalEntry = function(xEntry) {
             //this.entry.id_foodporn
@@ -160,7 +169,7 @@ mainApp.controller('buildMainEntrys',
         }
     });
 
-/*Controller definieren, Funktion für den controller*/
+//Einzelnen Eintrag holen, wird dann in einzelnem Vollbild-Modal dargestellt
 mainApp.controller('buildSingleEntry',
     function mainController($scope, $http) {
         $scope.entrys = [];
@@ -171,7 +180,7 @@ mainApp.controller('buildSingleEntry',
         );
     });
 
-/*Controller definieren, Funktion für den controller*/
+//Erstellt sämtliche Einträge auf der Profil-Seite, welche der angemeldete User je erfasst hat
 mainApp.controller('buildPersonalEntrys',
     function mainController($scope, $http) {
         $scope.entrys = [];
@@ -182,60 +191,65 @@ mainApp.controller('buildPersonalEntrys',
                 $scope.entrys = data;
             }
         );
-
+        //Holt Daten des Users
         $http.get('./../php/Controller.php?class=user&action=get').success(
             function(data) {
                 $scope.userData = data;
             }
         );
 
+        //Vorbefüllen des "Benutzer-Bearbeiten"-Moduls
         $scope.updateUdssr = function() {
-            var request = $http({
-                method: "post",
-                url: './../../assets/php/controller.php?class=user&action=update',
-                data: {
-                    beschreibung: $("#beschreibung_neuesBild").val(),
-                    altesPW: $scope.userX.oldPW,
-                    neuesPW: $scope.userX.newPW,
-                    image: $("#datei_neuesBild").val()
-                },
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
-            });
-            // Was kommt vom Controller.php zurück?
-            request.success(function(meldung) {
-                //Keine Rückmeldung von Server
-                if (meldung === null) {
-                    console.log("Fehlerhafte Rückmeldung von Server")
-                } else {
-                    meldung = meldung.replace(/ /g, '');
-                    if (meldung === 'true') {
-                        //Clear Inputs  
-                        var formModal = document.getElementById("formNewentryAdd");
-                        formModal.reset();
-                        //Hide Modal
-                        $('#meinModal').modal('toggle');
+                var request = $http({
+                    method: "post",
+                    url: './../../assets/php/controller.php?class=user&action=update',
+                    data: {
+                        beschreibung: $("#beschreibung_neuesBild").val(),
+                        altesPW: $scope.userX.oldPW,
+                        neuesPW: $scope.userX.newPW,
+                        image: $("#datei_neuesBild").val()
+                    },
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
                     }
-                }
-            });
-        }
+                });
+                // Was kommt vom Controller.php zurück?
+                request.success(function(meldung) {
+                    //Keine Rückmeldung von Server
+                    if (meldung === null) {
+                        console.log("Fehlerhafte Rückmeldung von Server")
+                    } else {
+                        meldung = meldung.replace(/ /g, '');
+                        if (meldung === 'true') {
+                            //Clear Inputs  
+                            var formModal = document.getElementById("formNewentryAdd");
+                            formModal.reset();
+                            //Hide Modal
+                            $('#meinModal').modal('toggle');
+                            location.reload();
+                        }
+                    }
+                });
+            }
+            //Suche über Searchbar, Einträge gefiltert zurück
         $scope.submit = function() {
-            $http.get('./../php/Controller.php?class=foodporn&action=search&navSearch=' + $scope.navSearch).success(
-                function(data) {
-                    $scope.entrys = [];
-                    $scope.entrys = data;
-                }
-            );
-        }
+                $http.get('./../php/Controller.php?class=foodporn&action=search&navSearch=' + $scope.navSearch).success(
+                    function(data) {
+                        $scope.entrys = [];
+                        $scope.entrys = data;
+                    }
+                );
+            }
+            //Filterung über Dropdown-Feld, Einträge gefiltert zurück
         $scope.getElementCategory = function(category) {
-            $http.get('./../php/Controller.php?class=foodporn&action=filterCategory&filter=' + category).success(
-                function(data) {
-                    $scope.entrys = [];
-                    $scope.entrys = data;
-                }
-            );
-        }
+                $http.get('./../php/Controller.php?class=foodporn&action=filterCategory&filter=' + category).success(
+                    function(data) {
+                        $scope.entrys = [];
+                        $scope.entrys = data;
+                    }
+                );
+            }
+            //Filterung über Dropdown-Feld, favoritisierte Einträge zurück
         $scope.getElementFavorite = function() {
             $http.get('./../php/Controller.php?class=foodporn&action=filterFavorite').success(
                 function(data) {
@@ -246,13 +260,11 @@ mainApp.controller('buildPersonalEntrys',
         };
     });
 
-
+//Eingabe aus Modal - neuen Foodporn hinzufügen
 mainApp.controller('sendNewEntry',
     function sendNewEntry($scope, $http) {
         $scope.submit = function() {
-            // ------------------------------------------------------
-            // Formular - Datenübermitteln an controller.php
-            // ------------------------------------------------------ 
+            //Datenübermittlung an Controller.php 
             var request = $http({
                 method: "post",
                 url: './../../assets/php/controller.php?class=foodporn&action=add',
@@ -280,6 +292,7 @@ mainApp.controller('sendNewEntry',
                         formModal.reset();
                         //Hide Modal
                         $('#meinModal').modal('toggle');
+                        location.reload();
                     }
                 }
             });
@@ -287,73 +300,72 @@ mainApp.controller('sendNewEntry',
     }
 );
 
+//Like, Dislike und Favoriten auswählen und Flag setzen
 mainApp.controller('setLikeFavorite',
     function setLikeFavorite($scope, $http) {
-
         var entryTemp;
-
+        //Like auswählen und Flag setzen
         $scope.setLike = function() {
-            entryTemp = this.entry;
-            // ------------------------------------------------------
-            // Formular - Datenübermitteln an controller.php
-            // ------------------------------------------------------ 
-            var request = $http({
-                method: "post",
-                url: './../php/controller.php?class=foodporn&action=like',
-                data: {
-                    id_foodporn: entryTemp.id_foodporn,
-                    isLike: 1
-                },
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
-            });
-
-            // Was kommt vom Controller.php zurück?
-            request.success(function(dataTF) {
-                $http.get('./../php/Controller.php?class=foodporn').success(
-                    function(data) {
-                        dataTF = dataTF.replace(/ /g, '');
-                        if (dataTF == 'true') {
-                            $("#entry_" + entryTemp.id_foodporn + " .foodporn-like-button.green span").val(
-                                entryTemp.likes++
-                            );
-                        }
+                entryTemp = this.entry;
+                // Formular - Datenübermitteln an controller.php
+                var request = $http({
+                    method: "post",
+                    url: './../php/controller.php?class=foodporn&action=like',
+                    data: {
+                        id_foodporn: entryTemp.id_foodporn,
+                        isLike: 1
+                    },
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
                     }
-                );
-            });
-        }
+                });
+                // Was kommt vom Controller.php zurück?
+                request.success(function(dataTF) {
+                    $http.get('./../php/Controller.php?class=foodporn').success(
+                        function(data) {
+                            dataTF = dataTF.replace(/ /g, '');
+                            if (dataTF == 'true') {
+                                $("#entry_" + entryTemp.id_foodporn + " .foodporn-like-button.green span").val(
+                                    entryTemp.likes++
+                                );
+                            }
+                        }
+                    );
+                });
+            }
+            //Dislike auswählen und Flag setzen
         $scope.setDisike = function() {
-            entryTemp = this.entry;
-            // ------------------------------------------------------
-            // Formular - Datenübermitteln an controller.php
-            // ------------------------------------------------------ 
-            var request = $http({
-                method: "post",
-                url: './../php/controller.php?class=foodporn&action=like',
-                data: {
-                    id_foodporn: entryTemp.id_foodporn,
-                    isLike: 0
-                },
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
-            });
-
-            // Was kommt vom Controller.php zurück?
-            request.success(function(dataTF) {
-                $http.get('./../php/Controller.php?class=foodporn').success(
-                    function(data) {
-                        dataTF = dataTF.replace(/ /g, '');
-                        if (dataTF == 'true') {
-                            $("#entry_" + entryTemp.id_foodporn + " .foodporn-like-button.red span").val(
-                                entryTemp.dislikes++
-                            );
-                        }
+                entryTemp = this.entry;
+                // ------------------------------------------------------
+                // Formular - Datenübermitteln an controller.php
+                // ------------------------------------------------------ 
+                var request = $http({
+                    method: "post",
+                    url: './../php/controller.php?class=foodporn&action=like',
+                    data: {
+                        id_foodporn: entryTemp.id_foodporn,
+                        isLike: 0
+                    },
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
                     }
-                );
-            });
-        }
+                });
+
+                // Was kommt vom Controller.php zurück?
+                request.success(function(dataTF) {
+                    $http.get('./../php/Controller.php?class=foodporn').success(
+                        function(data) {
+                            dataTF = dataTF.replace(/ /g, '');
+                            if (dataTF == 'true') {
+                                $("#entry_" + entryTemp.id_foodporn + " .foodporn-like-button.red span").val(
+                                    entryTemp.dislikes++
+                                );
+                            }
+                        }
+                    );
+                });
+            }
+            //Favoriten auswählen und Flag setzen
         $scope.setFavorite = function() {
             entryTemp = this.entry;
             // ------------------------------------------------------
@@ -435,7 +447,7 @@ function isUserLoggedIn(actualPage) {
 }
 
 
-
+//localStorage wird dem Loginstatus angepasst
 function isloggedInCall(data) {
     if (data === 'true') {
         isloggedin = true;
@@ -446,6 +458,7 @@ function isloggedInCall(data) {
     }
 }
 
+//Aufgaben, wenn der Logout geklickt wird
 mainApp.controller('LogoutController',
     function LogoutController($scope, $http) {
         $scope.userLogOut = function() {
