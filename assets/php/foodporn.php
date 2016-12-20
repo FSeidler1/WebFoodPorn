@@ -76,8 +76,8 @@ class Controller {
     // Add a favorite
     function setFavorite()
     {
-        // TODO: Implement Query
-        $this->json = "true";
+        $this->db->setFavorite($_POST["id_foodporn"]);
+        $this->json = $this->db->isFavoriteFoodporn($_POST["id_foodporn"]);
     }
 
     // Add Comment to this Foodporn
