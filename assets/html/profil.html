@@ -168,18 +168,18 @@
                     </div>
                     <div class="modal-body">
 
-                        <form id="formNewentryAdd" ng-submit="updateUdssr">
+                        <form id="formNewentryAdd" ng-submit="updateUdssr()">
                             <div class="form-group">
                                 <label for="beschreibung_neuesBild">Beschreibung</label>
                                 <textarea rows="4" class="form-control" required id="beschreibung_neuesBild" placeholder="Beschreibung">{{userData.description}}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="beschreibung_neuesBild">Altes Passwort</label>
-                                <input ng-model="userX.oldPW" type="text" class="form-control" id="titel_neuesBild" placeholder="Altes Passwort">
+                                <input ng-model="userX.oldPW" type="password" class="form-control" id="titel_neuesBild" placeholder="Altes Passwort">
                             </div>
                             <div class="form-group">
                                 <label for="beschreibung_neuesBild">Neues Passwort</label>
-                                <input ng-model="userX.newPW" type="text" class="form-control" id="titel_neuesBild" placeholder="Neues Passwort">
+                                <input ng-model="userX.newPW" type="password" class="form-control" id="titel_neuesBild" placeholder="Neues Passwort">
                             </div>
                             <div class="form-group">
                                 <label for="beispielFeldDatei">Anhang</label>
