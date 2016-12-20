@@ -38,7 +38,7 @@ loginApp.controller('FormController',
                 url: './assets/php/controller.php?class=user&action=login',
                 data: {
                     benutzer_login: $scope.benutzer_login,
-                    passwort_login: encodeString($scope.passwort_login)
+                    passwort_login: $scope.passwort_login
                 },
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
@@ -83,7 +83,7 @@ registrationApp.controller('FormController',
                 data: {
                     benutzer_registration: document.getElementById("benutzer_registration").value,
                     email_registration: document.getElementById("email_registration").value,
-                    passwort_registration: encodeString(document.getElementById("passwort_registration").value)
+                    passwort_registration: document.getElementById("passwort_registration").value
                 },
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
@@ -107,10 +107,6 @@ registrationApp.controller('FormController',
     }
 );
 
-function encodeString(thisIsNotAPassword) {
-    var shaObj = new jsSHA(thisIsNotAPassword, "ASCII");
-    return shaObj.getHash("SHA-512", "HEX");
-}
 
 function falseData() {
     //Keine Anmeldung möglich
@@ -130,27 +126,21 @@ mainApp.controller('buildMainEntrys',
             }
         );
         $scope.submit = function() {
-                $http.get('./../php/Controller.php?class=foodporn&action=search&navSearch=' + $scope.navSearch).success(
-                    function(data) {
-                        $scope.entrys = [];
-                        $scope.entrys = data;
-                    }
-                );
-            }
-            /**
-             * TODO IVO GET mache bim Filter
-             */
+            $http.get('./../php/Controller.php?class=foodporn&action=search&navSearch=' + $scope.navSearch).success(
+                function(data) {
+                    $scope.entrys = [];
+                    $scope.entrys = data;
+                }
+            );
+        }
         $scope.getElementCategory = function(category) {
-                $http.get('./../php/Controller.php?class=foodporn&action=filterCategory&filter=' + category).success(
-                    function(data) {
-                        $scope.entrys = [];
-                        $scope.entrys = data;
-                    }
-                );
-            }
-            /**
-             * TODO IVO GET mache bim Filter
-             */
+            $http.get('./../php/Controller.php?class=foodporn&action=filterCategory&filter=' + category).success(
+                function(data) {
+                    $scope.entrys = [];
+                    $scope.entrys = data;
+                }
+            );
+        }
         $scope.getElementFavorite = function() {
             $http.get('./../php/Controller.php?class=foodporn&action=filterFavorite').success(
                 function(data) {
@@ -192,22 +182,22 @@ mainApp.controller('buildPersonalEntrys',
                 $scope.entrys = data;
             }
         );
-        /** */
+
         $http.get('./../php/Controller.php?class=user&action=get').success(
             function(data) {
                 $scope.userData = data;
             }
         );
-        //TODO Fabian: URL apasse, data näme richtig so ?
+
         $scope.updateUdssr = function() {
             var request = $http({
                 method: "post",
-                url: './../../assets/php/controller.php?URL ?????????',
+                url: './../../assets/php/controller.php?class=user&action=update',
                 data: {
-                    bescreibung: $scope.userX.description,
+                    beschreibung: $("#beschreibung_neuesBild").val(),
                     altesPW: $scope.userX.oldPW,
                     neuesPW: $scope.userX.newPW,
-                    anhang: $scope.userX.Ahg
+                    image: $("#datei_neuesBild").val()
                 },
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
@@ -215,32 +205,37 @@ mainApp.controller('buildPersonalEntrys',
             });
             // Was kommt vom Controller.php zurück?
             request.success(function(meldung) {
-                //TODO Fabian wa chunt zrug ?
-                console.log("k passt", meldung);
+                //Keine Rückmeldung von Server
+                if (meldung === null) {
+                    console.log("Fehlerhafte Rückmeldung von Server")
+                } else {
+                    meldung = meldung.replace(/ /g, '');
+                    if (meldung === 'true') {
+                        //Clear Inputs  
+                        var formModal = document.getElementById("formNewentryAdd");
+                        formModal.reset();
+                        //Hide Modal
+                        $('#meinModal').modal('toggle');
+                    }
+                }
             });
         }
         $scope.submit = function() {
-                $http.get('./../php/Controller.php?class=foodporn&action=search&navSearch=' + $scope.navSearch).success(
-                    function(data) {
-                        $scope.entrys = [];
-                        $scope.entrys = data;
-                    }
-                );
-            }
-            /**
-             * TODO IVO GET mache bim Filter
-             */
+            $http.get('./../php/Controller.php?class=foodporn&action=search&navSearch=' + $scope.navSearch).success(
+                function(data) {
+                    $scope.entrys = [];
+                    $scope.entrys = data;
+                }
+            );
+        }
         $scope.getElementCategory = function(category) {
-                $http.get('./../php/Controller.php?class=foodporn&action=filterCategory&filter=' + category).success(
-                    function(data) {
-                        $scope.entrys = [];
-                        $scope.entrys = data;
-                    }
-                );
-            }
-            /**
-             * TODO IVO GET mache bim Filter
-             */
+            $http.get('./../php/Controller.php?class=foodporn&action=filterCategory&filter=' + category).success(
+                function(data) {
+                    $scope.entrys = [];
+                    $scope.entrys = data;
+                }
+            );
+        }
         $scope.getElementFavorite = function() {
             $http.get('./../php/Controller.php?class=foodporn&action=filterFavorite').success(
                 function(data) {
@@ -272,8 +267,6 @@ mainApp.controller('sendNewEntry',
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             });
-            console.log(document.getElementById("datei_neuesBild").value);
-
             // Was kommt vom Controller.php zurück?
             request.success(function(meldung) {
                 //Keine Rückmeldung von Server
@@ -293,16 +286,6 @@ mainApp.controller('sendNewEntry',
         }
     }
 );
-/*
-//Für Bildformatierung
-function dataTrans() {
-    var FR = new FileReader();
-    FR.readAsDataURL(document.querySelector('#datei_neuesBild').files[0])
-    FR.onload = function(FR) {
-        return FR.target.result;
-    }
-}
-*/
 
 mainApp.controller('setLikeFavorite',
     function setLikeFavorite($scope, $http) {

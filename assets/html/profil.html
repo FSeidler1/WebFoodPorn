@@ -77,7 +77,9 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Benutzer <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="./profil.html">Benutzer</a></li>
-                            <li><a onclick="userLogOut()">Abmelden</a></li>
+                            <li ng-controller="LogoutController">
+                                <a ng-click="userLogOut()">Abmelden</a>
+                            </li>
 
                         </ul>
                     </li>
@@ -90,9 +92,9 @@
 
 
     <div class="profil-container">
-        <center> <img src="../../Img/try.png" alt="..." class="img-thumbnail">
+        <center> <img ng-src="{{userData.image}}" alt="..." class="img-thumbnail">
             <h1>
-                <p class="profile-title">{{userData.title}}</p>
+                <p class="profile-title">{{userData.username}}</p>
             </h1>
             <p class="profile-description">{{userData.description}}</p>
         </center>
@@ -169,19 +171,19 @@
                         <form id="formNewentryAdd" ng-submit="updateUdssr">
                             <div class="form-group">
                                 <label for="beschreibung_neuesBild">Beschreibung</label>
-                                <textarea ng-model="userX.desc" rows="4" class="form-control" required id="beschreibung_neuesBild" placeholder="Beschreibung"></textarea>
+                                <textarea rows="4" class="form-control" required id="beschreibung_neuesBild" placeholder="Beschreibung">{{userData.description}}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="beschreibung_neuesBild">Altes Passwort</label>
-                                <input ng-model="userX.oldPW" type="text" class="form-control" required id="titel_neuesBild" placeholder="Altes Passwort">
+                                <input ng-model="userX.oldPW" type="text" class="form-control" id="titel_neuesBild" placeholder="Altes Passwort">
                             </div>
                             <div class="form-group">
                                 <label for="beschreibung_neuesBild">Neues Passwort</label>
-                                <input ng-model="userX.newPW" type="text" class="form-control" required id="titel_neuesBild" placeholder="Neues Passwort">
+                                <input ng-model="userX.newPW" type="text" class="form-control" id="titel_neuesBild" placeholder="Neues Passwort">
                             </div>
                             <div class="form-group">
                                 <label for="beispielFeldDatei">Anhang</label>
-                                <input ng-model="userX.Ahg" type="text" class="form-control" required id="datei_neuesBild" placeholder="z.B. http://beispiel.ch/jksjkfksjk.jpg">
+                                <input type="text" class="form-control" required id="datei_neuesBild" value="{{userData.image}}">
                             </div>
                             <input type="submit" class="btn btn-success" id="form_senden" name="speichern " value="speichern ">
                         </form>
@@ -193,7 +195,7 @@
                 </div>
             </div>
         </div>
-
+    </div>
 </body>
 
 </html>
