@@ -144,6 +144,10 @@ p.foodporn-title {
 p.foodporn-description {
     color: #7b7b7b;
     font-size: 17px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 textarea.form-control {
