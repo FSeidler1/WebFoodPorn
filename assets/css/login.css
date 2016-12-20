@@ -1,9 +1,14 @@
+/* Hindergrund definieren */
+
 body {
     background-image: url("./../img/login_wallpaper.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
 }
+
+
+/* Registrations Panel designt */
 
 .panel {
     width: 40%;
@@ -20,9 +25,15 @@ body {
     border: 0;
 }
 
+
+/*Input bei der Reistration designt */
+
 .input-group {
     height: 40%;
 }
+
+
+/* grösse und ausrichtung  */
 
 .btn {
     width: 50%;
