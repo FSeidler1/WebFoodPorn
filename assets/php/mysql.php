@@ -149,7 +149,7 @@ class DB
                 VALUES(4,'Ivo', 'test@test.ch', '" . hash("sha512","1234") . "','Diese Seite ist vorrangig entstanden um Freunde, Bekannte, Kollegen und alle Interessierten der Internetgemeinde über meine Reisen zu informieren – also eine Art Reisetagebuch / Reiseblog mit einzelnen Reiseberichten. Nach und nach sind jedoch auch ein paar weitere Kategorien und Artikel hinzu bekommen und auch der Kreis der Leser hat sich stark erweitert. Somit sind zu den ehemals rein privaten Reiseberichten auch Hintergrundinformationen und weiteführende Verweise und Links hinzu gekommen.', 'http://www.suedkurier.de/storage/pic/cms2skol/lokales/news/bodensee/radolfzell/651155_1_rado_dieter_franz_GUK14FT4I.1.jpg?version=1109390238', '')");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO user (id_user,username,mail,password,description,image,session)
-                VALUES(5,'Fabian', 'test@test.ch', '" . hash("sha512","1234") . "', 'Ich bin 22 Jahre alt und bin gerade frisch von Amsterdam nach Berlin gezogen. Mein Vater ist Fotograf und reist unheimlich viel! Als ich klein war, hat er mich oft mitgenommen, was total spannend für mich war. Dadurch konnte ich viel von der Welt sehen. Besonders verliebt habe ich mich dabei in Wien, Papas Heimatstadt. Die Stadt ist wunderschön - ich liebe die prunkvollen barocken Häuserfassaden. Wien ist das absolute Gegenteil zu dem kleinen Dorf in Holland, in dem ich aufgewachsen bin.', 'https://media.repro-mayr.de//29/546029.jpg', '')");
+                VALUES(5,'Fabian', 'test@test.ch', '" . hash("sha512","1234") . "', 'Ich bin 22 Jahre alt und bin gerade frisch von Amsterdam nach Berlin gezogen. Mein Vater ist Fotograf und reist unheimlich viel! Als ich klein war, hat er mich oft mitgenommen, was total spannend für mich war. Dadurch konnte ich viel von der Welt sehen. Besonders verliebt habe ich mich dabei in Wien, Papas Heimatstadt. Die Stadt ist wunderschön - ich liebe die prunkvollen barocken Häuserfassaden. Wien ist das absolute Gegenteil zu dem kleinen Dorf in Holland, in dem ich aufgewachsen bin.', 'http://arthaus-musik.com/fileadmin/dvds/m1608/slides/107523-schubert-box-photo4.jpg', '')");
                 $stmt->execute();
             }
             
@@ -180,7 +180,19 @@ class DB
             if($count < 1)
             {
                 $stmt = self::$_db->prepare("INSERT INTO favorit (fs_user, fs_foodporn)
-                VALUES(1,1)");
+                VALUES(1,7)");
+                $stmt->execute();
+                $stmt = self::$_db->prepare("INSERT INTO favorit (fs_user, fs_foodporn)
+                VALUES(2,9)");
+                $stmt->execute();
+                $stmt = self::$_db->prepare("INSERT INTO favorit (fs_user, fs_foodporn)
+                VALUES(3,12)");
+                $stmt->execute();
+                $stmt = self::$_db->prepare("INSERT INTO favorit (fs_user, fs_foodporn)
+                VALUES(4,6)");
+                $stmt->execute();
+                $stmt = self::$_db->prepare("INSERT INTO favorit (fs_user, fs_foodporn)
+                VALUES(5,15)");
                 $stmt->execute();
             }
             
