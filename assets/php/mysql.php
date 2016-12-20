@@ -217,9 +217,7 @@ class DB
         // Update User 
         function updateUser($username, $mail, $descr, $img)
         {
-            $stmt = self::$_db->prepare("UPDATE user SET username=:username, mail=:mail, description=:descr, image=:img WHERE id_user:uid");
-            $stmt->bindParam(":username", $username);
-            $stmt->bindParam(":mail", $mail);
+            $stmt = self::$_db->prepare("UPDATE user SET description=:descr, image=:img WHERE id_user:uid");
             $stmt->bindParam(":descr", $descr);
             $stmt->bindParam(":img", $img);
             $uid = self::getUserID();
@@ -229,7 +227,7 @@ class DB
         }
 
         // Update User Password
-        function updateUserPassword($new, $old)
+        function updateUserPassword($old, $new)
         {
             $stmt = self::$_db->prepare("UPDATE user SET password=:new WHERE id_user=:uid AND password=:old");
             $stmt->bindParam(":new", $new);

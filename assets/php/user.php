@@ -84,13 +84,18 @@ class Controller {
     // Save User data
     function updateUser() {
         $_POST = json_decode(file_get_contents("php://input"), true); 
-        $this->json = $this->db->updateUser($_POST["username"], $_POST["mail"], $_POST["description"], $_POST["image"]);
+        $this->db->updateUser($_POST["beschreibung"], $_POST["image"]);
+        if(isset($_POST["altesPW"]) === TRUE)
+        {
+            updatePassword();
+        }
+        $this->json = "true";
     }
 
     // Save User password
     function updatePassword() {
         $_POST = json_decode(file_get_contents("php://input"), true); 
-        $this->json = $this->db->updateUserPassword($_POST["password"], $_POST["oldPassword"]);
+        $this->json = $this->db->updateUserPassword($_POST["altesPW"], $_POST["neuesPW"]);
     }
 
     // Add new User
