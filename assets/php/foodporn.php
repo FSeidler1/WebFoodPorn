@@ -46,9 +46,7 @@ class Controller {
             }
             else if($_GET["action"] == "setfavorite")
             {
-                // TODO: implement set Favorite
                 $this->setFavorite();
-                // POST: id_foodporn
             }
         }
         else
@@ -61,7 +59,7 @@ class Controller {
     function addFoodporn() {
         // Convert Json to $_POST
         $_POST = json_decode(file_get_contents("php://input"), true); 
-
+        
         $this->json = $this->db->addFoodporn($_POST["image"], $_POST["title"], $_POST["description"], $_POST["category"]);;
     }
 
