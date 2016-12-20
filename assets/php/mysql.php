@@ -425,9 +425,7 @@ class DB
         // Get Foodporns filtered by favorites
         function getAllFoodpornsByFavorite()
         {
-            $stmt = self::$_db->prepare("SELECT fp.* FROM favorit AS fav
-                                        LEFT JOIN foodporn AS fp
-                                        On fav.fs_foodporn = fp.id_foodporn AND fav.fs_user=:uid");
+            $stmt = self::$_db->prepare("SELECT fp.* FROM favorit AS fav LEFT JOIN foodporn AS fp On fav.fs_foodporn = fp.id_foodporn AND fav.fs_user=:uid WHERE id_foodporn IS NOT NULL");
             $uid = self::getUserID();
             $stmt->bindParam(":uid", $uid);
             $stmt->execute();
