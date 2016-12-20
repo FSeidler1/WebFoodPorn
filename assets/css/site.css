@@ -32,6 +32,12 @@ body {
         font-style: italic;
         text-shadow: 0 0 5px black;
     }
+    .profil-container {
+        color: white;
+        position: relative;
+        min-height: 20rem;
+        margin: 0 auto;
+    }
 }
 
 @media screen and (min-width: 768px) {
@@ -252,13 +258,46 @@ a.foodporn-byuser {
     .profile-history {
         font-size: 40px;
     }
+    .profil-container {
+        color: white;
+        position: relative;
+        min-height: 20rem;
+        margin: 0 auto;
+        width: 80%;
+        padding: 20px;
+    }
+    .search-form button {
+        position: absolute;
+        right: -5px;
+        top: -1px;
+    }
+    .search-form .form-control {
+        left: 0px;
+        position: absolute;
+        top: -1px;
+        width: 100%;
+    }
 }
+
+
+/* IPad */
 
 @media screen and (max-width: 991px) {
     .container-fluid .row {
         column-count: 3;
         -webkit-column-count: 3;
         -moz-column-count: 3;
+    }
+    .search-form button {
+        position: absolute;
+        right: 15px;
+        top: -1px;
+    }
+    .search-form .form-control {
+        left: 0px;
+        position: absolute;
+        top: -1px;
+        width: 95%;
     }
 }
 
@@ -280,6 +319,17 @@ a.foodporn-byuser {
     }
     .profile-history {
         font-size: 16px;
+    }
+    .search-form button {
+        position: absolute;
+        right: -5px;
+        top: -1px;
+    }
+    .search-form .form-control {
+        left: 0px;
+        position: absolute;
+        top: -1px;
+        width: 100%;
     }
 }
 
@@ -329,23 +379,10 @@ a.foodporn-byuser {
     padding: 11px 2px 0px 1px;
 }
 
-.search-form .form-control {
-    left: 0px;
-    position: absolute;
-    top: -1px;
-    width: 100%;
-}
-
 .profil-container hr {
     display: block;
     margin-top: 2%;
     margin-bottom: 2%;
-}
-
-.search-form button {
-    position: absolute;
-    right: -5px;
-    top: -1px;
 }
 
 .search-form .navbar-form .form-control {
@@ -364,15 +401,6 @@ a.foodporn-byuser {
 
 .circular img {
     width: 100%;
-}
-
-.profil-container {
-    color: white;
-    position: relative;
-    min-height: 20rem;
-    margin: 0 auto;
-    width: 80%;
-    padding: 20px;
 }
 
 .user-container {
