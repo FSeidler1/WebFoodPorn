@@ -1,3 +1,5 @@
+/* Hindergrund definieren */
+
 body {
     background-image: url("./../img/login_wallpaper.jpg");
     background-repeat: no-repeat;
@@ -5,11 +7,17 @@ body {
     background-size: cover;
 }
 
+
+/* Vor und nach dem Inhalt */
+
 *,
 *:before,
 *:after {
     box-sizing: border-box;
 }
+
+
+/* Definition von Abstand und Platzierung */
 
 .item {
     display: inline-block;
@@ -18,7 +26,7 @@ body {
 }
 
 
-/* Große Geräte (Desktop-PCs, 1200px und breiter) */
+/* Geräte bis 768px grösse */
 
 @media (max-width: 768px) {
     .panel-title span:nth-child(1) {
@@ -40,6 +48,9 @@ body {
     }
 }
 
+
+/* Geräte ab 768px grösse */
+
 @media screen and (min-width: 768px) {
     .panel-title span:nth-child(1) {
         color: lawngreen;
@@ -55,9 +66,8 @@ body {
     }
 }
 
-.file-upload {
-    padding-top: 0.6rem;
-}
+
+/* Definition für grössere Buttons */
 
 .btn-group-lg>.btn,
 .btn-lg {
@@ -71,6 +81,9 @@ body {
     margin-bottom: 2rem;
     border-radius: 50px 50px 50px 50px;
 }
+
+
+/* Definition für Suchbox */
 
 #search-box {
     position: relative;
@@ -89,6 +102,9 @@ body {
     margin-top: 5px;
 }
 
+
+/* Definition für Suchtext */
+
 #search-text {
     font-size: 14px;
     color: #ddd;
@@ -96,12 +112,18 @@ body {
     background: transparent;
 }
 
+
+/* Definition für den inhalt des Suchboxes */
+
 #search-box input[type="text"] {
     width: 90%;
     padding: 11px 5px 12px 1em;
     color: #333;
     outline: none;
 }
+
+
+/* Definiton für die Suchbutton */
 
 #search-button {
     position: absolute;
@@ -175,20 +197,11 @@ a.foodporn-eye-button.true {
     opacity: 0.5;
 }
 
-.noselect {
-    -webkit-touch-callout: none;
-    /* iOS Safari */
-    -webkit-user-select: none;
-    /* Chrome/Safari/Opera */
-    -khtml-user-select: none;
-    /* Konqueror */
-    -moz-user-select: none;
-    /* Firefox */
-    -ms-user-select: none;
-    /* Internet Explorer/Edge */
-    user-select: none;
-    /* Non-prefixed version, currently
-                                  not supported by any browser */
+
+/* Bestimmt, das sich etwas nicht Markieren lässt */
+
+.dropdown-menu>li>a {
+    cursor: pointer;
 }
 
 .green i.fa.fa-thumbs-up {
@@ -214,6 +227,22 @@ a.foodporn-byuser {
     text-decoration: none;
 }
 
+.noselect {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    -khtml-user-select: none;
+    /* Konqueror */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                  not supported by any browser */
+}
+
 .container-fluid .row {
     column-count: 5;
     column-gap: 10px;
@@ -227,6 +256,9 @@ a.foodporn-byuser {
     padding-left: 20px;
     padding-right: 20px;
 }
+
+
+/* Geräte bis grösse 992px abdecken */
 
 
 /* PC */
@@ -285,7 +317,7 @@ a.foodporn-byuser {
 }
 
 
-/* IPad */
+/* Geräte bis grösse 991px abdecken */
 
 @media screen and (max-width: 991px) {
     /* Darstellung der Bilder auf grösse angepasst */
@@ -306,6 +338,9 @@ a.foodporn-byuser {
         width: 95%;
     }
 }
+
+
+/* Geräe bis grösse 767px abdecken */
 
 @media screen and (max-width: 767px) {
     .container-fluid .row {
@@ -338,6 +373,9 @@ a.foodporn-byuser {
         width: 100%;
     }
 }
+
+
+/* Design des Inhalts des Cointainers auf der Hauptseite bestimmen */
 
 .foodporn-container {
     width: 100%;
@@ -380,6 +418,9 @@ a.foodporn-byuser {
     top: -1px;
     z-index: 999;
 }
+
+
+/* Logo Design */
 
 .logo {
     padding: 11px 2px 0px 1px;
