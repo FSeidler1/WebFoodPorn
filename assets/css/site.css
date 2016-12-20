@@ -49,43 +49,6 @@ body {
     }
 }
 
-
-/* PC */
-
-@media screen and (min-width: 992px) {
-    .panel-title span:nth-child(1) {
-        color: lawngreen;
-        font-size: 24px;
-        text-shadow: 0 0 5px black;
-    }
-    .panel-title span:nth-child(2) {
-        color: white;
-        font-size: 22px;
-        font-style: italic;
-        text-shadow: 0 0 5px black;
-    }
-    .user-picture {
-        background-color: green;
-        width: 10%;
-        padding-top: 5%;
-        margin: 0 auto;
-    }
-    .profil-container .img-thumbnail {
-        height: 30rem;
-        width: 30rem;
-    }
-    .profile-title {
-        font-size: 48px;
-    }
-    .profile-description {
-        font-size: 26px;
-        overflow: hidden;
-    }
-    .profile-history {
-        font-size: 40px;
-    }
-}
-
 .file-upload {
     padding-top: 0.6rem;
 }
@@ -197,6 +160,22 @@ a.foodporn-eye-button.true {
     opacity: 0.5;
 }
 
+.noselect {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    -khtml-user-select: none;
+    /* Konqueror */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                  not supported by any browser */
+}
+
 .green i.fa.fa-thumbs-up {
     color: green;
 }
@@ -232,6 +211,43 @@ a.foodporn-byuser {
     -moz-column-fill: auto;
     padding-left: 20px;
     padding-right: 20px;
+}
+
+
+/* PC */
+
+@media screen and (min-width: 992px) {
+    .panel-title span:nth-child(1) {
+        color: lawngreen;
+        font-size: 24px;
+        text-shadow: 0 0 5px black;
+    }
+    .panel-title span:nth-child(2) {
+        color: white;
+        font-size: 22px;
+        font-style: italic;
+        text-shadow: 0 0 5px black;
+    }
+    .user-picture {
+        background-color: green;
+        width: 10%;
+        padding-top: 5%;
+        margin: 0 auto;
+    }
+    .profil-container .img-thumbnail {
+        height: 30rem;
+        width: 30rem;
+    }
+    .profile-title {
+        font-size: 48px;
+    }
+    .profile-description {
+        font-size: 26px;
+        overflow: hidden;
+    }
+    .profile-history {
+        font-size: 40px;
+    }
 }
 
 @media screen and (max-width: 991px) {

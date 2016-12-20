@@ -36,11 +36,11 @@
             <!-- Titel und Schalter werden für eine bessere mobile Ansicht zusammengefasst -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Navigation ein-/ausblenden</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+                    <span class="sr-only">Navigation ein-/ausblenden</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
                 <div class="logo">
                     <a href="main.html">
                         <h3 class="panel-title"><span>Food</span><span>Porn</span></h3>
@@ -88,9 +88,7 @@
                     </li>
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container-fluid -->
     </nav>
 
     <!-- Modal -->
@@ -108,8 +106,6 @@
                     <div class="row">
                         <div ng-controller="buildSingleEntry">
                             <div class="foodporn-container">
-
-
                                 <a data-toggle="modal" data-target="#myModal">
                                     <img id='openModal_img' />
                                 </a>
@@ -117,25 +113,12 @@
                                 <p class="foodporn-title" id='openModal_Title'>{{entry.title}}</p>
                                 <p class="foodporn-description" id='openModal_Text'>{{entry.description}}</p>
                                 <div class="foodporn-container-footer">
-
-
                                 </div>
-
-                                <!-- Kommentar Funktion
-                                Kommentare:
-                                <hr>
-                                <div class="form-group">
-                                    <label for="beschreibung_neuesBild">Neuer Kommentar</label>
-                                    <textarea rows="4" class="form-control" required id="beschreibung_neuesBild" placeholder="Beschreibung"></textarea>
-                                </div>
-                                -->
                             </div>
                         </div>
                     </div>
 
                     <button type="button" class="btn btn-default" data-dismiss="modal">Schliessen</button>
-                    <!-- Für Kommentar Funktion aktivieren -->
-                    <!--<button type="button" class="btn btn-primary">Save changes</button>-->
 
                 </div>
 
@@ -149,7 +132,7 @@
 
 
 
-
+    <!-- Container für die Bilder auf der Webseite erstellen -->
     <div class="container-fluid">
         <div class="row">
             <div>
@@ -161,15 +144,15 @@
                         <p class="foodporn-title">{{entry.title}}</p>
                         <p class="foodporn-description">{{entry.description}}</p>
                         <div class="foodporn-container-footer" ng-controller="setLikeFavorite">
-                            <a class="foodporn-like-button green" ng-click="setLike();">
+                            <a class="foodporn-like-button green noselect" ng-click="setLike();">
                                 <i class="fa fa-thumbs-up"></i>
                                 <span>{{entry.likes}}</span>
                             </a>
-                            <a class="foodporn-like-button red" ng-click="setDisike();">
+                            <a class="foodporn-like-button red noselect" ng-click="setDisike();">
                                 <i class="fa fa-thumbs-down"></i>
                                 <span>{{entry.dislikes}}</span>
                             </a>
-                            <a class="foodporn-eye-button {{entry.favorit}}" ng-click="setFavorite()">
+                            <a class="foodporn-eye-button {{entry.favorit}} noselect" ng-click="setFavorite()">
                                 <i class="fa fa-eye"></i>
                             </a>
                             <a class="foodporn-byuser">by {{entry.user.username}}</a>
@@ -186,7 +169,7 @@
         <span><i class="fa fa-plus fa-2x" aria-hidden="true"></i></span>      
     </button>
 
-    <!-- Modal -->
+    <!-- Modal erstellen-->
     <div id="modalNewEntry" ng-controller="sendNewEntry">
         <div class="modal fade" id="meinModal" tabindex="-1" role="dialog" aria-labelledby="meinModalLabel">
             <div class="modal-dialog" role="document">
@@ -231,128 +214,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-        <!--div id="container ">
-        <div class="foodporn-container ">
-            <img src="../../img/default.png ">
-            <p class="foodporn-title ">Titel</p>
-            <p class="foodporn-description ">Beschreibung</p>
-            <div class="foodporn-container-footer ">
-                <a class="foodporn-like-button green ">
-                    <i class="fa fa-thumbs-up "></i>
-                    <span>0</span>
-                </a>
-                <a class="foodporn-like-button red ">
-                    <i class="fa fa-thumbs-down "></i>
-                    <span>0</span>
-                </a>
-                <a class="foodporn-byuser ">by Leonardo</a>
-            </div>
-        </div>
-    </div>
-
-    <div id="container ">
-        <div class="foodporn-container ">
-            <img src="../../img/test.png ">
-            <p class="foodporn-title ">Titel</p>
-            <p class="foodporn-description ">Beschreibung</p>
-            <div class="foodporn-container-footer ">
-                <a class="foodporn-like-button green ">
-                    <i class="fa fa-thumbs-up "></i>
-                    <span>0</span>
-                </a>
-                <a class="foodporn-like-button red ">
-                    <i class="fa fa-thumbs-down "></i>
-                    <span>0</span>
-                </a>
-                <a class="foodporn-byuser ">by Leonardo</a>
-            </div>
-        </div>
-    </div>
-
-    <div id="container ">
-        <div class="foodporn-container ">
-            <img src="../../img/test.png ">
-            <p class="foodporn-title ">Titel</p>
-            <p class="foodporn-description ">Beschreibung</p>
-            <div class="foodporn-container-footer ">
-                <a class="foodporn-like-button green ">
-                    <i class="fa fa-thumbs-up "></i>
-                    <span>0</span>
-                </a>
-                <a class="foodporn-like-button red ">
-                    <i class="fa fa-thumbs-down "></i>
-                    <span>0</span>
-                </a>
-                <a class="foodporn-byuser ">by Leonardo</a>
-            </div>
-        </div>
-    </div>
-
-    <div id="container ">
-        <div class="foodporn-container ">
-            <img src="../../img/default.png ">
-            <p class="foodporn-title ">Titel</p>
-            <p class="foodporn-description ">Beschreibung</p>
-            <div class="foodporn-container-footer ">
-                <a class="foodporn-like-button green ">
-                    <i class="fa fa-thumbs-up "></i>
-                    <span>0</span>
-                </a>
-                <a class="foodporn-like-button red ">
-                    <i class="fa fa-thumbs-down "></i>
-                    <span>0</span>
-                </a>
-                <a class="foodporn-byuser ">by Leonardo</a>
-            </div>
-        </div>
-    </div>
-
-    <div id="container ">
-        <div class="foodporn-container ">
-            <img src="../../img/test.png ">
-            <p class="foodporn-title ">Titel</p>
-            <p class="foodporn-description ">Beschreibung</p>
-            <div class="foodporn-container-footer ">
-                <a class="foodporn-like-button green ">
-                    <i class="fa fa-thumbs-up "></i>
-                    <span>0</span>
-                </a>
-                <a class="foodporn-like-button red ">
-                    <i class="fa fa-thumbs-down "></i>
-                    <span>0</span>
-                </a>
-                <a class="foodporn-byuser ">by Leonardo</a>
-            </div>
-        </div>
-    </div>
-
-    <div id="container ">
-        <div class="foodporn-container ">
-            <img src="../../img/test.png ">
-            <p class="foodporn-title ">Titel</p>
-            <p class="foodporn-description ">Beschreibung</p>
-            <div class="foodporn-container-footer ">
-                <a class="foodporn-like-button green ">
-                    <i class="fa fa-thumbs-up "></i>
-                    <span>0</span>
-                </a>
-                <a class="foodporn-like-button red ">
-                    <i class="fa fa-thumbs-down "></i>
-                    <span>0</span>
-                </a>
-                <a class="foodporn-byuser ">by Leonardo</a>
-            </div>
-        </div>
-    </div>
-
-    </div-->
-
-
-
 
 </body>
 
