@@ -128,6 +128,9 @@ class DB
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
                 VALUES(16,'https://www.cotswolddirectory.co.uk/wp-content/uploads/2015/06/vegan-food-550x326.jpg', 'Rollgerstensalat', 'Graupen, auch Gräupchen, Roll- oder Kochgerste genannt, sind ein Nährmittel aus geschälten, polierten Gersten- oder Weizenkörnern von runder, halb- oder länglich-runder Form.', 'Vegetarisch', 4, NOW())");
                 $stmt->execute();
+                $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
+                VALUES(17,'http://i.ndtvimg.com/i/2015-07/spaghetti_625x350_61436865755.jpg', 'Spaghetti al Pepone', 'Pasta ist in der italienischen Küche die Bezeichnung für Teigwaren aus Hartweizengrieß, Kochsalz und Wasser in vielen Größen und Formen.', 'Vegetarisch', 4, NOW())");
+                $stmt->execute();
             }
             
             // Create user Example Entry
