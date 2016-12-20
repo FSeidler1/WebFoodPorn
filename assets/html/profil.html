@@ -35,11 +35,11 @@
             <!-- Titel und Schalter werden für eine bessere mobile Ansicht zusammengefasst -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Navigation ein-/ausblenden</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+                    <span class="sr-only">Navigation ein-/ausblenden</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
                 <div class="logo">
                     <a href="main.html">
                         <h3 class="panel-title"><span>Food</span><span>Porn</span></h3>
@@ -128,28 +128,6 @@
 
             </div>
         </div>
-        <!--<div class="container-fluid">
-            <div class="row">
-                <div class="foodporn-container">
-                    <a data-toggle="modal" data-target="#myModal">
-                        <img src="./img/default.png">
-                    </a>
-                    <p class="foodporn-title ng-binding">Titel</p>
-                    <p class="foodporn-description ng-binding">Lorem ipsum...</p>
-                    <div class="foodporn-container-footer">
-                        <a class="foodporn-like-button green">
-                            <i class="fa fa-thumbs-up"></i>
-                            <span class="ng-binding">15</span>
-                        </a>
-                        <a class="foodporn-like-button red">
-                            <i class="fa fa-thumbs-down"></i>
-                            <span class="ng-binding">2</span>
-                        </a>
-                        <a class="foodporn-byuser ng-binding">by Username</a>
-                    </div>
-                </div>
-            </div>
-        </div>-->
 
     </div>
     <!-- Button, der das Modal aufruft -->
@@ -168,24 +146,24 @@
                     </div>
                     <div class="modal-body">
 
-                        <form id="formNewentryAdd" ng-submit="updateUdssr()">
+                        <form id="formNewentryAdd" ng-submit="updateUdssr">
                             <div class="form-group">
                                 <label for="beschreibung_neuesBild">Beschreibung</label>
                                 <textarea rows="4" class="form-control" required id="beschreibung_neuesBild" placeholder="Beschreibung">{{userData.description}}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="beschreibung_neuesBild">Altes Passwort</label>
-                                <input ng-model="userX.oldPW" type="password" class="form-control" id="titel_neuesBild" placeholder="Altes Passwort">
+                                <input ng-model="userX.oldPW" type="text" class="form-control" id="titel_neuesBild" placeholder="Altes Passwort">
                             </div>
                             <div class="form-group">
                                 <label for="beschreibung_neuesBild">Neues Passwort</label>
-                                <input ng-model="userX.newPW" type="password" class="form-control" id="titel_neuesBild" placeholder="Neues Passwort">
+                                <input ng-model="userX.newPW" type="text" class="form-control" id="titel_neuesBild" placeholder="Neues Passwort">
                             </div>
                             <div class="form-group">
                                 <label for="beispielFeldDatei">Anhang</label>
                                 <input type="text" class="form-control" required id="datei_neuesBild" value="{{userData.image}}">
                             </div>
-                            <input type="submit" class="btn btn-success" id="form_senden" name="speichern " value="speichern">
+                            <input type="submit" class="btn btn-success" id="form_senden" name="speichern " value="speichern ">
                         </form>
 
                         <div class="modal-footer ">
