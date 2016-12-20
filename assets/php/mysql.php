@@ -81,31 +81,31 @@ class DB
             if($count < 1)
             {
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(1,'http://www.macarthur.com.au/resize.php?width=376&height=250&cropratio=376:250&image=/./uploads/567/thai4.jpg', 'Beispieltitel', 'Beschreibung des Beispiel Foodporns', 'Vegetarisch', 1, NOW())");
+                VALUES(1,'http://www.soto.de/images/produkte/img_minirollethai.jpg', 'Exotische Frühlingsrollen', 'Frühlingsrollen sind eine Vorspeise der asiatischen Küche aus speziellen Teigblättern mit einer Vielzahl unterschiedlicher Füllungen. Einige Varianten werden im Wok frittiert.', 'Vegetarisch', 1, NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(2,'https://s-media-cache-ak0.pinimg.com/originals/79/05/1f/79051fad533e8f20bf991fd78c3d2c61.jpg', 'Beispieltitel', 'Beschreibung des Beispiel Foodporns', 'Vegetarisch', 1, NOW())");
+                VALUES(2,'http://www.rd.com/wp-content/uploads/2015/11/05-fruit-smoothies-blueberry-flaxseed.jpg', 'Blueberry Smoothie', 'Smoothies ist eine aus dem Amerikanischen stammende Bezeichnung für kalte Mixgetränke aus Obst und Milchprodukten, die frisch zubereitet oder als Fertigprodukte verkauft werden.', 'Smoothies', 1, NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(3,'https://s-media-cache-ak0.pinimg.com/236x/c8/3f/1f/c83f1f5401b95478636f80191ce2e48e.jpg', 'Beispieltitel', 'Beschreibung des Erdbeerdesserts Foodporns', 'Fleisch', 1, NOW())");
+                VALUES(3,'http://www.chopchopgrills.com/wp-content/uploads/2015/12/265174-chicken-salad.jpg', 'Chicken Royal Salad', 'Das Haushuhn ist eine Zuchtform des Bankivahuhns, eines Wildhuhns aus Südostasien, und gehört zur Familie der Fasanenartigen. Landwirtschaftlich zählen sie zum Geflügel. Das männliche Haushuhn nennt man Hahn oder Gockel, den kastrierten Hahn Kapaun.', 'Fleisch', 2, NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(4,'http://m3.paperblog.com/i/32/327069/foodporn-im-hause-fruhstuck-2-L-hdO08X.jpeg', 'Beispieltitel', 'Beschreibung des Beispiel Foodporns', 'Fleisch', 1, NOW())");
+                VALUES(4,'https://upload.wikimedia.org/wikipedia/commons/a/ae/Wiener-Schnitzel02.jpg', 'Gebackenes Schnitzel', 'Schnitzel sind dünn geschnittene Fleischstücke ohne Knochen, die meist zusätzlich mit einem Fleischklopfer platt geklopft werden, was das Fleisch durch Aufbrechen der Muskelfasern zarter macht. In der Schweiz werden Schnitzel auch Plätzli genannt.', 'Fleisch', 1, NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(5,'https://tastethestyle.files.wordpress.com/2013/08/lobster.jpg', 'Beispieltitel', 'Beschreibung des Beispiel Foodporns', 'Fisch', 1, NOW())");
+                VALUES(5,'https://tastethestyle.files.wordpress.com/2013/08/lobster.jpg', 'Hummerschwänze á la Citron', 'Die Hummer sind eine meeresbewohnende Gattung der Zehnfußkrebse aus der Familie der Hummerartigen. Sie umfasst heute die zwei Arten Amerikanischer Hummer und Europäischer Hummer.', 'Fisch', 3, NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(6,'https://i.ytimg.com/vi/5KLYz0pApq0/maxresdefault.jpg', 'Beispieltitel', 'Beschreibung des Erdbeerdesserts Foodporns', 'Fleisch', 1, NOW())");
+                VALUES(6,'https://i.ytimg.com/vi/5KLYz0pApq0/maxresdefault.jpg', 'Cheese-Bacon Burgen', 'Ein Hamburger ist ein warmes Schnell- oder Fertiggericht und bildet den Standardartikel vieler Fast-Food-Ketten.', 'Fleisch', 1, NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(7,'http://cdn.skim.gs/images/er7xhsed13uzk9foko5c/food-porn-friday-caramel-caramel-food-porn', 'Beispieltitel', 'Beschreibung des Beispiel Foodporns', 'Desserts', 1, NOW())");
+                VALUES(7,'http://cdn.skim.gs/images/er7xhsed13uzk9foko5c/food-porn-friday-caramel-caramel-food-porn', 'Caramel Cake', 'Karamell ist eine durch starkes, trockenes Erhitzen erzeugte Mischung aus geschmolzenem Zucker und seinen oxidierten und kondensierten Reaktionsprodukten.', 'Desserts', 2, NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(8,'https://backpackerlee.files.wordpress.com/2014/05/sushi2.jpg?w=768&h=511', 'Beispieltitel', 'Beschreibung des Beispiel Foodporns', 'Fisch', 1, NOW())");
+                VALUES(8,'https://backpackerlee.files.wordpress.com/2014/05/sushi2.jpg?w=768&h=511', 'Sushi Variation', 'Sushi ist ein japanisches Gericht aus erkaltetem, gesäuertem Reis, ergänzt um weitere Zutaten wie rohen oder geräucherten Fisch, rohe Meeresfrüchte, Nori, Gemüse, Tofuvarianten und Ei. Die Zusammenstellung variiert nach Art und Rezept.', 'Fisch', 2, NOW())");
                 $stmt->execute();
                 $stmt = self::$_db->prepare("INSERT INTO foodporn (id_foodporn,image,title,description,category,fs_user,dateCreated)
-                VALUES(9,'http://24.media.tumblr.com/5f380d70650c500023bfd010995a8a4c/tumblr_mj6gbo1v331qitz6do1_500.jpg', 'Beispieltitel', 'Beschreibung des Erdbeerdesserts Foodporns', 'Fleisch', 1, NOW())");
+                VALUES(9,'http://24.media.tumblr.com/5f380d70650c500023bfd010995a8a4c/tumblr_mj6gbo1v331qitz6do1_500.jpg', 'Asia Wok mit Rind', 'Die Rinder sind eine Gattungsgruppe der Hornträger. Es sind große und stämmige Tiere, von denen einige Arten als Nutztiere eine wichtige Rolle spielen, allen voran das Hausrind.', 'Fleisch', 3, NOW())");
                 $stmt->execute();
             }
             
@@ -116,7 +116,13 @@ class DB
             if($count < 1)
             {
                 $stmt = self::$_db->prepare("INSERT INTO user (id_user,username,mail,password,description,image,session)
-                VALUES(1,'Test', 'test@test.ch', '" . hash("sha512","Test123") . "', 'Über mich:', 'https://www.arazhul.de/extension/themes/arazhul/images/placeholder.jpg', '')");
+                VALUES(1,'Leonardo', 'test@test.ch', '" . hash("sha512","1234") . "', 'Ich habe mehr als 15 Jahre Internet Marketing Erfahrung und kenne mich sehr gut mit Facebook Marketing, Suchmaschinenoptimierung, Social Media Marketing, Linkaufbau, Content Marketing, Copywriting, E-Mail Marketing, Reichweitengenerierung, Instagram Marketing und Landing Pages aus – und ich kann dir sogar zeigen, wie du auf Snapchat Reichweite aufbaust und erfolgreich wirst.', 'http://img.timeinc.net/time/daily/2010/1011/poy_nomination_agassi.jpg', '')");
+                $stmt->execute();
+                $stmt = self::$_db->prepare("INSERT INTO user (id_user,username,mail,password,description,image,session)
+                VALUES(2,'Franz', 'test@test.ch', '" . hash("sha512","1234") . "','Diese Seite ist vorrangig entstanden um Freunde, Bekannte, Kollegen und alle Interessierten der Internetgemeinde über meine Reisen zu informieren – also eine Art Reisetagebuch / Reiseblog mit einzelnen Reiseberichten. Nach und nach sind jedoch auch ein paar weitere Kategorien und Artikel hinzu bekommen und auch der Kreis der Leser hat sich stark erweitert. Somit sind zu den ehemals rein privaten Reiseberichten auch Hintergrundinformationen und weiteführende Verweise und Links hinzu gekommen.', 'https://pbs.twimg.com/profile_images/1717956431/BP-headshot-fb-profile-photo_400x400.jpg', '')");
+                $stmt->execute();
+                $stmt = self::$_db->prepare("INSERT INTO user (id_user,username,mail,password,description,image,session)
+                VALUES(3,'Jennifer', 'test@test.ch', '" . hash("sha512","1234") . "', 'Ich bin 22 Jahre alt und bin gerade frisch von Amsterdam nach Berlin gezogen. Mein Vater ist Fotograf und reist unheimlich viel! Als ich klein war, hat er mich oft mitgenommen, was total spannend für mich war. Dadurch konnte ich viel von der Welt sehen. Besonders verliebt habe ich mich dabei in Wien, Papas Heimatstadt. Die Stadt ist wunderschön - ich liebe die prunkvollen barocken Häuserfassaden. Wien ist das absolute Gegenteil zu dem kleinen Dorf in Holland, in dem ich aufgewachsen bin.', 'https://tribzap2it.files.wordpress.com/2015/07/person-of-interest-season-4-sarah-shahi-cbs.jpg', '')");
                 $stmt->execute();
             }
             
