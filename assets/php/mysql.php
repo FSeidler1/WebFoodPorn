@@ -302,8 +302,8 @@ class DB
         function registerUser($username, $mail, $password)
         {
             $password = hash("sha512",$password);
-            $stmt = self::$_db->prepare("INSERT INTO user (username,mail,password,session)
-                VALUES(:username,:mail,:password,:sid)");
+            $stmt = self::$_db->prepare("INSERT INTO user (username,mail,password,session,image)
+                VALUES(:username,:mail,:password,:sid,'http://d2sh4fq2xsdeg9.cloudfront.net/application/assets/images/profile-no-photo.png')");
             $sid = session_id();
             $stmt->bindParam("username", $username);
             $stmt->bindParam("mail", $mail);
