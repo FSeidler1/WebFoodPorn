@@ -414,12 +414,14 @@ class DB
         // Set Favorite Foodporn
         function setFavorite($fid)
         {
-            $stmt = self::$_db->prepare("INSERT INTO favorit (fs_foodporn, fs_user)
-                                        VALUES(:fid, :uid");
-            $stmt->bindParam(":fid", $fid);
-            $uid = self::getUserID();
-            $stmt->bindParam(":uid", $uid);
-            $stmt->execute();
+            if(self::isFavoriteFoodporn($fid) != "true")
+            {
+                $stmt = self::$_db->prepare("INSERT INTO favorit (fs_foodporn, fs_user) VALUES(:fid, :uid)");
+                $stmt->bindParam(":fid", $fid);
+                $uid = self::getUserID();
+                $stmt->bindParam(":uid", $uid);
+                $stmt->execute();
+            }
         }
 
         // Get if the foodporn is favorited
