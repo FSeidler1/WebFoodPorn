@@ -217,25 +217,24 @@ class DB
         // Update User 
         function updateUser($descr, $img)
         {
-            $stmt = self::$_db->prepare("UPDATE user SET description=:descr, image=:img WHERE id_user:uid");
+            $stmt = self::$_db->prepare("UPDATE user SET description=:descr, image=:img WHERE id_user=:uid");
             $stmt->bindParam(":descr", $descr);
             $stmt->bindParam(":img", $img);
             $uid = self::getUserID();
             $stmt->bindParam(":uid", $uid);
             $stmt->execute();
-            return "true";
         }
 
         // Update User Password
         function updateUserPassword($old, $new)
         {
+            $old = hash("sha512",$old);
+            $new = hash("sha512",$new);
             $stmt = self::$_db->prepare("UPDATE user SET password=:new WHERE id_user=:uid AND password=:old");
             $stmt->bindParam(":new", $new);
             $uid = self::getUserID();
             $stmt->bindParam(":uid", $uid);
             $stmt->bindParam(":old", $old);
-            $stmt->execute();
-            return "true";
         }
 
         // Login User
