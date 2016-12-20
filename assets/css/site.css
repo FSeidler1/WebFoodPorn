@@ -140,6 +140,10 @@ p.foodporn-description {
     font-size: 17px;
 }
 
+textarea.form-control {
+    max-width: 100%;
+}
+
 a.foodporn-like-button {
     font-size: 17px;
     color: black;
