@@ -87,7 +87,7 @@ class Controller {
         $this->db->updateUser($_POST["beschreibung"], $_POST["image"]);
         if(isset($_POST["altesPW"]) === TRUE)
         {
-            updatePassword();
+            $this->updatePassword();
         }
         $this->json = "true";
     }
