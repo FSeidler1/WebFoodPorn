@@ -215,7 +215,7 @@ class DB
         }
 
         // Update User 
-        function updateUser($username, $mail, $descr, $img)
+        function updateUser($descr, $img)
         {
             $stmt = self::$_db->prepare("UPDATE user SET description=:descr, image=:img WHERE id_user:uid");
             $stmt->bindParam(":descr", $descr);

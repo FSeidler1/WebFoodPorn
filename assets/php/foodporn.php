@@ -41,8 +41,7 @@ class Controller {
             }
             else if($_GET["action"] == "search")
             {
-                // TDDO: Implement following:
-                $this->searchFoodporn($_GET["action"]);
+                $this->searchFoodporn($_GET["navSearch"]);
             }
             else if($_GET["action"] == "setfavorite")
             {
@@ -90,11 +89,9 @@ class Controller {
     }
 
     //  Search by Foodporn
-    function searchFoodporn($string) 
+    function searchFoodporn($searchString) 
     {
-        // TODO: 
-        //$this->json = $_POST["navSearch"];
-
+        
         getAllFoodporns();
     }
 
