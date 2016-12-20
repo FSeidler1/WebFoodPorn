@@ -35,10 +35,6 @@ class Controller {
             {
                 $this->like();
             }
-            else if($_GET["action"] == "addComment")
-            {
-                $this->like();
-            }
             else if($_GET["action"] == "search")
             {
                 $this->searchFoodporn($_GET["navSearch"]);

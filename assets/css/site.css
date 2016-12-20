@@ -17,6 +17,10 @@ body {
     margin-bottom: 10px;
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 
 /* Große Geräte (Desktop-PCs, 1200px und breiter) */
 
@@ -149,6 +153,10 @@ p.foodporn-description {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+}
+
+.modal p.foodporn-description {
+    display: block;
 }
 
 textarea.form-control {
